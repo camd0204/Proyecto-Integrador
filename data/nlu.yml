@@ -17,22 +17,47 @@ nlu:
     - goodevening
     - good afternoon
 
-- intent: inform
-  examples: |
-    - [Quito] (location)
-    - [Guayaquil] (location)
-    - [Bogota] (location)
-    - [Manta](location)
-    - [Medellin](location)
-    - [Buenos Aires](location)
 
-- intent: search_provider
-  examples: |
-    - I need a [hospital] (facility_type)
-    - Find me the nearest [hospital] (facility_type)
-    - Show me the closest home health agencies
-    - Finde me a [hospital] close (facility_type)
 
+- intent: ask_basic_concepts
+  examples: |
+    - Tell me about a [router](network_device)
+    - Explain the role of a [router](network_device) in a network.
+    - What is a [router](network_device) used for in networking?
+    - Can you provide information about [router](network_device)?
+    - Describe the role of a [router](network_device) devices in networks.
+    - What's the function of a [router](network_device) in a network?
+    - What is the purpose of a [router](network_device)?
+    - Tell me about [switch](network_device) security.
+    - Explain [switch](network_device) devices.
+    - What's the function of a [switch](network_device) in networking?
+    - Describe [subnetting](network_device) in networking.
+    - How does [DNS](network_device) work in a network?
+    - Explain the purpose of [gateway](network_device) devices.
+    - What are [ports](network_device) used for in networking?
+    - Can you tell me about [MAC addresses](network_device)?
+    - What is the significance of [TCP/IP](network_device) in networking?
+
+- intent: switch_connection_request
+  examples: |
+    - I want to connect users to a switch.
+    - I want to create a network with a switch.
+    - I need to establish a connection to a switch.
+    - I'm looking to connect users via a switch.
+    - Can you guide me on how to create a network using a switch?
+    - I'd like to establish connectivity through a switch.
+    - I'm interested in connecting users through a switch.
+    - Help me understand how to configure a switch for user connections.
+    - I want to establish a network using a switch.
+
+- intent: provide_users_to_switch
+  examples: |
+    - There are [2](user_number) users
+    - [3](user_number)
+    - I want to have [1](user_number)
+    - There will be [5](user_number) users
+    -[5](user_number)
+    
 
 - intent: goodbye
   examples: |

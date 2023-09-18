@@ -8,6 +8,20 @@ intents:
   - mood_great
   - mood_unhappy
   - bot_challenge
+  - ask_basic_concepts
+  - router_connection_request
+  - provide_users_to_switch
+  - switch_connection_request
+
+
+actions:
+  - provide_concept_info
+  - provide_switch_config
+  
+
+entities:
+  - network_device
+  - user_number
 
 responses:
   utter_greet:
@@ -29,6 +43,43 @@ responses:
 
   utter_iamabot:
   - text: "I am a bot, powered by Rasa."
+
+  utter_ask_for_security:
+  - text: "Would you care about security configurations or do you want to leave them default?"
+
+  utter_ask_for_user:
+  - text: "Sure! How many users are going to be using the switch? "
+
+  utter_router:
+    - text: "A router is a networking device that connects different networks together and routes data packets between them. It determines the best path for data to travel from one network to another."
+
+  utter_switch:
+    - text: "A switch is a networking device that operates at the data link layer (Layer 2) of the OSI model. It connects devices within the same local area network (LAN) and forwards data based on MAC addresses."
+
+  utter_firewall:
+    - text: "A firewall is a network security device that monitors and filters incoming and outgoing network traffic. It is designed to protect a network from unauthorized access and cyber threats."
+
+  utter_ip_address:
+    - text: "An IP address (Internet Protocol address) is a unique numerical label assigned to each device connected to a computer network that uses the Internet Protocol for communication. It serves two main functions: host or network interface identification and location addressing."
+
+  utter_subnetting:
+    - text: "Subnetting is a technique used in IP networking to divide a single IP network into multiple smaller subnetworks or subnets. It is done to improve network performance, security, and manageability."
+
+  utter_dns:
+    - text: "DNS (Domain Name System) is a decentralized naming system used to translate human-friendly domain names (e.g., www.example.com) into IP addresses that computers use to identify each other on the network. It acts like a phone book for the internet."
+
+  utter_gateway:
+    - text: "A gateway is a networking device or software that connects two or more dissimilar networks. It serves as a bridge between different network protocols, allowing data to flow between them."
+
+  utter_ports:
+    - text: "Ports in networking refer to communication endpoints used to identify specific processes or services on a device. Ports are essential for directing network traffic to the correct applications or services running on a device."
+
+  utter_mac_addresses:
+    - text: "A MAC address (Media Access Control address) is a unique identifier assigned to a network interface card (NIC) by the manufacturer. It is used to identify devices at the data link layer (Layer 2) of the OSI model."
+
+  utter_tcp_ip:
+    - text: "TCP/IP (Transmission Control Protocol/Internet Protocol) is a suite of protocols that form the foundation of the internet and most computer networks. It provides reliable, end-to-end communication by breaking data into packets and ensuring their proper delivery."
+
 
 session_config:
   session_expiration_time: 60
