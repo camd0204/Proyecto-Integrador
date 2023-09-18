@@ -53,19 +53,18 @@ class ActionProvideSwitchConfiguration(Action):
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         # Get the detected networking concept entity
         user_number_switch = next(tracker.get_latest_entity_values("user_number"), None)
-        last_intent = tracker.latest_message["intent"]["name"]
-        
         if user_number_switch:
             user_count=int(user_number_switch)
             if user_count >= 0:
-                config=self.generate_switch_config(user_count,last_intent)
+                config=self.generate_switch_config(user_count)
                 dispatcher.utter_message(config)
             else:
                 dispatcher.utter_message("Non valid value! Try again!")
+        else:
+            dispatcher.utter_message("Non valid value! Try again!")
 
         return []
-    def generate_switch_config(self,number,intent):
-        if(intent=="deny"):
+    def generate_switch_config(self,number):
             config="""
             enable
             configure terminal
@@ -74,6 +73,7 @@ class ActionProvideSwitchConfiguration(Action):
             config+=f"vlan vlan{self.counter}\n"
             config+=f"name prueba{self.counter}\n"
             config+=f"{interface_range}\n"
+            config += f"switchport access vlan vlan{self.counter}\n"
             config += """
             switchport mode access
             switchport access vlan vlan1
@@ -81,28 +81,5 @@ class ActionProvideSwitchConfiguration(Action):
             write memory
             """
             self.counter+=1
-        else:
-            config="""
-            enable
-            configure terminal
-            """
-            interface_range = "interface range gigabitethernet0/1-" + str(number)
-            config+=f"vlan vlan{self.counter}\n"
-            config+=f"name prueba{self.counter}\n"
-            config+=f"{interface_range}\n"
-            config += "switchport mode access\n"
-            config += f"switchport access vlan vlan{self.counter}\n"
-            config += """
-            switchport port-security
-            switchport port-security violation restrict
-            switchport port-security maximum 2 
-            switchport port-security mac-address sticky
-            spanning-tree portfast
-            spanning-tree bpduguard enable
-            ip arp inspection trust
-            no shutdown
-            """
-            self.counter+=1
-
-        return config
+            return config
 

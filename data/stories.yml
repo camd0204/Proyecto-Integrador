@@ -14,26 +14,12 @@ stories:
   - intent: ask_basic_concepts
   - action: provide_concept_info
 
-- story: connect users to a given router w security
-  steps:
-  - intent: switch_connection_request
-  - action: utter_ask_for_user
-  - intent: provide_users_to_switch
-  - action: utter_ask_for_security
-  - intent: affirm
-  - action: provide_switch_config
-
 - story: connect users to a given router wo security
   steps:
   - intent: switch_connection_request
   - action: utter_ask_for_user
   - intent: provide_users_to_switch
-  - action: utter_ask_for_security
-  - intent: deny
   - action: provide_switch_config
-  
-
-
 
 
 - story: sad path 1
