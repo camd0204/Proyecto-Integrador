@@ -12,16 +12,23 @@ intents:
   - router_connection_request
   - provide_users_to_switch
   - switch_connection_request
+  - ask_simple_network_scenario
+  - ask_complex_network_scenario
+  - create_network_intent
+  - provide_users_to_network
 
 
 actions:
   - provide_concept_info
   - provide_switch_config
+  - generate_example_scenario
+  - generate_simple_network
   
 
 entities:
   - network_device
   - user_number
+  - user_number_n
 
 responses:
   utter_greet:
@@ -34,6 +41,9 @@ responses:
 
   utter_did_that_help:
   - text: "Did that help you?"
+
+  utter_users_for_network:
+  - text: " Sure! How many users (PCs) are going to be connected to the network?"
 
   utter_happy:
   - text: "Great, carry on!"
