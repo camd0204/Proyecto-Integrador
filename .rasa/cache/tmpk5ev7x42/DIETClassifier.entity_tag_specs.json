@@ -1,0 +1,36 @@
+[
+  {
+    "tag_name": "entity",
+    "ids_to_tags": {
+      "1": "B-network_device",
+      "2": "I-network_device",
+      "3": "L-network_device",
+      "4": "U-network_device",
+      "5": "B-user_number",
+      "6": "I-user_number",
+      "7": "L-user_number",
+      "8": "U-user_number",
+      "9": "B-user_number_n",
+      "10": "I-user_number_n",
+      "11": "L-user_number_n",
+      "12": "U-user_number_n",
+      "0": "O"
+    },
+    "tags_to_ids": {
+      "B-network_device": 1,
+      "I-network_device": 2,
+      "L-network_device": 3,
+      "U-network_device": 4,
+      "B-user_number": 5,
+      "I-user_number": 6,
+      "L-user_number": 7,
+      "U-user_number": 8,
+      "B-user_number_n": 9,
+      "I-user_number_n": 10,
+      "L-user_number_n": 11,
+      "U-user_number_n": 12,
+      "O": 0
+    },
+    "num_tags": 13
+  }
+]

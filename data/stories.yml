@@ -24,7 +24,15 @@ stories:
   - intent: ask_complex_network_scenario
   - action: generate_example_scenario
 
-- story: create network
+- story: show switch example scenario
+  steps:
+  - intent: ask_switch_network_scenario
+  - action: generate_example_scenario
+
+
+
+
+- story: create network with one router
   steps:
   - intent: create_network_intent
   - action: utter_users_for_network

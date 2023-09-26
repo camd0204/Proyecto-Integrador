@@ -96,16 +96,37 @@ class ActionGenerateSimpleScenario(Action):
         xml_content=''
         #Define xml content depending on intent given
         if(intent=='ask_simple_network_scenario'):
-            with open('simple_lxc_ubuntu64.xml', 'r') as xml_file:
+            with open('xml_files\simple_lxc_ubuntu64.xml', 'r') as xml_file:
               xml_content = xml_file.read()
+        elif(intent=='ask_switch_network_scenario'):
+            with open('xml_files\example_lxc_vm-as-switch.xml','r') as xml_file:
+                xml_content=xml_file.read()
         else:
-            with open('tutorial_lxc_ubuntu64.xml','r') as xml_file:
+            with open('xml_files\tutorial_lxc_ubuntu64.xml','r') as xml_file:
               xml_content=xml_file.read()
         #Change for Linux path
-        file_path = "customscenario.xml"
+        file_path = ""
+        description=""
+        if(intent=='ask_simple_network_scenario'):
+            file_path='xml_files\simple_network_scenario.xml'
+            description="""Just one Ubuntu virtual machine connected to a Network named Net0 with address 10.1.0.4. 
+             The host has an interface in Net0 with address 10.1.0.1  
+             This simple scenario is supposed to be used for testing the different 
+             types of virtual machines supported by VNX. You can start several simple_*.xml
+             scenarios and test the connectivity among virtual machines and the host, as all
+             scenarios share the same "Net0" network."""
+        elif(intent=='ask_switch_network_scenario'):
+            file_path='xml_files\simple_switch_scenario.xml'
+            description="""Simple scenario made of one VM acting as a switch and three VMs connected 
+             to it. Shows the use of 'veth' based direct connections among LXC VMs."""
+        else:
+            file_path='xml_files\complex_network_scenario.xml'
+            description="""A scenario made of 6 LXC Ubuntu virtual machines (4 hosts: h1, h2, h3 and h4; 
+             and 2 routers: r1 and r2) connected through three virtual networks. The host participates 
+             in the scenario having a network interface in Net3."""
         with open(file_path, "w") as xml_file:
             xml_file.write(xml_content)
-        dispatcher.utter_message(f"Scenario created as XML file generated and saved as {file_path}")
+        dispatcher.utter_message(f"Example scenario created as XML file generated and saved as {file_path}. The description for the scenario:{description}")
         return []
     
 #Class to generate a simple network scenario 
@@ -119,7 +140,10 @@ class ActionGenerateSimpleNetwork(Action):
             user_network_count=int(user_number_network)
             if(user_network_count>0):
                 self.createXMLFile(user_network_count)
-                dispatcher.utter_message(f"Scenario created as XML file generated and saved as vnx_custom_network.xml")
+                description=f"""The scenario consists of a variable number of {user_network_count} LXC-based virtual machines connected to two network bridges, 
+        "Net0" and "Net1." Each virtual machine has specific configurations, including filesystem settings, IP addresses, and routes. 
+        Additionally, the XML file includes commands to start and stop an Apache web server and defines a router element"""
+                dispatcher.utter_message(f"Scenario created as XML file generated and saved as vnx_custom_network.xml. Description: {description}")
             else:
                 dispatcher.utter_message("User number not valid, file could not be created.")
         else:
@@ -208,8 +232,9 @@ class ActionGenerateSimpleNetwork(Action):
         pretty_xml = dom.toprettyxml(indent="  ")
 
         # Write the prettified XML to a file
-        with open("vnx_custom_network.xml", "w", encoding="utf-8") as xml_file:
+        with open("xml_files\vnx_custom_network_router.xml", "w", encoding="utf-8") as xml_file:
             xml_file.write(pretty_xml)
+
 
 
 

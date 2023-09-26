@@ -16,6 +16,7 @@ intents:
   - ask_complex_network_scenario
   - create_network_intent
   - provide_users_to_network
+  - ask_switch_network_scenario
 
 
 actions:
