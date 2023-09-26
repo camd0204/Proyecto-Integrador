@@ -81,31 +81,33 @@ nlu:
 
 - intent: provide_users_to_switch
   examples: |
-    - There are [2](user_number) users
-    - [3](user_number)
-    - I want to have [1](user_number)
-    - There will be [5](user_number) users
-    -[5](user_number)
+    - There are [2](user_number) users for the switch
+    - [3](user_number) users will use the switch
+    - I want to have [1](user_number) switch users
+    - There will be [5](user_number) users at the given switch
+    - [5](user_number) switch users
   
 - intent: create_network_intent
   examples: |
-    - I want to create a virtual network.
-    - I want to create and deploy a network.
-    - I'm looking to establish a virtual network environment.
-    - How can I create a network in this simulation?
+    - I want to create a virtual network with a simple router.
+    - I want to use a router to connect to users.
+    - Create a network for users with a router.
+    - I want to create and deploy a simple network .
+    - I'm looking to establish a virtual network environment with a router.
+    - How can I create a network in this simulation using only one router?
     - What's the process for setting up a virtual network?
     - I'm interested in creating a network for testing purposes.
     - Could you guide me through the steps of network creation?
-    - I'd like to deploy a virtual network, where should I start?
-    - Please assist me in creating a virtual network infrastructure.
+    - I'd like to deploy a virtual network that use one router, where should I start?
+    - Please assist me in creating a virtual network infrastructure using a router.
 
 - intent: provide_users_to_network
   examples: |
-    - There are [2](user_number_n) users
-    - [3](user_number_n)
-    - I want to have [1](user_number_n)
-    - There will be [5](user_number_n) users
-    -[5](user_number)
+    - There are [2](user_number_n) pcs
+    - [3](user_number_n) users will use the network
+    - I want to have [1](user_number_n) network users
+    - There will be [5](user_number_n) users.
+    - [5](user_number_n) pcs will be connected.
   
 
 - intent: goodbye

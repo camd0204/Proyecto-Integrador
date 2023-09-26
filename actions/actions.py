@@ -9,6 +9,7 @@ from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 import xml.etree.ElementTree as ET
+import xml.dom.minidom
 
 class ActionProvideNetworkingConceptInfo(Action):
     def name(self) -> Text:
@@ -101,7 +102,7 @@ class ActionGenerateSimpleScenario(Action):
             with open('tutorial_lxc_ubuntu64.xml','r') as xml_file:
               xml_content=xml_file.read()
         #Change for Linux path
-        file_path = "C:\\Users\\charl\\Documents\\customscenario.xml"
+        file_path = "customscenario.xml"
         with open(file_path, "w") as xml_file:
             xml_file.write(xml_content)
         dispatcher.utter_message(f"Scenario created as XML file generated and saved as {file_path}")
@@ -109,22 +110,32 @@ class ActionGenerateSimpleScenario(Action):
     
 #Class to generate a simple network scenario 
 class ActionGenerateSimpleNetwork(Action):
+    filecounter=1
     def name(self) -> Text:
         return "generate_simple_network"
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         user_number_network = next(tracker.get_latest_entity_values("user_number_n"), None)
+        if user_number_network:
+            user_network_count=int(user_number_network)
+            if(user_network_count>0):
+                self.createXMLFile(user_network_count)
+                dispatcher.utter_message(f"Scenario created as XML file generated and saved as vnx_custom_network.xml")
+            else:
+                dispatcher.utter_message("User number not valid, file could not be created.")
+        else:
+            dispatcher.utter_message("User number not valid, file could not be created.")
+        return []
 
-    def createXMLFile(user_number):
+
+    def createXMLFile(self,user_number):
         # Names, defaults,etc
         root = ET.Element("vnx", attrib={"xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
                                      "xsi:noNamespaceSchemaLocation": "/usr/share/xml/vnx/vnx-2.00.xsd"})
         global_elem = ET.SubElement(root, "global")
         ET.SubElement(global_elem, "version").text = "2.0"
-        ET.SubElement(global_elem, "scenario_name").text = "simple_net_lxc_ubuntu"
+        ET.SubElement(global_elem, "scenario_name").text = "vmx_custom_network"
         ET.SubElement(global_elem, "automac")
-        vm_mgmt_elem = ET.SubElement(global_elem, "vm_mgmt", type="none")
-        #Create virtual machine default options
-        ET.SubElement(vm_mgmt_elem, "vm_defaults")
+        ET.SubElement(global_elem,"vm_mgmt",type="none")
         vm_defaults = ET.SubElement(global_elem, "vm_defaults")
         ET.SubElement(vm_defaults, "console", attrib={"id": "0", "display": "no"})
         ET.SubElement(vm_defaults, "console", attrib={"id": "1", "display": "yes"})
@@ -142,13 +153,64 @@ class ActionGenerateSimpleNetwork(Action):
         ET.SubElement(root, "net", name=f"Net0", mode="virtual_bridge")
         ET.SubElement(root, "net", name=f"Net1", mode="virtual_bridge")
 
-        #Create router elements
-        for i in range(1, user_number+1):
+        #Create host elements
+        for i in range(1, user_number):
           host_elem = ET.SubElement(root, "vm", name=f"h{i}", type="lxc")
           ET.SubElement(host_elem, "filesystem", type="cow").text = "/usr/share/vnx/filesystems/rootfs_lxc"
-          if_elem = ET.SubElement(host_elem, "if", id="1", net="Net1")
+          if_elem = ET.SubElement(host_elem, "if", id="1", net="Net0")
           ET.SubElement(if_elem, "ipv4").text = f"10.1.0.{i+1}/24"
           ET.SubElement(host_elem, "route", type="ipv4", gw="10.1.0.1").text = "default"
+        #Create a final machine that will act as a server
+        host_elem = ET.SubElement(root, "vm", name=f"h{user_number}", type="lxc")
+        ET.SubElement(host_elem, "filesystem", type="cow").text = "/usr/share/vnx/filesystems/rootfs_lxc"
+        if_elem = ET.SubElement(host_elem, "if", id="1", net="Net0")
+        ET.SubElement(if_elem, "ipv4").text = f"10.1.0.{user_number+1}/24"
+        ET.SubElement(host_elem, "route", type="ipv4", gw="10.1.0.1").text = "default"
+        # Add the additional XML elements
+        # Copy the files under conf/tutorial_ubuntu/h4 to vm /var/www directory
+        filetree_elem = ET.SubElement(host_elem, "filetree", seq="start-www", root="/var/www/")
+        filetree_elem.text = "conf/tutorial_ubuntu/h4"
+
+        # Start/stop apache www server
+        exec_start_www = ET.SubElement(host_elem, "exec", seq="start-www", type="verbatim", ostype="system")
+        exec_start_www.text = "chmod 644 /var/www/*"
+
+        exec_start_www = ET.SubElement(host_elem, "exec", seq="start-www", type="verbatim", ostype="system")
+        exec_start_www.text = "service apache2 start"
+
+        exec_stop_www = ET.SubElement(host_elem, "exec", seq="stop-www", type="verbatim", ostype="system")
+        exec_stop_www.text = "service apache2 stop"
+
+        
+        #Create router elements
+        router_elem = ET.SubElement(root, "vm", attrib={"name": "r1", "type": "lxc"})
+        ET.SubElement(router_elem, "filesystem", attrib={"type": "cow"}).text = "/usr/share/vnx/filesystems/rootfs_lxc"
+
+        for i, net_name in enumerate(["Net0", "Net1"]):
+            if_elem = ET.SubElement(router_elem, "if", attrib={"id": str(i + 1), "net": net_name})
+            if i == 0:
+                ET.SubElement(if_elem, "ipv4").text = "10.1.0.1/24"
+            elif i == 1:
+                ET.SubElement(if_elem, "ipv4").text = "10.1.3.1/24"
+    
+        host_elem = ET.SubElement(root, "host")
+        hostif_elem = ET.SubElement(host_elem, "hostif", attrib={"net": "Net1"})
+        ET.SubElement(hostif_elem, "ipv4").text = "10.1.3.2/24"
+        ET.SubElement(host_elem, "route", attrib={"type": "ipv4", "gw": "10.1.3.1"}).text = "10.1.0.0/16"
+
+        # Convert the ElementTree to a string
+        xml_string = ET.tostring(root, encoding='utf-8')
+
+        # Parse the XML string
+        dom = xml.dom.minidom.parseString(xml_string)
+
+        # Prettify the XML with indentation and line breaks
+        pretty_xml = dom.toprettyxml(indent="  ")
+
+        # Write the prettified XML to a file
+        with open("vnx_custom_network.xml", "w", encoding="utf-8") as xml_file:
+            xml_file.write(pretty_xml)
+
 
 
 

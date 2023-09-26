@@ -23,7 +23,7 @@ pipeline:
   min_ngram: 1
   max_ngram: 4
 - name: DIETClassifier
-  epochs: 500
+  epochs: 700
   constrain_similarities: true
   entity_recognition: true
 - name: EntitySynonymMapper
