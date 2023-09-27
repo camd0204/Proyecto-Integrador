@@ -16,6 +16,17 @@ nlu:
     - goodmorning
     - goodevening
     - good afternoon
+    
+- intent: ask_functionality
+  examples: |
+    - What is this useful for?
+    - What does this bot do?
+    - What can I do with this bot?
+    - What is this tool useful for?
+    - How can I use this chatbot?
+    - Explain to me what is the use of this tool.
+    - Tell me how this  chatbot works.
+
 
 - intent: ask_simple_network_scenario
   examples: |
@@ -54,8 +65,49 @@ nlu:
     - Can you show me an example where a switch is used to connect hosts.
     - Create a network configuration example with more hosts and a switch.
     - Create a network example with hosts and switches.
-    
 
+- intent: ask_vlan_switch_scenario
+  examples: |
+    - Show me an example on a scenario that uses a VLAN.
+    - I'd like to see a practical example of a network setup that employs VLANs.
+    - Could you provide an instance of a network configuration where VLANs play a role?
+    - Can you describe a scenario where VLANs are used to segment a network?
+    - Please explain how VLANs are applied in a network environment.
+    - I'm curious about VLAN usage. Could you walk me through a scenario that demonstrates it?
+    - Show me an example of a network setup with VLANs for better network organization.
+    - I want to understand VLANs in a real-world context. Can you describe a use case?
+    - Could you give me an illustration of how VLANs are implemented in a network?
+    - Explain a VLAN-based network scenario.
+    - Tell me about a network setup using VLANs.
+
+- intent: create_custom_network_intent
+  examples: |
+    - I want to create a network with many users and many routers.
+    - I want to make a big network with lots of users and routers.
+    - I'm thinking of creating a network with many users and routers.
+    - How can I set up a network with lots of users and routers?
+    - I'd like to build a network with many users and routers.
+    - Can you help me create a network with many users and routers?
+    - What do I need to do to have a network with lots of users and routers?
+    - I'm interested in a network with many users and routers.
+    - Need advice on making a network with many users and routers.
+
+- intent: router_number_for_custom_network
+  examples: |
+    - [2](router_number) routers.
+    - [3](router_number) routers will be used by the network.
+    - I want to have [1](router_number) router.
+    - There will be [5](router_number) routers at the given network.
+    - [5](router_number) router points.
+
+- intent: provide_users_per_router
+  examples: |
+    - [2](user_number_for_router) users per router.
+    - [1](user_number_for_router) users, please.
+    - [3](user_number_for_router) users by router will be used
+    - I want to have [1](user_number_for_router) user per router
+    - There will be [5](user_number_for_router) users at the given royter.
+    - [5](user_number_for_router) users using each router.
 
 
 - intent: ask_basic_concepts

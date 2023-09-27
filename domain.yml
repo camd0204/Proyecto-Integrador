@@ -17,6 +17,11 @@ intents:
   - create_network_intent
   - provide_users_to_network
   - ask_switch_network_scenario
+  - ask_vlan_switch_scenario
+  - create_custom_network_intent
+  - router_number_for_custom_network
+  - provide_users_per_router
+  - ask_functionality
 
 
 actions:
@@ -24,17 +29,30 @@ actions:
   - provide_switch_config
   - generate_example_scenario
   - generate_simple_network
+  - generate_complex_network
   
 
 entities:
   - network_device
   - user_number
   - user_number_n
+  - user_number_for_router
+  - router_number
 
 responses:
   utter_greet:
   - text: "Hey! How are you?"
   - text: "Hey"
+
+  utter_ask_for_users_per_router:
+  - text: "How many users will there be per router?"
+  - text: "How many users will use a router?"
+
+  utter_ask_for_number_routers:
+  - text: "Sure, let's start by telling me how many routers will there be on the network?"
+
+  utter_my_functionality:
+  - text: " Hey! I am a bot that is used to create and deploy network intents. You can also ask me certain network concepts and configurations for a switch."
 
   utter_cheer_up:
   - text: "Here is something to cheer you up:"

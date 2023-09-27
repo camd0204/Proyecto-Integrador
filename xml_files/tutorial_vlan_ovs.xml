@@ -24,10 +24,7 @@ SPAIN
     <version>2.0</version>
     <scenario_name>tutorial_vlan_ovs</scenario_name>
     <automac offset="5"/>
-    <vm_mgmt type="none" />
-    <!--vm_mgmt type="private" network="10.250.0.0" mask="24" offset="16">
-       <host_mapping />
-    </vm_mgmt-->     
+    <vm_mgmt type="none" />   
     <vm_defaults>
 	    <console id="0" display="no"/>
 	    <console id="1" display="yes"/>

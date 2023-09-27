@@ -10,6 +10,7 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 import xml.etree.ElementTree as ET
 import xml.dom.minidom
+import subprocess
 
 class ActionProvideNetworkingConceptInfo(Action):
     def name(self) -> Text:
@@ -96,19 +97,22 @@ class ActionGenerateSimpleScenario(Action):
         xml_content=''
         #Define xml content depending on intent given
         if(intent=='ask_simple_network_scenario'):
-            with open('xml_files\simple_lxc_ubuntu64.xml', 'r') as xml_file:
+            with open('xml_files/simple_lxc_ubuntu64.xml', 'r') as xml_file:
               xml_content = xml_file.read()
         elif(intent=='ask_switch_network_scenario'):
-            with open('xml_files\example_lxc_vm-as-switch.xml','r') as xml_file:
+            with open('xml_files/example_lxc_vm-as-switch.xml','r') as xml_file:
+                xml_content=xml_file.read()
+        elif(intent=='ask_vlan_switch_scenario'):
+            with open('xml_files/tutorial_vlan_ovs.xml','r') as xml_file:
                 xml_content=xml_file.read()
         else:
-            with open('xml_files\tutorial_lxc_ubuntu64.xml','r') as xml_file:
+            with open('xml_files/tutorial_lxc_ubuntu64.xml','r') as xml_file:
               xml_content=xml_file.read()
         #Change for Linux path
         file_path = ""
         description=""
         if(intent=='ask_simple_network_scenario'):
-            file_path='xml_files\simple_network_scenario.xml'
+            file_path='xml_files/simple_network_scenario.xml'
             description="""Just one Ubuntu virtual machine connected to a Network named Net0 with address 10.1.0.4. 
              The host has an interface in Net0 with address 10.1.0.1  
              This simple scenario is supposed to be used for testing the different 
@@ -116,11 +120,15 @@ class ActionGenerateSimpleScenario(Action):
              scenarios and test the connectivity among virtual machines and the host, as all
              scenarios share the same "Net0" network."""
         elif(intent=='ask_switch_network_scenario'):
-            file_path='xml_files\simple_switch_scenario.xml'
+            file_path='xml_files/simple_switch_scenario.xml'
             description="""Simple scenario made of one VM acting as a switch and three VMs connected 
              to it. Shows the use of 'veth' based direct connections among LXC VMs."""
+        elif(intent=='ask_vlan_switch_scenario'):
+            file_path='xml_files/simple_vlan_switch_scenario.xml'
+            description=""" It outlines the setup for a virtual network comprising virtual machines (VMs) and virtual networks (Net0, Net1, Net2). 
+            Each VM is configured with specific attributes, including its type (Linux Containers), architecture, file system, memory allocation, network interface, VLAN tagging, and IP address assignment."""
         else:
-            file_path='xml_files\complex_network_scenario.xml'
+            file_path='xml_files/complex_network_scenario.xml'
             description="""A scenario made of 6 LXC Ubuntu virtual machines (4 hosts: h1, h2, h3 and h4; 
              and 2 routers: r1 and r2) connected through three virtual networks. The host participates 
              in the scenario having a network interface in Net3."""
@@ -232,8 +240,39 @@ class ActionGenerateSimpleNetwork(Action):
         pretty_xml = dom.toprettyxml(indent="  ")
 
         # Write the prettified XML to a file
-        with open("xml_files\vnx_custom_network_router.xml", "w", encoding="utf-8") as xml_file:
+        with open("xml_files/vnx_custom_network_router.xml", "w", encoding="utf-8") as xml_file:
             xml_file.write(pretty_xml)
+
+    class ActionGenerateComplexNetwork(Action):
+        def name(self) -> Text:
+            return "generate_complex_network"
+        
+        def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+            print("hole")
+
+        def run_perl_script(script_path, *args):
+            try:
+                # Build the command to run the Perl script
+                command = ['perl', script_path] + list(args)
+
+                # Run the Perl script
+                process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+
+                # Capture the standard output and standard error
+                stdout, stderr = process.communicate()
+
+                # Check the return code
+                return_code = process.returncode
+
+                # Return the standard output, standard error, and return code
+                return stdout, stderr, return_code
+            except Exception as e:
+                # Handle any exceptions that may occur
+                return None, str(e), 1  # Return an error code of 1
+
+
+        
+
 
 
 
