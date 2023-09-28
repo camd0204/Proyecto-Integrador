@@ -243,32 +243,51 @@ class ActionGenerateSimpleNetwork(Action):
         with open("xml_files/vnx_custom_network_router.xml", "w", encoding="utf-8") as xml_file:
             xml_file.write(pretty_xml)
 
-    class ActionGenerateComplexNetwork(Action):
-        def name(self) -> Text:
-            return "generate_complex_network"
+class ActionGenerateComplexNetwork(Action):
+    perl_script_path = "scripts/create-tutorial_lxc_ubuntu-big"
+    def name(self) -> Text:
+        return "generate_complex_network"
         
-        def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-            print("hole")
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        user_number_for_router = tracker.get_slot("user_number_for_router")
+        router_number = tracker.get_slot("router_number")
+        stdout, stderr, return_code = self.run_perl_script(self.perl_script_path, router_number, user_number_for_router)
+        if user_number_for_router and router_number:
+            self.write_script_to_XML(stdout,router_number,user_number_for_router)
+            suma=int(user_number_for_router)+int(router_number)
+            dispatcher.utter_message(f"Script written to: xml_files/{router_number}router_{user_number_for_router}_user.xml. Description:A big tutorial scenario made of {suma} LXC virtual machines ({router_number} routers and {user_number_for_router} hosts).")
+        else:
+            dispatcher.utter_message("Network creation unable to be achieved.")
+        return []
 
-        def run_perl_script(script_path, *args):
-            try:
-                # Build the command to run the Perl script
-                command = ['perl', script_path] + list(args)
+    def run_perl_script(self,script_path, *args):
+        try:
+            # Build the command to run the Perl script
+            command = ['perl', script_path] + list(args)
+            # Run the Perl script
+            process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            # Capture the standard output and standard error
+            stdout, stderr = process.communicate()
+            # Check the return code
+            return_code = process.returncode
 
-                # Run the Perl script
-                process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            # Return the standard output, standard error, and return code
+            return stdout, stderr, return_code
+        except Exception as e:
+            # Handle any exceptions that may occur
+            return None, str(e), 1  # Return an error code of 1
+    def write_script_to_XML(self,xml_string,router_number,user_per_rout):
+        # Parse the XML string
+        dom = xml.dom.minidom.parseString(xml_string)
 
-                # Capture the standard output and standard error
-                stdout, stderr = process.communicate()
+        # Prettify the XML with indentation and line breaks
+        pretty_xml = dom.toprettyxml(indent="  ")
 
-                # Check the return code
-                return_code = process.returncode
+        # Write the prettified XML to a file
+        with open(f"xml_files/{router_number}router_{user_per_rout}_user.xml", "w", encoding="utf-8") as xml_file:
+            xml_file.write(pretty_xml)
 
-                # Return the standard output, standard error, and return code
-                return stdout, stderr, return_code
-            except Exception as e:
-                # Handle any exceptions that may occur
-                return None, str(e), 1  # Return an error code of 1
+
 
 
         

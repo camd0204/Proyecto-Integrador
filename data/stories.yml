@@ -21,6 +21,7 @@ stories:
   - intent: router_number_for_custom_network
   - action: utter_ask_for_users_per_router
   - intent: provide_users_per_router
+  - action: generate_complex_network
 
 - story: connect users to a given router wo security
   steps:

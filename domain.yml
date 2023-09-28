@@ -39,6 +39,23 @@ entities:
   - user_number_for_router
   - router_number
 
+slots:
+  user_number_for_router:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: user_number_for_router
+        intent: provide_users_per_router
+  router_number:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: router_number
+        intent: router_number_for_custom_network
+  
+
 responses:
   utter_greet:
   - text: "Hey! How are you?"

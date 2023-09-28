@@ -99,15 +99,18 @@ nlu:
     - I want to have [1](router_number) router.
     - There will be [5](router_number) routers at the given network.
     - [5](router_number) router points.
+    - [10](router_number)
 
 - intent: provide_users_per_router
   examples: |
     - [2](user_number_for_router) users per router.
-    - [1](user_number_for_router) users, please.
+    - [1](user_number_for_router) users for each router, please.
     - [3](user_number_for_router) users by router will be used
     - I want to have [1](user_number_for_router) user per router
     - There will be [5](user_number_for_router) users at the given royter.
     - [5](user_number_for_router) users using each router.
+    - [6](user_number_for_router) users for the router
+    - [5](user_number_for_router) 
 
 
 - intent: ask_basic_concepts
@@ -147,7 +150,7 @@ nlu:
     - [3](user_number) users will use the switch
     - I want to have [1](user_number) switch users
     - There will be [5](user_number) users at the given switch
-    - [5](user_number) switch users
+    - [5](user_number) switch usersS
   
 - intent: create_network_intent
   examples: |
@@ -165,11 +168,12 @@ nlu:
 
 - intent: provide_users_to_network
   examples: |
-    - There are [2](user_number_n) pcs
+    - There are [2](user_number_n) pcs that will be plugged to the network
     - [3](user_number_n) users will use the network
     - I want to have [1](user_number_n) network users
     - There will be [5](user_number_n) users.
     - [5](user_number_n) pcs will be connected.
+    - [8](user_number_n)
   
 
 - intent: goodbye
