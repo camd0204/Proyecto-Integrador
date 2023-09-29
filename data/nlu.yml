@@ -144,13 +144,35 @@ nlu:
     - Help me understand how to configure a switch for user connections.
     - I want to establish a network using a switch.
 
+- intent: switch_cisco_config_request
+  examples: |
+    - I want to know the switch command configuration for many users.
+    - How do I set up switches for many users?
+    - Tell me the switch command config for lots of users.
+    - What's the switch setup for multiple users?
+    - Give me switch command details for many users.
+    - Explain switch config for a bunch of users.
+    - How to configure switches for numerous users?
+    - I need switch command info for many users.
+    - Share switch settings for a variety of users.
+    - What's the switch command for a large user group?
+    - Help me with switch config for many users.
+
 - intent: provide_users_to_switch
   examples: |
     - There are [2](user_number) users for the switch
     - [3](user_number) users will use the switch
     - I want to have [1](user_number) switch users
     - There will be [5](user_number) users at the given switch
-    - [5](user_number) switch usersS
+    - [5](user_number) switch users
+
+- intent: provide_users_to_cisco_switch
+  examples: |
+    - There will be [2](user_number_cisco) users for the switch
+    - [3](user_number_cisco) will be using it
+    - There must be [1](user_number_cisco) switch users
+    - The configuration must be done for [5](user_number_cisco) users.
+    - [5](user_number_cisco) switch cisco users.
   
 - intent: create_network_intent
   examples: |

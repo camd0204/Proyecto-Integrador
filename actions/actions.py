@@ -51,7 +51,7 @@ class ActionProvideNetworkingConceptInfo(Action):
 class ActionProvideSwitchConfiguration(Action):
     counter=1
     def name(self) -> Text:
-        return "provide_switch_config"
+        return "provide_switch_config_for_cisco"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         # Get the detected networking concept entity
@@ -85,6 +85,84 @@ class ActionProvideSwitchConfiguration(Action):
             """
             self.counter+=1
             return config
+    
+class ActionProvideSwitchConfigurationVNX(Action):
+    counter=1
+    def name(self) -> Text:
+        return "provide_switch_config"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        # Get the detected networking concept entity
+        user_number_switch = next(tracker.get_latest_entity_values("user_number"), None)
+        if user_number_switch:
+            user_count=int(user_number_switch)
+            if user_count >= 0:
+                self.generate_switch_config(user_count)
+                description=f"Simple scenario made of one VM acting as a switch and {user_count} VMs connected to it. Shows the use of 'veth' based direct connections among LXC VMs."
+                dispatcher.utter_message(f"Scenario created as XML file generated and saved as vnx_custom_network_switch.xml. Description: {description}")
+            else:
+                dispatcher.utter_message("Non valid value! The scenario couldnt be created!")
+        else:
+            dispatcher.utter_message("Non valid value! Try again!")
+
+        return []
+    def generate_switch_config(self,number):
+        root = ET.Element("vnx", attrib={"xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+                                     "xsi:noNamespaceSchemaLocation": "/usr/share/xml/vnx/vnx-2.00.xsd"})
+        global_elem = ET.SubElement(root, "global")
+        ET.SubElement(global_elem, "version").text = "2.0"
+        ET.SubElement(global_elem, "scenario_name").text = "vmx_custom_switch_connection"
+        ET.SubElement(global_elem, "automac")
+        ET.SubElement(global_elem,"vm_mgmt",type="none")
+        vm_defaults = ET.SubElement(global_elem, "vm_defaults")
+        ET.SubElement(vm_defaults, "console", attrib={"id": "0", "display": "no"})
+        ET.SubElement(vm_defaults, "console", attrib={"id": "1", "display": "yes"})
+
+        for i in range(1, number + 1):
+            net_elem = ET.SubElement(root, "net", attrib={"name": f"link{i}", "mode": "veth", "type": "p2p"})
+        ET.SubElement(root, "net", attrib={"name": "virbr0", "mode": "virtual_bridge", "managed": "no"})
+
+        for i in range(1, number + 1):
+            vm_elem = ET.SubElement(root, "vm", attrib={"name": f"vm{i}", "type": "lxc", "exec_mode": "lxc-attach"})
+            ET.SubElement(vm_elem, "filesystem", attrib={"type": "cow"}).text = "/usr/share/vnx/filesystems/rootfs_lxc"
+            ET.SubElement(vm_elem, "shareddir", root="/shared").text = "shared"
+            if_elem_1 = ET.SubElement(vm_elem, "if", attrib={"id": "1", "net": f"link{i}"})
+            ET.SubElement(if_elem_1, "ipv4").text = f"1.1.1.{i + 3}/24"
+            if_elem_9 = ET.SubElement(vm_elem, "if", attrib={"id": "9", "net": "virbr0"})
+            ET.SubElement(if_elem_9, "ipv4").text = "dhcp"
+         # Add switch element
+        switch_elem = ET.SubElement(root, "vm", attrib={"name": "switch", "type": "lxc", "exec_mode": "lxc-attach"})
+        ET.SubElement(switch_elem, "filesystem", attrib={"type": "cow"}).text = "/usr/share/vnx/filesystems/rootfs_lxc"
+        ET.SubElement(switch_elem, "shareddir", root="/shared").text = "shared"
+        for i in range(1, number + 1):
+            ET.SubElement(switch_elem, "if", attrib={"id": str(i), "net": f"link{i}"})
+        ET.SubElement(switch_elem, "if", attrib={"id": "9", "net": "virbr0"}).text = "dhcp"
+        exec_elem = ET.SubElement(switch_elem, "exec", attrib={"seq": "on_boot", "type": "verbatim", "ostype": "system"})
+        exec_elem.text = '''sleep 10; 
+            apt-get -y install openvswitch-switch;
+            ovs-vsctl add-br switch;'''
+
+        for i in range(1, number + 1):
+            exec_elem.text += f'\novs-vsctl add-port switch eth{i};'
+
+        exec_elem.text += f'\nip addr add 1.1.1.{number + 4}/24 dev switch'
+
+        # Create the ElementTree object and write to file
+        xml_string = ET.tostring(root, encoding='utf-8')
+
+        # Parse the XML string
+        dom = xml.dom.minidom.parseString(xml_string)
+
+        # Prettify the XML with indentation and line breaks
+        pretty_xml = dom.toprettyxml(indent="  ")
+
+        # Write the prettified XML to a file
+        with open("xml_files/vnx_custom_network_switch.xml", "w", encoding="utf-8") as xml_file:
+            xml_file.write(pretty_xml)
+
+
+
+
 
 
 class ActionGenerateSimpleScenario(Action):
@@ -151,7 +229,7 @@ class ActionGenerateSimpleNetwork(Action):
                 description=f"""The scenario consists of a variable number of {user_network_count} LXC-based virtual machines connected to two network bridges, 
         "Net0" and "Net1." Each virtual machine has specific configurations, including filesystem settings, IP addresses, and routes. 
         Additionally, the XML file includes commands to start and stop an Apache web server and defines a router element"""
-                dispatcher.utter_message(f"Scenario created as XML file generated and saved as vnx_custom_network.xml. Description: {description}")
+                dispatcher.utter_message(f"Scenario created as XML file generated and saved as vnx_custom_network_router.xml. Description: {description}")
             else:
                 dispatcher.utter_message("User number not valid, file could not be created.")
         else:
@@ -165,7 +243,7 @@ class ActionGenerateSimpleNetwork(Action):
                                      "xsi:noNamespaceSchemaLocation": "/usr/share/xml/vnx/vnx-2.00.xsd"})
         global_elem = ET.SubElement(root, "global")
         ET.SubElement(global_elem, "version").text = "2.0"
-        ET.SubElement(global_elem, "scenario_name").text = "vmx_custom_network"
+        ET.SubElement(global_elem, "scenario_name").text = "vmx_custom_network_router"
         ET.SubElement(global_elem, "automac")
         ET.SubElement(global_elem,"vm_mgmt",type="none")
         vm_defaults = ET.SubElement(global_elem, "vm_defaults")

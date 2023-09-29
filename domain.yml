@@ -22,14 +22,17 @@ intents:
   - router_number_for_custom_network
   - provide_users_per_router
   - ask_functionality
+  - switch_cisco_config_request
+  - provide_users_to_cisco_switch
 
 
 actions:
   - provide_concept_info
-  - provide_switch_config
+  - provide_switch_config_for_cisco
   - generate_example_scenario
   - generate_simple_network
   - generate_complex_network
+  - provide_switch_config
   
 
 entities:
@@ -64,6 +67,9 @@ responses:
   utter_ask_for_users_per_router:
   - text: "How many users will there be per router?"
   - text: "How many users will use a router?"
+
+  utter_ask_for_users_cisco_switch:
+  - text: "Sure thing! Before I provide the switch configuration, could you please let me know how many users you're planning to have on the switch?"
 
   utter_ask_for_number_routers:
   - text: "Sure, let's start by telling me how many routers will there be on the network?"

@@ -23,12 +23,19 @@ stories:
   - intent: provide_users_per_router
   - action: generate_complex_network
 
-- story: connect users to a given router wo security
+- story: connect users to a switch 
   steps:
   - intent: switch_connection_request
   - action: utter_ask_for_user
   - intent: provide_users_to_switch
   - action: provide_switch_config
+
+- story: generate cisco config example for switch
+  steps:
+  - intent: switch_cisco_config_request
+  - action: utter_ask_for_users_cisco_switch
+  - intent: provide_users_to_cisco_switch
+  - action: provide_switch_config_for_cisco
 
 - story: show classic example
   steps:
