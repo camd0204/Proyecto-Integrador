@@ -100,6 +100,7 @@ class ActionProvideSwitchConfigurationVNX(Action):
                 self.generate_switch_config(user_count)
                 description=f"Simple scenario made of one VM acting as a switch and {user_count} VMs connected to it. Shows the use of 'veth' based direct connections among LXC VMs."
                 dispatcher.utter_message(f"Scenario created as XML file generated and saved as vnx_custom_network_switch.xml. Description: {description}")
+                self.write_file_path_to_historic("user_gen_files/vnx_custom_network_switch.xml")
             else:
                 dispatcher.utter_message("Non valid value! The scenario couldnt be created!")
         else:
@@ -157,8 +158,12 @@ class ActionProvideSwitchConfigurationVNX(Action):
         pretty_xml = dom.toprettyxml(indent="  ")
 
         # Write the prettified XML to a file
-        with open("xml_files/vnx_custom_network_switch.xml", "w", encoding="utf-8") as xml_file:
+        with open("user_gen_files/vnx_custom_network_switch.xml", "w", encoding="utf-8") as xml_file:
             xml_file.write(pretty_xml)
+
+    def write_file_path_to_historic(self,file_path):
+        with open("historic_scripts/history.txt", "w", encoding="utf-8") as txt_file:
+            txt_file.write(file_path+"\n")
 
 
 
@@ -190,7 +195,7 @@ class ActionGenerateSimpleScenario(Action):
         file_path = ""
         description=""
         if(intent=='ask_simple_network_scenario'):
-            file_path='xml_files/simple_network_scenario.xml'
+            file_path='user_gen_files/simple_network_scenario.xml'
             description="""Just one Ubuntu virtual machine connected to a Network named Net0 with address 10.1.0.4. 
              The host has an interface in Net0 with address 10.1.0.1  
              This simple scenario is supposed to be used for testing the different 
@@ -198,22 +203,28 @@ class ActionGenerateSimpleScenario(Action):
              scenarios and test the connectivity among virtual machines and the host, as all
              scenarios share the same "Net0" network."""
         elif(intent=='ask_switch_network_scenario'):
-            file_path='xml_files/simple_switch_scenario.xml'
+            file_path='user_gen_files/simple_switch_scenario.xml'
             description="""Simple scenario made of one VM acting as a switch and three VMs connected 
              to it. Shows the use of 'veth' based direct connections among LXC VMs."""
         elif(intent=='ask_vlan_switch_scenario'):
-            file_path='xml_files/simple_vlan_switch_scenario.xml'
+            file_path='user_gen_files/simple_vlan_switch_scenario.xml'
             description=""" It outlines the setup for a virtual network comprising virtual machines (VMs) and virtual networks (Net0, Net1, Net2). 
             Each VM is configured with specific attributes, including its type (Linux Containers), architecture, file system, memory allocation, network interface, VLAN tagging, and IP address assignment."""
         else:
-            file_path='xml_files/complex_network_scenario.xml'
+            file_path='user_gen_files/complex_network_scenario.xml'
             description="""A scenario made of 6 LXC Ubuntu virtual machines (4 hosts: h1, h2, h3 and h4; 
              and 2 routers: r1 and r2) connected through three virtual networks. The host participates 
              in the scenario having a network interface in Net3."""
         with open(file_path, "w") as xml_file:
             xml_file.write(xml_content)
+        self.write_file_path_to_historic(file_path)
         dispatcher.utter_message(f"Example scenario created as XML file generated and saved as {file_path}. The description for the scenario:{description}")
         return []
+    
+
+    def write_file_path_to_historic(self,file_path):
+        with open("historic_scripts/history.txt", "w", encoding="utf-8") as txt_file:
+            txt_file.write(file_path+"\n")
     
 #Class to generate a simple network scenario 
 class ActionGenerateSimpleNetwork(Action):
@@ -229,7 +240,7 @@ class ActionGenerateSimpleNetwork(Action):
                 description=f"""The scenario consists of a variable number of {user_network_count} LXC-based virtual machines connected to two network bridges, 
         "Net0" and "Net1." Each virtual machine has specific configurations, including filesystem settings, IP addresses, and routes. 
         Additionally, the XML file includes commands to start and stop an Apache web server and defines a router element"""
-                dispatcher.utter_message(f"Scenario created as XML file generated and saved as vnx_custom_network_router.xml. Description: {description}")
+                dispatcher.utter_message(f"Scenario created as XML file generated and saved as vnx_custom_network_router_{user_network_count}_users.xml. Description: {description}")
             else:
                 dispatcher.utter_message("User number not valid, file could not be created.")
         else:
@@ -318,9 +329,13 @@ class ActionGenerateSimpleNetwork(Action):
         pretty_xml = dom.toprettyxml(indent="  ")
 
         # Write the prettified XML to a file
-        with open("xml_files/vnx_custom_network_router.xml", "w", encoding="utf-8") as xml_file:
+        with open(f"user_gen_files/vnx_custom_network_router_{user_number}_users.xml", "w", encoding="utf-8") as xml_file:
             xml_file.write(pretty_xml)
+        self.write_file_path_to_historic(f"user_gen_files/vnx_custom_network_router_{user_number}_users.xml")
 
+    def write_file_path_to_historic(self,file_path):
+        with open("historic_scripts/history.txt", "w", encoding="utf-8") as txt_file:
+            txt_file.write(file_path+"\n")
 class ActionGenerateComplexNetwork(Action):
     perl_script_path = "scripts/create-tutorial_lxc_ubuntu-big"
     def name(self) -> Text:
@@ -333,7 +348,7 @@ class ActionGenerateComplexNetwork(Action):
         if user_number_for_router and router_number:
             self.write_script_to_XML(stdout,router_number,user_number_for_router)
             suma=int(user_number_for_router)+int(router_number)
-            dispatcher.utter_message(f"Script written to: xml_files/{router_number}router_{user_number_for_router}_user.xml. Description:A big tutorial scenario made of {suma} LXC virtual machines ({router_number} routers and {user_number_for_router} hosts).")
+            dispatcher.utter_message(f"Script written to: user_gen_files/{router_number}router_{user_number_for_router}_user.xml. Description:A big tutorial scenario made of {suma} LXC virtual machines ({router_number} routers and {user_number_for_router} hosts).")
         else:
             dispatcher.utter_message("Network creation unable to be achieved.")
         return []
@@ -362,8 +377,63 @@ class ActionGenerateComplexNetwork(Action):
         pretty_xml = dom.toprettyxml(indent="  ")
 
         # Write the prettified XML to a file
-        with open(f"xml_files/{router_number}router_{user_per_rout}_user.xml", "w", encoding="utf-8") as xml_file:
+        with open(f"user_gen_files/{router_number}router_{user_per_rout}_user.xml", "w", encoding="utf-8") as xml_file:
             xml_file.write(pretty_xml)
+        self.write_file_path_to_historic(f"user_gen_files/{router_number}router_{user_per_rout}_user.xml")
+
+    def write_file_path_to_historic(self,file_path):
+        with open("historic_scripts/history.txt", "w", encoding="utf-8") as txt_file:
+            txt_file.write(file_path+"\n")
+
+class ActionRunVNXEnvironment(Action):
+    def name(self) -> Text:
+        return "run_script_path"
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+            stdout, stderr, return_code = self.run_vnx_script(script_path)
+            dispatcher.utter_message(f"Script opened on vnx as: ")
+            dispatcher.utter_message("Script path not found.")
+            return []
+    def run_vnx_script(self,script_path):
+        try:
+            # Build the command to run the Perl script
+            command = ['sudo', 'vnx', '-f', script_path, '-v', '--create']
+            # Run the Perl script
+            process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            # Capture the standard output and standard error
+            stdout, stderr = process.communicate()
+            # Check the return code
+            return_code = process.returncode
+
+            # Return the standard output, standard error, and return code
+            return stdout, stderr, return_code
+        except Exception as e:
+            # Handle any exceptions that may occur
+            return None, str(e), 1
+        
+    def stop_vnx_script(self,script_path):
+        try:
+            # Build the command to run the Perl script
+            script_path=self.check_last_line_historic("historic_scripts/history.txt")
+            command = ['sudo', 'vnx', '-f', script_path, '-v', '--destroy']
+            # Run the Perl script
+            process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            # Capture the standard output and standard error
+            stdout, stderr = process.communicate()
+            # Check the return code
+            return_code = process.returncode
+
+            # Return the standard output, standard error, and return code
+            return stdout, stderr, return_code
+        except Exception as e:
+            # Handle any exceptions that may occur
+            return None, str(e), 1
+        
+    def check_last_line_historic(self,file_path):
+        with open(file_path, "r", encoding="utf-8") as txt_file:
+            lines = txt_file.readlines()
+            last_line = lines[-1]
+            return last_line
+
 
 
 

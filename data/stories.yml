@@ -23,7 +23,7 @@ stories:
   - intent: provide_users_per_router
   - action: generate_complex_network
 
-- story: connect users to a switch 
+- story: create a network with one switch
   steps:
   - intent: switch_connection_request
   - action: utter_ask_for_user
