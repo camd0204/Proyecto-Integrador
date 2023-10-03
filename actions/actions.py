@@ -389,10 +389,21 @@ class ActionRunVNXEnvironment(Action):
     def name(self) -> Text:
         return "run_script_path"
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-            stdout, stderr, return_code = self.run_vnx_script(script_path)
+            self.start_vnx_pipeline()
             dispatcher.utter_message(f"Script opened on vnx as: ")
             dispatcher.utter_message("Script path not found.")
             return []
+    
+    def start_vnx_pipeline(self):
+        last_run=self.check_second_to_last_line_historic()
+        to_be_run=self.check_last_line_historic()
+        if(last_run):
+            self.stop_vnx_script(last_run)
+            self.start_vnx_pipeline(to_be_run)
+        else:
+            self.start_vnx_pipeline(to_be_run)
+
+
     def run_vnx_script(self,script_path):
         try:
             # Build the command to run the Perl script
@@ -413,7 +424,6 @@ class ActionRunVNXEnvironment(Action):
     def stop_vnx_script(self,script_path):
         try:
             # Build the command to run the Perl script
-            script_path=self.check_last_line_historic("historic_scripts/history.txt")
             command = ['sudo', 'vnx', '-f', script_path, '-v', '--destroy']
             # Run the Perl script
             process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
@@ -428,10 +438,16 @@ class ActionRunVNXEnvironment(Action):
             # Handle any exceptions that may occur
             return None, str(e), 1
         
-    def check_last_line_historic(self,file_path):
-        with open(file_path, "r", encoding="utf-8") as txt_file:
+    def check_last_line_historic(self):
+        with open("historic_scripts/history.txt", "r", encoding="utf-8") as txt_file:
             lines = txt_file.readlines()
             last_line = lines[-1]
+            return last_line
+        
+    def check_second_to_last_line_historic(self):
+        with open("historic_scripts/history.txt", "r", encoding="utf-8") as txt_file:
+            lines = txt_file.readlines()
+            last_line = lines[-2]
             return last_line
 
 
