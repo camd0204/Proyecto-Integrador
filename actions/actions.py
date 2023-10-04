@@ -112,7 +112,7 @@ class ActionProvideSwitchConfigurationVNX(Action):
                                      "xsi:noNamespaceSchemaLocation": "/usr/share/xml/vnx/vnx-2.00.xsd"})
         global_elem = ET.SubElement(root, "global")
         ET.SubElement(global_elem, "version").text = "2.0"
-        ET.SubElement(global_elem, "scenario_name").text = "vmx_custom_switch_connection"
+        ET.SubElement(global_elem, "scenario_name").text = "vmx_custom_network_switch"
         ET.SubElement(global_elem, "automac")
         ET.SubElement(global_elem,"vm_mgmt",type="none")
         vm_defaults = ET.SubElement(global_elem, "vm_defaults")
@@ -379,7 +379,7 @@ class ActionGenerateComplexNetwork(Action):
         # Write the prettified XML to a file
         with open(f"user_gen_files/{router_number}router_{user_per_rout}_user.xml", "w", encoding="utf-8") as xml_file:
             xml_file.write(pretty_xml)
-        self.write_file_path_to_historic(f"user_gen_files/{router_number}router_{user_per_rout}_user.xml")
+        self.write_file_path_to_historic(f"user_gen_files/{router_number}_router_{user_per_rout}_user.xml")
 
     def write_file_path_to_historic(self,file_path):
         with open("historic_scripts/history.txt", "w", encoding="utf-8") as txt_file:
