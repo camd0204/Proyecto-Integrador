@@ -6,7 +6,7 @@ VNX Sample scenarios
 ~~~~~~~~~~~~~~~~~~~~
 
 Name:        tutorial_lxc_ubuntu_big
-Description: A big tutorial scenario made of 12 LXC virtual machines (3 routers and 9 hosts).
+Description: A big tutorial scenario made of 12 LXC virtual machines (2 routers and 10 hosts).
 
 This file is part of the Virtual Networks over LinuX (VNX) Project distribution. 
 (www: http://www.dit.upm.es/vnx - e-mail: vnx@dit.upm.es) 
@@ -63,16 +63,13 @@ SPAIN
   
   <net mode="virtual_bridge" name="Net2"/>
   
-  
-  <net mode="virtual_bridge" name="Net3"/>
-  
 
 
   
   <vm name="r1" os="" subtype="" type="lxc">
     
     
-    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc</filesystem>
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
     
     
     <!--mem>128M</mem-->
@@ -99,9 +96,6 @@ SPAIN
     <route gw="10.0.0.2" type="ipv4">10.0.2.0/24</route>
     
     
-    <route gw="10.0.0.3" type="ipv4">10.0.3.0/24</route>
-    
-    
     <forwarding type="ip"/>
     
   
@@ -112,7 +106,7 @@ SPAIN
   <vm name="r2" os="" subtype="" type="lxc">
     
     
-    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc</filesystem>
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
     
     
     <!--mem>128M</mem-->
@@ -139,49 +133,6 @@ SPAIN
     <route gw="10.0.0.1" type="ipv4">10.0.1.0/24</route>
     
     
-    <route gw="10.0.0.3" type="ipv4">10.0.3.0/24</route>
-    
-    
-    <forwarding type="ip"/>
-    
-  
-  </vm>
-  
-
-  
-  <vm name="r3" os="" subtype="" type="lxc">
-    
-    
-    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc</filesystem>
-    
-    
-    <!--mem>128M</mem-->
-    
-    
-    <if id="1" net="Net0">
-      
-      
-      <ipv4>10.0.0.3/24</ipv4>
-      
-    
-    </if>
-    
-    
-    <if id="2" net="Net3">
-      
-      
-      <ipv4>10.0.3.1/24</ipv4>
-      
-    
-    </if>
-    
-    
-    <route gw="10.0.0.1" type="ipv4">10.0.1.0/24</route>
-    
-    
-    <route gw="10.0.0.2" type="ipv4">10.0.2.0/24</route>
-    
-    
     <forwarding type="ip"/>
     
   
@@ -192,7 +143,7 @@ SPAIN
   <vm name="h1" os="" subtype="" type="lxc">
     
     
-    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc</filesystem>
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
     
     
     <!--mem>512M</mem!-->
@@ -217,7 +168,7 @@ SPAIN
   <vm name="h2" os="" subtype="" type="lxc">
     
     
-    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc</filesystem>
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
     
     
     <!--mem>512M</mem!-->
@@ -242,7 +193,7 @@ SPAIN
   <vm name="h3" os="" subtype="" type="lxc">
     
     
-    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc</filesystem>
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
     
     
     <!--mem>512M</mem!-->
@@ -267,7 +218,57 @@ SPAIN
   <vm name="h4" os="" subtype="" type="lxc">
     
     
-    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc</filesystem>
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
+    
+    
+    <!--mem>512M</mem!-->
+    
+    
+    <if id="1" net="Net1">
+      
+      
+      <ipv4>10.0.1.5/24</ipv4>
+      
+    
+    </if>
+    
+    
+    <route gw="10.0.1.1" type="ipv4">default</route>
+    
+  
+  </vm>
+  
+
+  
+  <vm name="h5" os="" subtype="" type="lxc">
+    
+    
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
+    
+    
+    <!--mem>512M</mem!-->
+    
+    
+    <if id="1" net="Net1">
+      
+      
+      <ipv4>10.0.1.6/24</ipv4>
+      
+    
+    </if>
+    
+    
+    <route gw="10.0.1.1" type="ipv4">default</route>
+    
+  
+  </vm>
+  
+
+  
+  <vm name="h6" os="" subtype="" type="lxc">
+    
+    
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
     
     
     <!--mem>512M</mem!-->
@@ -289,10 +290,10 @@ SPAIN
   
 
   
-  <vm name="h5" os="" subtype="" type="lxc">
+  <vm name="h7" os="" subtype="" type="lxc">
     
     
-    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc</filesystem>
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
     
     
     <!--mem>512M</mem!-->
@@ -314,10 +315,10 @@ SPAIN
   
 
   
-  <vm name="h6" os="" subtype="" type="lxc">
+  <vm name="h8" os="" subtype="" type="lxc">
     
     
-    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc</filesystem>
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
     
     
     <!--mem>512M</mem!-->
@@ -339,75 +340,50 @@ SPAIN
   
 
   
-  <vm name="h7" os="" subtype="" type="lxc">
-    
-    
-    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc</filesystem>
-    
-    
-    <!--mem>512M</mem!-->
-    
-    
-    <if id="1" net="Net3">
-      
-      
-      <ipv4>10.0.3.2/24</ipv4>
-      
-    
-    </if>
-    
-    
-    <route gw="10.0.3.1" type="ipv4">default</route>
-    
-  
-  </vm>
-  
-
-  
-  <vm name="h8" os="" subtype="" type="lxc">
-    
-    
-    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc</filesystem>
-    
-    
-    <!--mem>512M</mem!-->
-    
-    
-    <if id="1" net="Net3">
-      
-      
-      <ipv4>10.0.3.3/24</ipv4>
-      
-    
-    </if>
-    
-    
-    <route gw="10.0.3.1" type="ipv4">default</route>
-    
-  
-  </vm>
-  
-
-  
   <vm name="h9" os="" subtype="" type="lxc">
     
     
-    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc</filesystem>
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
     
     
     <!--mem>512M</mem!-->
     
     
-    <if id="1" net="Net3">
+    <if id="1" net="Net2">
       
       
-      <ipv4>10.0.3.4/24</ipv4>
+      <ipv4>10.0.2.5/24</ipv4>
       
     
     </if>
     
     
-    <route gw="10.0.3.1" type="ipv4">default</route>
+    <route gw="10.0.2.1" type="ipv4">default</route>
+    
+  
+  </vm>
+  
+
+  
+  <vm name="h10" os="" subtype="" type="lxc">
+    
+    
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
+    
+    
+    <!--mem>512M</mem!-->
+    
+    
+    <if id="1" net="Net2">
+      
+      
+      <ipv4>10.0.2.6/24</ipv4>
+      
+    
+    </if>
+    
+    
+    <route gw="10.0.2.1" type="ipv4">default</route>
     
   
   </vm>

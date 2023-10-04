@@ -119,7 +119,7 @@ print "\n\n";
 #
 my $router1 = <<EOF;
 <vm name="r__NUM__" type="lxc" subtype="" os="">
-    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc</filesystem>
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
     <!--mem>128M</mem-->
     <if id="1" net="Net0">
       <ipv4>10.0.0.__NUM__/24</ipv4>
@@ -154,7 +154,7 @@ for (my $i=1; $i <= $num_routers; $i++) {
 
 my $host1 = <<EOF;
 <vm name="h__HOSTNUM__" type="lxc" subtype="" os="">
-    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc</filesystem>
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
     <!--mem>512M</mem!-->
     <if id="1" net="Net__NETNUM__">
       <ipv4>10.0.__NETNUM__.__IPADDR__/24</ipv4>
