@@ -112,7 +112,7 @@ class ActionProvideSwitchConfigurationVNX(Action):
                                      "xsi:noNamespaceSchemaLocation": "/usr/share/xml/vnx/vnx-2.00.xsd"})
         global_elem = ET.SubElement(root, "global")
         ET.SubElement(global_elem, "version").text = "2.0"
-        ET.SubElement(global_elem, "scenario_name").text = "vnx_custom_network_switch"
+        ET.SubElement(global_elem, "scenario_name").text = f"vnx_custom_network_switch_{number}_users"
         ET.SubElement(global_elem, "automac")
         ET.SubElement(global_elem,"vm_mgmt",type="none")
         vm_defaults = ET.SubElement(global_elem, "vm_defaults")
@@ -137,7 +137,9 @@ class ActionProvideSwitchConfigurationVNX(Action):
         ET.SubElement(switch_elem, "shareddir", root="/shared").text = "shared"
         for i in range(1, number + 1):
             ET.SubElement(switch_elem, "if", attrib={"id": str(i), "net": f"link{i}"})
-        ET.SubElement(switch_elem, "if", attrib={"id": "9", "net": "virbr0"}).text = "dhcp"
+        if_elem_9_switch = ET.SubElement(switch_elem, "if", attrib={"id": "9", "net": "virbr0"})
+        ipv4_elem_9_switch = ET.SubElement(if_elem_9_switch, "ipv4")
+        ipv4_elem_9_switch.text = "dhcp"
         exec_elem = ET.SubElement(switch_elem, "exec", attrib={"seq": "on_boot", "type": "verbatim", "ostype": "system"})
         exec_elem.text = '''sleep 10; 
             apt-get -y install openvswitch-switch;
