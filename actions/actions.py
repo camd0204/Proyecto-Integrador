@@ -192,10 +192,10 @@ class ActionGenerateSimpleScenario(Action):
             with open('xml_files/tutorial_lxc_ubuntu64.xml','r') as xml_file:
               xml_content=xml_file.read()
         #Change for Linux path
-        file_path = ""
+        file_path =""
         description=""
         if(intent=='ask_simple_network_scenario'):
-            file_path='user_gen_files/simple_network_scenario.xml'
+            file_path='user_gen_files/simple_lxc_ubuntu64.xml'
             description="""Just one Ubuntu virtual machine connected to a Network named Net0 with address 10.1.0.4. 
              The host has an interface in Net0 with address 10.1.0.1  
              This simple scenario is supposed to be used for testing the different 
@@ -203,15 +203,15 @@ class ActionGenerateSimpleScenario(Action):
              scenarios and test the connectivity among virtual machines and the host, as all
              scenarios share the same "Net0" network."""
         elif(intent=='ask_switch_network_scenario'):
-            file_path='user_gen_files/simple_switch_scenario.xml'
+            file_path='user_gen_files/example_lxc_vm-as-switch.xml'
             description="""Simple scenario made of one VM acting as a switch and three VMs connected 
              to it. Shows the use of 'veth' based direct connections among LXC VMs."""
         elif(intent=='ask_vlan_switch_scenario'):
-            file_path='user_gen_files/simple_vlan_switch_scenario.xml'
+            file_path='user_gen_files/tutorial_vlan_ovs.xml'
             description=""" It outlines the setup for a virtual network comprising virtual machines (VMs) and virtual networks (Net0, Net1, Net2). 
             Each VM is configured with specific attributes, including its type (Linux Containers), architecture, file system, memory allocation, network interface, VLAN tagging, and IP address assignment."""
         else:
-            file_path='user_gen_files/complex_network_scenario.xml'
+            file_path='user_gen_files/tutorial_lxc_ubuntu64.xml'
             description="""A scenario made of 6 LXC Ubuntu virtual machines (4 hosts: h1, h2, h3 and h4; 
              and 2 routers: r1 and r2) connected through three virtual networks. The host participates 
              in the scenario having a network interface in Net3."""
@@ -254,7 +254,7 @@ class ActionGenerateSimpleNetwork(Action):
                                      "xsi:noNamespaceSchemaLocation": "/usr/share/xml/vnx/vnx-2.00.xsd"})
         global_elem = ET.SubElement(root, "global")
         ET.SubElement(global_elem, "version").text = "2.0"
-        ET.SubElement(global_elem, "scenario_name").text = "vmx_custom_network_router"
+        ET.SubElement(global_elem, "scenario_name").text = f"vmx_custom_network_router_router_{user_number}_users"
         ET.SubElement(global_elem, "automac")
         ET.SubElement(global_elem,"vm_mgmt",type="none")
         vm_defaults = ET.SubElement(global_elem, "vm_defaults")
@@ -336,6 +336,8 @@ class ActionGenerateSimpleNetwork(Action):
     def write_file_path_to_historic(self,file_path):
         with open("historic_scripts/history.txt", "w", encoding="utf-8") as txt_file:
             txt_file.write(file_path+"\n")
+
+
 class ActionGenerateComplexNetwork(Action):
     perl_script_path = "scripts/create-tutorial_lxc_ubuntu-big"
     def name(self) -> Text:

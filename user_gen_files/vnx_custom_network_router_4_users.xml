@@ -2,7 +2,7 @@
 <vnx xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="/usr/share/xml/vnx/vnx-2.00.xsd">
   <global>
     <version>2.0</version>
-    <scenario_name>vmx_custom_network_router</scenario_name>
+    <scenario_name>vmx_custom_network_router_router_4_users</scenario_name>
     <automac/>
     <vm_mgmt type="none"/>
     <vm_defaults>
@@ -44,13 +44,6 @@
     <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc</filesystem>
     <if id="1" net="Net0">
       <ipv4>10.1.0.5/24</ipv4>
-    </if>
-    <route gw="10.1.0.1" type="ipv4">default</route>
-  </vm>
-  <vm name="h5" type="lxc">
-    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc</filesystem>
-    <if id="1" net="Net0">
-      <ipv4>10.1.0.6/24</ipv4>
     </if>
     <route gw="10.1.0.1" type="ipv4">default</route>
     <filetree root="/var/www/" seq="start-www">conf/tutorial_ubuntu/h4</filetree>
