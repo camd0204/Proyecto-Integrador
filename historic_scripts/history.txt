@@ -1,1 +1,1 @@
-user_gen_files/vnx_custom_network_router_4_users.xml
+user_gen_files/3_router_3_user.xml

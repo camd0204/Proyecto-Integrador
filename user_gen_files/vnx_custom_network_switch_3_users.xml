@@ -1,0 +1,62 @@
+<?xml version="1.0" ?>
+<vnx xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="/usr/share/xml/vnx/vnx-2.00.xsd">
+  <global>
+    <version>2.0</version>
+    <scenario_name>vnx_custom_network_switch</scenario_name>
+    <automac/>
+    <vm_mgmt type="none"/>
+    <vm_defaults>
+      <console display="no" id="0"/>
+      <console display="yes" id="1"/>
+    </vm_defaults>
+  </global>
+  <net mode="veth" name="link1" type="p2p"/>
+  <net mode="veth" name="link2" type="p2p"/>
+  <net mode="veth" name="link3" type="p2p"/>
+  <net managed="no" mode="virtual_bridge" name="virbr0"/>
+  <vm exec_mode="lxc-attach" name="vm1" type="lxc">
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc</filesystem>
+    <shareddir root="/shared">shared</shareddir>
+    <if id="1" net="link1">
+      <ipv4>1.1.1.4/24</ipv4>
+    </if>
+    <if id="9" net="virbr0">
+      <ipv4>dhcp</ipv4>
+    </if>
+  </vm>
+  <vm exec_mode="lxc-attach" name="vm2" type="lxc">
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc</filesystem>
+    <shareddir root="/shared">shared</shareddir>
+    <if id="1" net="link2">
+      <ipv4>1.1.1.5/24</ipv4>
+    </if>
+    <if id="9" net="virbr0">
+      <ipv4>dhcp</ipv4>
+    </if>
+  </vm>
+  <vm exec_mode="lxc-attach" name="vm3" type="lxc">
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc</filesystem>
+    <shareddir root="/shared">shared</shareddir>
+    <if id="1" net="link3">
+      <ipv4>1.1.1.6/24</ipv4>
+    </if>
+    <if id="9" net="virbr0">
+      <ipv4>dhcp</ipv4>
+    </if>
+  </vm>
+  <vm exec_mode="lxc-attach" name="switch" type="lxc">
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc</filesystem>
+    <shareddir root="/shared">shared</shareddir>
+    <if id="1" net="link1"/>
+    <if id="2" net="link2"/>
+    <if id="3" net="link3"/>
+    <if id="9" net="virbr0">dhcp</if>
+    <exec ostype="system" seq="on_boot" type="verbatim">sleep 10; 
+            apt-get -y install openvswitch-switch;
+            ovs-vsctl add-br switch;
+ovs-vsctl add-port switch eth1;
+ovs-vsctl add-port switch eth2;
+ovs-vsctl add-port switch eth3;
+ip addr add 1.1.1.7/24 dev switch</exec>
+  </vm>
+</vnx>

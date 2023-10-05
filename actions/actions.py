@@ -99,7 +99,7 @@ class ActionProvideSwitchConfigurationVNX(Action):
             if user_count >= 0:
                 self.generate_switch_config(user_count)
                 description=f"Simple scenario made of one VM acting as a switch and {user_count} VMs connected to it. Shows the use of 'veth' based direct connections among LXC VMs."
-                dispatcher.utter_message(f"Scenario created as XML file generated and saved as vnx_custom_network_switch.xml. Description: {description}")
+                dispatcher.utter_message(f"Scenario created as XML file generated and saved as vnx_custom_network_switch_{user_count}_users.xml. Description: {description}")
                 self.write_file_path_to_historic("user_gen_files/vnx_custom_network_switch.xml")
             else:
                 dispatcher.utter_message("Non valid value! The scenario couldnt be created!")
