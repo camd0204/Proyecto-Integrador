@@ -46,6 +46,13 @@
       <ipv4>10.1.0.5/24</ipv4>
     </if>
     <route gw="10.1.0.1" type="ipv4">default</route>
+  </vm>
+  <vm name="h5" type="lxc">
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc</filesystem>
+    <if id="1" net="Net0">
+      <ipv4>10.1.0.6/24</ipv4>
+    </if>
+    <route gw="10.1.0.1" type="ipv4">default</route>
     <filetree root="/var/www/" seq="start-www">conf/tutorial_ubuntu/h4</filetree>
     <exec ostype="system" seq="start-www" type="verbatim">chmod 644 /var/www/*</exec>
     <exec ostype="system" seq="start-www" type="verbatim">service apache2 start</exec>

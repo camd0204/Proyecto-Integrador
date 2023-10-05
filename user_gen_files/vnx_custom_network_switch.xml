@@ -2,7 +2,7 @@
 <vnx xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="/usr/share/xml/vnx/vnx-2.00.xsd">
   <global>
     <version>2.0</version>
-    <scenario_name>vmx_custom_network_switch</scenario_name>
+    <scenario_name>vnx_custom_network_switch</scenario_name>
     <automac/>
     <vm_mgmt type="none"/>
     <vm_defaults>

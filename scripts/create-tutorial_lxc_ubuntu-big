@@ -90,6 +90,15 @@ SPAIN
         <console id="0" display="no"/>
         <console id="1" display="yes"/>
     </vm_defaults>
+
+    <cmd-seq seq="ls12">ls1,ls2</cmd-seq>
+    <cmd-seq seq="ls123">ls12,ls3</cmd-seq>
+    <cmd-seq seq="ls1234">ls123,ls4</cmd-seq>
+
+    <help>
+        <seq_help seq='start-www'>Start apache2 web server</seq_help>
+        <seq_help seq='stop-www'>Stop apache2 web server</seq_help>
+    </help>
   </global>
 
 EOF
@@ -118,7 +127,7 @@ print "\n\n";
 # Routers
 #
 my $router1 = <<EOF;
-<vm name="r__NUM__" type="lxc" subtype="" os="">
+<vm name="r__NUM__" type="lxc" >
     <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
     <!--mem>128M</mem-->
     <if id="1" net="Net0">
@@ -153,7 +162,7 @@ for (my $i=1; $i <= $num_routers; $i++) {
 #
 
 my $host1 = <<EOF;
-<vm name="h__HOSTNUM__" type="lxc" subtype="" os="">
+<vm name="h__HOSTNUM__" type="lxc">
     <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
     <!--mem>512M</mem!-->
     <if id="1" net="Net__NETNUM__">

@@ -112,7 +112,7 @@ class ActionProvideSwitchConfigurationVNX(Action):
                                      "xsi:noNamespaceSchemaLocation": "/usr/share/xml/vnx/vnx-2.00.xsd"})
         global_elem = ET.SubElement(root, "global")
         ET.SubElement(global_elem, "version").text = "2.0"
-        ET.SubElement(global_elem, "scenario_name").text = "vmx_custom_network_switch"
+        ET.SubElement(global_elem, "scenario_name").text = "vnx_custom_network_switch"
         ET.SubElement(global_elem, "automac")
         ET.SubElement(global_elem,"vm_mgmt",type="none")
         vm_defaults = ET.SubElement(global_elem, "vm_defaults")
@@ -158,7 +158,7 @@ class ActionProvideSwitchConfigurationVNX(Action):
         pretty_xml = dom.toprettyxml(indent="  ")
 
         # Write the prettified XML to a file
-        with open("user_gen_files/vnx_custom_network_switch.xml", "w", encoding="utf-8") as xml_file:
+        with open(f"user_gen_files/vnx_custom_network_switch_{number}_users.xml", "w", encoding="utf-8") as xml_file:
             xml_file.write(pretty_xml)
 
     def write_file_path_to_historic(self,file_path):
