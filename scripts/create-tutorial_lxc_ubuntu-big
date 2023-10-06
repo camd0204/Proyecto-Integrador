@@ -80,7 +80,7 @@ SPAIN
   xsi:noNamespaceSchemaLocation="/usr/share/xml/vnx/vnx-2.00.xsd">
   <global>
     <version>2.0</version>
-    <scenario_name>${num_routers}router_$num_hosts _user</scenario_name>
+    <scenario_name>${num_routers}router_{$num_hosts}_user</scenario_name>
     <automac/>
     <vm_mgmt type="none" />
     <!--vm_mgmt type="private" network="10.250.0.0" mask="24" offset="200">
