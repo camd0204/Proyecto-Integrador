@@ -7,6 +7,22 @@ stories:
   - intent: ask_basic_concepts
   - action: provide_concept_info
 
+- story: path for one router connection
+  steps:
+  - intent: ask_general_question
+  - action: utter_devices_to_be_chosen
+  - intent: use_router_for_networking
+  - action: utter_number_users_for_simple_router
+  - intent: provide_users_to_network
+
+- story: path for one switch connection
+  steps:
+  - intent: ask_general_question
+  - action: utter_devices_to_be_chosen
+  - intent: use_switch_for_networking
+  - action: utter_number_users_for_simple_switch
+  - intent: provide_users_to_switch
+
 - story: ask about bot functionality
   steps:
   - intent: greet

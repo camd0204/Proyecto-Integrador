@@ -453,6 +453,8 @@ class ActionRunVNXEnvironment(Action):
             lines = txt_file.readlines()
             last_line = lines[-2]
             return last_line
+        
+        
 
 
 

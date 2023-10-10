@@ -3,30 +3,34 @@ version: "3.1"
 nlu:
 - intent: greet
   examples: |
-    - hey
-    - hello
-    - hi
-    - hello there
-    - good morning
-    - good evening
-    - moin
-    - hey there
-    - let's go
-    - hey dude
-    - goodmorning
-    - goodevening
-    - good afternoon
-    
+    - hey you
+    - hi there
+    - hey buddy
+    - good day
+    - greetings
+    - hey friend
+    - morning
+    - hi friend
+    - hello friend
+    - hey folks
+    - hi everyone
+    - howdy
+    - hey team
+    - good to see you
+    - hi folks
+
 - intent: ask_functionality
   examples: |
-    - What is this useful for?
-    - What does this bot do?
-    - What can I do with this bot?
-    - What is this tool useful for?
-    - How can I use this chatbot?
-    - Explain to me what is the use of this tool.
-    - Tell me how this  chatbot works.
-
+    - What capabilities does this bot have?
+    - How can this chatbot assist me?
+    - Tell me the functions of this tool.
+    - In what ways can I use this chatbot?
+    - Explain the features of this bot.
+    - How does this tool benefit me?
+    - What are the practical uses of this chatbot?
+    - Describe the functionality of this tool.
+    - What tasks can I perform with this bot?
+    - How does this chatbot operate?
 
 - intent: ask_simple_network_scenario
   examples: |
@@ -112,7 +116,6 @@ nlu:
     - [6](user_number_for_router) users for the router
     - [5](user_number_for_router) 
 
-
 - intent: ask_basic_concepts
   examples: |
     - Tell me about a [router](network_device)
@@ -173,7 +176,7 @@ nlu:
     - There must be [1](user_number_cisco) switch users
     - The configuration must be done for [5](user_number_cisco) users.
     - [5](user_number_cisco) switch cisco users.
-  
+
 - intent: create_network_intent
   examples: |
     - I want to create a virtual network with a simple router.
@@ -188,14 +191,55 @@ nlu:
     - I'd like to deploy a virtual network that use one router, where should I start?
     - Please assist me in creating a virtual network infrastructure using a router.
 
+- intent: ask_general_question
+  examples: |
+    - I want to connect a large number of users in a network—how do I proceed?
+    - Provide guidance on creating a network with a substantial number of users.
+    - I'm interested in deploying a network with many users—any recommendations?
+    - What is the best way to create a network with a high number of users?
+    - Guide me through the process of creating a network with numerous users.
+    - I want to create a network with a large user base—where should I start?
+    - How can I deploy a network with many users for testing purposes?
+    - Share insights on creating a network with a significant number of users.
+    - I'm looking to connect many users in a network—what steps should I follow?
+    - Provide advice on creating a network with a large number of users.
+
+- intent: use_router_for_networking
+  examples: |
+    - I prefer using a router for network connectivity.
+    - Router-based networking is my preference.
+    - Use a router to establish connections between hosts in the network.
+    - I want to rely on a router for networking purposes.
+    - The chosen device for networking will be a router.
+    - Router-based networking suits my requirements.
+    - I'd like to use a router to connect hosts in the network.
+    - Router connectivity is the approach I want to take.
+    - The network should be configured using a router for connectivity.
+    - I want to use a router.
+
+- intent: use_switch_for_networking
+  examples: |
+    - I prefer using a switch for network connectivity.
+    - Switch-based networking is my preference.
+    - Use a switch to establish connections between hosts in the network.
+    - I want to rely on a switch for networking purposes.
+    - The chosen device for networking will be a switch.
+    - Switch-based networking suits my requirements.
+    - I'd like to use a switch to connect hosts in the network.
+    - Switch connectivity is the approach I want to take.
+    - The network should be configured using a switch for connectivity.
+    - I want to use a switch.
+
 - intent: provide_users_to_network
   examples: |
-    - There are [2](user_number_n) pcs that will be plugged to the network
-    - [3](user_number_n) users will use the network
-    - I want to have [1](user_number_n) network users
-    - There will be [5](user_number_n) users.
-    - [5](user_number_n) pcs will be connected.
-    - [8](user_number_n)
+    - There are [4](user_number_n) users connected to the network.
+    - Assign [3](user_number_n) users to the network.
+    - I want to connect [5](user_number_n) users using the network.
+    - Each network will have [6](user_number_n) users connected.
+    - [4](user_number_n) users will be using the network for connectivity.
+    - I'm planning to configure [6](user_number_n) users for the network.
+    - Allocate [5](user_number_n) users to each network in the setup.
+
   
 
 - intent: goodbye

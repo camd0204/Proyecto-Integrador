@@ -24,6 +24,9 @@ intents:
   - ask_functionality
   - switch_cisco_config_request
   - provide_users_to_cisco_switch
+  - ask_general_question
+  - use_router_for_networking
+  - use_switch_for_networking
 
 
 actions:
@@ -63,6 +66,19 @@ responses:
   utter_greet:
   - text: "Hey! How are you?"
   - text: "Hey"
+
+  utter_devices_to_be_chosen:
+  - text: "Sure! Which device will be used to connect the users?"
+  - text: "Let's start by telling me which device will be used to connect the users?"
+
+  utter_number_users_for_simple_router:
+  - text: "How many users are going to be connected to the router?"
+  - text: "Awesome, can you tell me how many users will be connected to the router?"
+
+  utter_number_users_for_simple_switch:
+  - text: "How many users are going to be connected to the switch?"
+  - text: "Awesome, can you tell me how many users will be connected to the switch?"
+  
 
   utter_ask_for_users_per_router:
   - text: "How many users will there be per router?"

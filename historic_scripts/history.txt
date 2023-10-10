@@ -1,1 +1,1 @@
-user_gen_files/3_router_3_user.xml
+user_gen_files/example_lxc_vm-as-switch.xml
