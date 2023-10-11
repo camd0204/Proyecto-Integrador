@@ -315,3 +315,12 @@ nlu:
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
+
+- intent: upload_image
+  examples: |
+    - I want to upload an image of a network.
+    - I want to upload an image.
+    - Can I provide you a network image.
+    - Can I show you the picture of a network topology.
+    - I want to show the entities in a network topology image.
+    - I want to show you the drawing of a network.

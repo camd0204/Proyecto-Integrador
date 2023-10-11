@@ -78,6 +78,10 @@ responses:
   utter_number_users_for_simple_switch:
   - text: "How many users are going to be connected to the switch?"
   - text: "Awesome, can you tell me how many users will be connected to the switch?"
+
+  utter_provide_link:
+  - text: "Sure! Please provide the image link so I can recognize the intent."
+  - text: "Of course, please provide the image link so I can recognize the intent."
   
 
   utter_ask_for_users_per_router:
