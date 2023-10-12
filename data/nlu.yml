@@ -32,6 +32,22 @@ nlu:
     - What tasks can I perform with this bot?
     - How does this chatbot operate?
 
+- intent: connect_two_computers_request
+  examples: |
+    - I want to connect two computers.
+    - I want to connect two users in a n etwork.
+    - Connect two hosts.
+    - I want to connect two hosts.
+    - Simply make a connection between two computers.
+    - I want to connect two computers in a network.
+    - Make a connection between two computers
+    -Hey, help me link up two computers!
+    -I need to connect two users in a network, can you assist?
+    -Any chance you can link two hosts together for me?
+    -I'm looking to establish a connection between two hosts, can you guide me?
+    -Could you assist in making a connection between two computers?
+  
+
 - intent: ask_simple_network_scenario
   examples: |
     - Can you show me an example on a simple network scenario?

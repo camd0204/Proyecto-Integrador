@@ -27,6 +27,8 @@ intents:
   - ask_general_question
   - use_router_for_networking
   - use_switch_for_networking
+  - connect_two_computers_request
+  - upload_image
 
 
 actions:
@@ -36,6 +38,7 @@ actions:
   - generate_simple_network
   - generate_complex_network
   - provide_switch_config
+  - connect_two_computers_action
   
 
 entities:

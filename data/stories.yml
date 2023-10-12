@@ -12,6 +12,11 @@ stories:
   - intent: upload_image
   - action: utter_provide_link
 
+- story: connect two simple computers
+  steps: 
+  - intent: connect_two_computers_request
+  - action: connect_two_computers_action
+
 - story: path for one router connection
   steps:
   - intent: ask_general_question
@@ -19,6 +24,7 @@ stories:
   - intent: use_router_for_networking
   - action: utter_number_users_for_simple_router
   - intent: provide_users_to_network
+  - action: generate_simple_network
 
 - story: path for one switch connection
   steps:
@@ -27,6 +33,7 @@ stories:
   - intent: use_switch_for_networking
   - action: utter_number_users_for_simple_switch
   - intent: provide_users_to_switch
+  - action: provide_switch_config
 
 - story: ask about bot functionality
   steps:

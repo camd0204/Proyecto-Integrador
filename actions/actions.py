@@ -454,6 +454,26 @@ class ActionRunVNXEnvironment(Action):
             last_line = lines[-2]
             return last_line
         
+class ActionConnectTwoComputers(Action):
+    def name(self) -> Text:
+        return "connect_two_computers_action"
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+            self.connect_computers()
+            self.write_file_path_to_historic()
+            dispatcher.utter_message(f"Script written to: user_gen_files/2_pcs_lan_connection.xml. Description: A simple LAN connection using a virtual bridge between two PCS. MAC addresses and IP address are generated automatically ;)")
+            return []
+    def connect_computers(self):
+        xml_content=''
+        with open("xml_files/2_pcs_lan_connection.xml", "r", encoding="utf-8") as txt_file:
+            xml_content=txt_file.read()
+        with open("user_gen_files/2_pcs_lan_connection.xml", "w", encoding="utf-8") as xml_file:
+            xml_file.write(xml_content)
+
+    def write_file_path_to_historic(self):
+        with open("historic_scripts/history.txt", "w") as txt_file:
+            txt_file.write("xml_files/2_pcs_lan_connection.xml"+"\n")
+
+        
         
 
 
