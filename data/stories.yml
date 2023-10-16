@@ -41,6 +41,7 @@ stories:
   - action: utter_ask_for_user_lan
   - intent: provide_lan_users
   - action: provide_lan_config
+  
 - story: ask about bot functionality
   steps:
   - intent: greet

@@ -164,7 +164,7 @@ class ActionProvideSwitchConfigurationVNX(Action):
             xml_file.write(pretty_xml)
 
     def write_file_path_to_historic(self,file_path):
-        with open("historic_scripts/history.txt", "w", encoding="utf-8") as txt_file:
+        with open("historic_scripts/history.txt", "a") as txt_file:
             txt_file.write(file_path+"\n")
 
 
@@ -225,7 +225,7 @@ class ActionGenerateSimpleScenario(Action):
     
 
     def write_file_path_to_historic(self,file_path):
-        with open("historic_scripts/history.txt", "w", encoding="utf-8") as txt_file:
+        with open("historic_scripts/history.txt", "a") as txt_file:
             txt_file.write(file_path+"\n")
     
 #Class to generate a simple network scenario 
@@ -336,7 +336,7 @@ class ActionGenerateSimpleNetwork(Action):
         self.write_file_path_to_historic(f"user_gen_files/vnx_custom_network_router_{user_number}_users.xml")
 
     def write_file_path_to_historic(self,file_path):
-        with open("historic_scripts/history.txt", "w", encoding="utf-8") as txt_file:
+        with open("historic_scripts/history.txt", "a") as txt_file:
             txt_file.write(file_path+"\n")
 
 
@@ -386,7 +386,7 @@ class ActionGenerateComplexNetwork(Action):
         self.write_file_path_to_historic(f"user_gen_files/{router_number}_router_{user_per_rout}_user.xml")
 
     def write_file_path_to_historic(self,file_path):
-        with open("historic_scripts/history.txt", "w", encoding="utf-8") as txt_file:
+        with open("historic_scripts/history.txt", "a", encoding="utf-8") as txt_file:
             txt_file.write(file_path+"\n")
 
 class ActionRunVNXEnvironment(Action):
@@ -411,7 +411,7 @@ class ActionRunVNXEnvironment(Action):
     def run_vnx_script(self,script_path):
         try:
             # Build the command to run the Perl script
-            command = ['sudo', 'vnx', '-f', script_path, '-v', '--create']
+            command = ['sudo', 'vnx', '-f', script_path, '--create']
             # Run the Perl script
             process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
             # Capture the standard output and standard error
@@ -428,7 +428,7 @@ class ActionRunVNXEnvironment(Action):
     def stop_vnx_script(self,script_path):
         try:
             # Build the command to run the Perl script
-            command = ['sudo', 'vnx', '-f', script_path, '-v', '--destroy']
+            command = ['sudo', 'vnx', '-f', script_path, '--destroy']
             # Run the Perl script
             process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
             # Capture the standard output and standard error
@@ -470,7 +470,7 @@ class ActionConnectTwoComputers(Action):
             xml_file.write(xml_content)
 
     def write_file_path_to_historic(self):
-        with open("historic_scripts/history.txt", "w") as txt_file:
+        with open("historic_scripts/history.txt", "a") as txt_file:
             txt_file.write("xml_files/2_pcs_lan_connection.xml"+"\n")
 
 class ActionConnectComputerWithLan(Action):
@@ -478,7 +478,7 @@ class ActionConnectComputerWithLan(Action):
         return "provide_lan_config"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        user_number_lan = next(tracker.get_latest_entity_values("user_number"), None)
+        user_number_lan = next(tracker.get_latest_entity_values("lan_user"), None)
         if user_number_lan:
             user_number_lan_count=int(user_number_lan)
             if(user_number_lan_count>0):
@@ -495,7 +495,7 @@ class ActionConnectComputerWithLan(Action):
         return []
 
     def write_file_path_to_historic(self,file_path):
-        with open("historic_scripts/history.txt", "w", encoding="utf-8") as txt_file:
+        with open("historic_scripts/history.txt", "a", encoding="utf-8") as txt_file:
             txt_file.write(file_path+"\n")
 
     def generate_xml(self,num_vms,file_path):
@@ -517,7 +517,6 @@ class ActionConnectComputerWithLan(Action):
             vm_elem = ET.SubElement(net_elem, "vm", attrib={"name": f"VM{i}"})
             ET.SubElement(vm_elem, "filesystem", attrib={"type": "cow"}).text = "/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64"
             ET.SubElement(vm_elem, "kernel").text = "/path/to/kernel"
-            ET.SubElement(vm_elem, "mem").text = "256M"  # Assuming constant memory for all VMs
             if_elem = ET.SubElement(vm_elem, "if", attrib={"id": "1", "net": "Network1"})
             ET.SubElement(if_elem, "mac").text = f"fe:fd:00:00:00:{i:02d}"
             ET.SubElement(if_elem, "ipv4").text = f"192.168.1.{i}/24"
