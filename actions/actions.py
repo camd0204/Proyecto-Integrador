@@ -394,8 +394,7 @@ class ActionRunVNXEnvironment(Action):
         return "run_script_path"
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
             self.start_vnx_pipeline()
-            dispatcher.utter_message(f"Script opened on vnx as: ")
-            dispatcher.utter_message("Script path not found.")
+            dispatcher.utter_message(f"Script opened on vnx as: {self.check_last_line_historic} ")
             return []
     
     def start_vnx_pipeline(self):
@@ -485,7 +484,7 @@ class ActionConnectComputerWithLan(Action):
                 file_path=f"user_gen_files/custom_lan_{user_number_lan_count}_users.xml"
                 description=f"""The scenario consists of a variable number of {user_number_lan_count} LXC-based virtual machines connected to a network bridge, making it seem as a LAN network """
                 dispatcher.utter_message(f"Scenario created as XML file generated and saved as custom_lan_{user_number_lan_count}_users.xml. Description: {description}")
-                self.generate_xml(user_number_lan_count)
+                self.generate_xml(user_number_lan_count,file_path)
                 self.write_file_path_to_historic(file_path)
             else:
                 dispatcher.utter_message("User number not valid, file could not be created.")

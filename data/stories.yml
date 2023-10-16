@@ -41,7 +41,7 @@ stories:
   - action: utter_ask_for_user_lan
   - intent: provide_lan_users
   - action: provide_lan_config
-  
+
 - story: ask about bot functionality
   steps:
   - intent: greet
@@ -72,25 +72,30 @@ stories:
   - intent: provide_users_to_cisco_switch
   - action: provide_switch_config_for_cisco
 
+
 - story: show classic example
   steps:
   - intent: ask_simple_network_scenario
   - action: generate_example_scenario
+  - action: run_script_path
 
 - story: show complex scenario
   steps:
   - intent: ask_complex_network_scenario
   - action: generate_example_scenario
+  - action: run_script_path
 
 - story: show switch example scenario
   steps:
   - intent: ask_switch_network_scenario
   - action: generate_example_scenario
+  - action: run_script_path
 
 - story: show vlan example scenario
   steps:
   - intent: ask_vlan_switch_scenario
   - action: generate_example_scenario
+  - action: run_script_path
 
 - story: create network with one router
   steps:

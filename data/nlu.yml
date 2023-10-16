@@ -72,10 +72,10 @@ nlu:
     - Show me an example on how the network creation works?
     - Connect a few machines to a virtual network, make it complex.
     - Show me an example with more hosts and more virtual networks.
-    - Can you show me a complex example.
+    - Can you show me a complex example of a network.
     - Create a network configuration example with more hosts.
     - Create a network example with hosts, routers and virtual bridges.
-
+    - I want to create a complex network scenario.
 - intent: ask_switch_network_scenario
   examples: |
     - Can you show me an example on a simple network scenario with a switch?
