@@ -340,3 +340,30 @@ nlu:
     - Can I show you the picture of a network topology.
     - I want to show the entities in a network topology image.
     - I want to show you the drawing of a network.
+
+- intent: connect_lan_request
+  examples: |
+    - I want to connect users to a LAN network.
+    - Use a LAN network to connect users.
+    - I aim to link users to a LAN network.
+    - Establish a connection between users and a LAN network.
+    - Connect users through a LAN network.
+    - Utilize a LAN network for user connectivity.
+    - Facilitate user connection via a LAN network.
+    - Link users to the LAN for network access.
+    - Employ a LAN network to connect users.
+    - Enable user access through a LAN network.
+    - Set up user connectivity using a LAN network.
+    - Establish user links through a LAN connection.
+
+- intent: provide_lan_users
+  examples: |
+    - There are [4](lan_user) users connected to the LAN.
+    - [5](lan_user) will use the LAN.
+    - I want to connect [5](lan_user) users using the LAN.
+    - Each LAN will have [6](lan_user) users connected.
+    - [4](lan_user) users will be using the LAN for connectivity.
+    - I'm planning to configure [6](lan_user) users for the LAN.
+    - Allocate [5](lan_user) users to each LAN in the setup.
+    - [5](lan_user) LAN users.
+    - [5](lan_user) users for the LAN.

@@ -473,6 +473,57 @@ class ActionConnectTwoComputers(Action):
         with open("historic_scripts/history.txt", "w") as txt_file:
             txt_file.write("xml_files/2_pcs_lan_connection.xml"+"\n")
 
+class ActionConnectComputerWithLan(Action):
+    def name(self) -> Text:
+        return "provide_lan_config"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        user_number_lan = next(tracker.get_latest_entity_values("user_number"), None)
+        if user_number_lan:
+            user_number_lan_count=int(user_number_lan)
+            if(user_number_lan_count>0):
+                file_path=f"user_gen_files/custom_lan_{user_number_lan_count}_users.xml"
+                description=f"""The scenario consists of a variable number of {user_number_lan_count} LXC-based virtual machines connected to a network bridge, making it seem as a LAN network """
+                dispatcher.utter_message(f"Scenario created as XML file generated and saved as custom_lan_{user_number_lan_count}_users.xml. Description: {description}")
+                self.generate_xml(user_number_lan_count)
+                self.write_file_path_to_historic(file_path)
+            else:
+                dispatcher.utter_message("User number not valid, file could not be created.")
+
+        else:
+            dispatcher.utter_message("User number not valid, file could not be created.")
+        return []
+
+    def write_file_path_to_historic(self,file_path):
+        with open("historic_scripts/history.txt", "w", encoding="utf-8") as txt_file:
+            txt_file.write(file_path+"\n")
+
+    def generate_xml(self,num_vms,file_path):
+        root = ET.Element("vnx", attrib={"xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+                                        "xsi:noNamespaceSchemaLocation": "/usr/share/xml/vnx/vnx-2.00.xsd"})
+
+        global_elem = ET.SubElement(root, "global")
+        ET.SubElement(global_elem, "version").text = "2.0"
+        ET.SubElement(global_elem, "scenario_name").text = f"{num_vms}_pcs_lan_connection"
+        ET.SubElement(global_elem, "automac")
+        vm_mgmt = ET.SubElement(global_elem, "vm_mgmt", attrib={"type": "none"})
+        vm_defaults = ET.SubElement(global_elem, "vm_defaults")
+        console_0 = ET.SubElement(vm_defaults, "console", attrib={"display": "no", "id": "0"})
+        console_1 = ET.SubElement(vm_defaults, "console", attrib={"display": "yes", "id": "1"})
+
+        net_elem = ET.SubElement(root, "net", attrib={"name": "Network1", "mode": "virtual_bridge", "type": "lan"})
+
+        for i in range(1, num_vms + 1):
+            vm_elem = ET.SubElement(net_elem, "vm", attrib={"name": f"VM{i}"})
+            ET.SubElement(vm_elem, "filesystem", attrib={"type": "cow"}).text = "/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64"
+            ET.SubElement(vm_elem, "kernel").text = "/path/to/kernel"
+            ET.SubElement(vm_elem, "mem").text = "256M"  # Assuming constant memory for all VMs
+            if_elem = ET.SubElement(vm_elem, "if", attrib={"id": "1", "net": "Network1"})
+            ET.SubElement(if_elem, "mac").text = f"fe:fd:00:00:00:{i:02d}"
+            ET.SubElement(if_elem, "ipv4").text = f"192.168.1.{i}/24"
+
+        tree = ET.ElementTree(root)
+        tree.write(file_path, encoding="UTF-8", xml_declaration=True)
         
         
 

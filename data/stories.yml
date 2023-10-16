@@ -35,6 +35,12 @@ stories:
   - intent: provide_users_to_switch
   - action: provide_switch_config
 
+- story: create a lan connection
+  steps:
+  - intent: connect_lan_request
+  - action: utter_ask_for_user_lan
+  - intent: provide_lan_users
+  - action: provide_lan_config
 - story: ask about bot functionality
   steps:
   - intent: greet
