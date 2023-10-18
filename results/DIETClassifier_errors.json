@@ -1,0 +1,23 @@
+[
+  {
+    "text": "5",
+    "entities": [
+      {
+        "start": 0,
+        "end": 1,
+        "value": "5",
+        "entity": "user_number_for_router"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "router_number",
+        "start": 0,
+        "end": 1,
+        "confidence_entity": 0.617820680141449,
+        "value": "5",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  }
+]

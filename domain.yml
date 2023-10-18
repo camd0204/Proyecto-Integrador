@@ -42,6 +42,7 @@ actions:
   - provide_switch_config
   - connect_two_computers_action
   - provide_lan_config
+  - run_script_path
   
 
 entities:
@@ -117,15 +118,6 @@ responses:
 
   utter_users_for_network:
   - text: " Sure! How many users (PCs) are going to be connected to the network?"
-
-  utter_happy:
-  - text: "Great, carry on!"
-
-  utter_goodbye:
-  - text: "Bye"
-
-  utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
 
   utter_ask_for_security:
   - text: "Would you care about security configurations or do you want to leave them default?"

@@ -1,0 +1,10 @@
+[
+  {
+    "text": "10",
+    "intent": "router_number_for_custom_network",
+    "intent_prediction": {
+      "name": "provide_users_per_router",
+      "confidence": 0.6061235070228577
+    }
+  }
+]

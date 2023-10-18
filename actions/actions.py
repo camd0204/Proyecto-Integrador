@@ -351,7 +351,7 @@ class ActionGenerateComplexNetwork(Action):
         stdout, stderr, return_code = self.run_perl_script(self.perl_script_path, router_number, user_number_for_router)
         if user_number_for_router and router_number:
             self.write_script_to_XML(stdout,router_number,user_number_for_router)
-            suma=int(user_number_for_router)+int(router_number)
+            suma=int(user_number_for_router)*int(router_number)
             dispatcher.utter_message(f"Script written to: user_gen_files/{router_number}router_{suma}_user.xml. Description:A big tutorial scenario made of {suma} LXC virtual machines ({router_number} routers and {user_number_for_router} hosts).")
         else:
             dispatcher.utter_message("Network creation unable to be achieved.")
