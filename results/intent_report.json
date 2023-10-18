@@ -1,65 +1,205 @@
 {
-  "greet": {
+  "provide_users_to_switch": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 13,
+    "support": 1,
     "confused_with": {}
   },
   "goodbye": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 10,
+    "support": 2,
     "confused_with": {}
   },
-  "search_provider": {
+  "provide_users_per_router": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 4,
+    "support": 1,
     "confused_with": {}
   },
-  "mood_unhappy": {
+  "ask_general_question": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 14,
+    "support": 2,
     "confused_with": {}
   },
-  "affirm": {
+  "ask_vlan_switch_scenario": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 6,
+    "support": 2,
+    "confused_with": {}
+  },
+  "router_number_for_custom_network": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1,
     "confused_with": {}
   },
   "bot_challenge": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 4,
+    "support": 1,
     "confused_with": {}
   },
-  "inform": {
+  "affirm": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 6,
+    "support": 2,
     "confused_with": {}
   },
-  "mood_great": {
+  "ask_basic_concepts": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 14,
+    "support": 3,
+    "confused_with": {}
+  },
+  "create_network_intent": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 2,
+    "confused_with": {}
+  },
+  "connect_two_computers_request": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 3,
+    "confused_with": {}
+  },
+  "switch_cisco_config_request": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 2,
+    "confused_with": {}
+  },
+  "use_switch_for_networking": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 2,
+    "confused_with": {}
+  },
+  "provide_lan_users": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 2,
+    "confused_with": {}
+  },
+  "mood_unhappy": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 3,
+    "confused_with": {}
+  },
+  "use_router_for_networking": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 2,
     "confused_with": {}
   },
   "deny": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 7,
+    "support": 1,
+    "confused_with": {}
+  },
+  "create_custom_network_intent": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 2,
+    "confused_with": {}
+  },
+  "ask_simple_network_scenario": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 3,
+    "confused_with": {}
+  },
+  "switch_connection_request": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 2,
+    "confused_with": {}
+  },
+  "provide_users_to_network": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 2,
+    "confused_with": {}
+  },
+  "upload_image": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1,
+    "confused_with": {}
+  },
+  "ask_switch_network_scenario": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1,
+    "confused_with": {}
+  },
+  "ask_complex_network_scenario": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 2,
+    "confused_with": {}
+  },
+  "connect_lan_request": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 2,
+    "confused_with": {}
+  },
+  "provide_users_to_cisco_switch": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1,
+    "confused_with": {}
+  },
+  "ask_functionality": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 2,
+    "confused_with": {}
+  },
+  "mood_great": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 3,
+    "confused_with": {}
+  },
+  "greet": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 3,
     "confused_with": {}
   },
   "accuracy": 1.0,
@@ -67,18 +207,18 @@
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 78
+    "support": 56
   },
   "weighted avg": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 78
+    "support": 56
   },
   "micro avg": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 78
+    "support": 56
   }
 }

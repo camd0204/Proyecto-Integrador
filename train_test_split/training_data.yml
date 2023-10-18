@@ -1,0 +1,281 @@
+version: "3.1"
+nlu:
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - am I talking to a human?
+    - are you a human?
+- intent: provide_users_to_switch
+  examples: |
+    - [3](user_number) users will use the switch
+    - There are [2](user_number) users for the switch
+    - There will be [5](user_number) users at the given switch
+    - I want to have [1](user_number) switch users
+- intent: provide_users_to_cisco_switch
+  examples: |
+    - [3](user_number_cisco) will be using it
+    - There will be [2](user_number_cisco) users for the switch
+    - [5](user_number_cisco) switch cisco users.
+    - There must be [1](user_number_cisco) switch users
+- intent: router_number_for_custom_network
+  examples: |
+    - [2](router_number) routers.
+    - [3](router_number) routers will be used by the network.
+    - There will be [5](router_number) routers at the given network.
+    - [10](router_number)
+    - [5](router_number) router points.
+- intent: affirm
+  examples: |
+    - indeed
+    - that sounds good
+    - y
+    - correct
+- intent: upload_image
+  examples: |
+    - I want to upload an image of a network.
+    - Can I show you the picture of a network topology.
+    - I want to show you the drawing of a network.
+    - I want to show the entities in a network topology image.
+    - Can I provide you a network image.
+- intent: ask_switch_network_scenario
+  examples: |
+    - Can you show me an example on a simple network scenario with a switch?
+    - Can you show me an example where a switch is used to connect hosts.
+    - Connect a machine to a virtual network, use a switch please.
+    - Create a network configuration example with more hosts and a switch.
+    - Show me an example on how the network creation works with a switch?
+    - Show me an example using a switch and more hosts.
+- intent: provide_users_to_network
+  examples: |
+    - [4](user_number_n) users will be using the network for connectivity.
+    - Assign [3](user_number_n) users to the network.
+    - Each network will have [6](user_number_n) users connected.
+    - I want to connect [5](user_number_n) users using the network.
+    - There are [4](user_number_n) users connected to the network.
+- intent: deny
+  examples: |
+    - I don't think so
+    - don't like that
+    - never
+    - not really
+    - no way
+    - no
+- intent: ask_complex_network_scenario
+  examples: |
+    - Can you show me an example on a complex network scenario?
+    - Show me an example on how the network creation works?
+    - I want to create a complex network scenario.
+    - Create a network configuration example with more hosts.
+    - Can you show me a complex example of a network.
+    - Create a network example with hosts, routers and virtual bridges.
+- intent: provide_users_per_router
+  examples: |
+    - There will be [5](user_number_for_router) users at the given royter.
+    - [5](user_number_for_router)
+    - [6](user_number_for_router) users for the router
+    - [2](user_number_for_router) users per router.
+    - [1](user_number_for_router) users for each router, please.
+    - [5](user_number_for_router) users using each router.
+    - [3](user_number_for_router) users by router will be used
+- intent: create_custom_network_intent
+  examples: |
+    - How can I set up a network with lots of users and routers?
+    - I'm thinking of creating a network with many users and routers.
+    - I want to create a network with many users and many routers.
+    - What do I need to do to have a network with lots of users and routers?
+    - Need advice on making a network with many users and routers.
+    - I'm interested in a network with many users and routers.
+    - Can you help me create a network with many users and routers?
+- intent: switch_connection_request
+  examples: |
+    - I'm looking to connect users via a switch.
+    - Help me understand how to configure a switch for user connections.
+    - Can you guide me on how to create a network using a switch?
+    - I'd like to establish connectivity through a switch.
+    - I want to connect users to a switch.
+    - I need to establish a connection to a switch.
+    - I want to establish a network using a switch.
+- intent: provide_lan_users
+  examples: |
+    - [5](lan_user) users for the LAN.
+    - There are [4](lan_user) users connected to the LAN.
+    - Each LAN will have [6](lan_user) users connected.
+    - [4](lan_user) users will be using the LAN for connectivity.
+    - [5](lan_user) will use the LAN.
+    - I'm planning to configure [6](lan_user) users for the LAN.
+    - I want to connect [5](lan_user) users using the LAN.
+- intent: ask_functionality
+  examples: |
+    - What capabilities does this bot have?
+    - How does this tool benefit me?
+    - Explain the features of this bot.
+    - What are the practical uses of this chatbot?
+    - Describe the functionality of this tool.
+    - How does this chatbot operate?
+    - What tasks can I perform with this bot?
+    - Tell me the functions of this tool.
+- intent: ask_general_question
+  examples: |
+    - Provide advice on creating a network with a large number of users.
+    - I want to create a network with a large user base—where should I start?
+    - Provide guidance on creating a network with a substantial number of users.
+    - Share insights on creating a network with a significant number of users.
+    - What is the best way to create a network with a high number of users?
+    - I'm looking to connect many users in a network—what steps should I follow?
+    - Guide me through the process of creating a network with numerous users.
+    - I want to connect a large number of users in a network—how do I proceed?
+- intent: use_router_for_networking
+  examples: |
+    - Router-based networking suits my requirements.
+    - The chosen device for networking will be a router.
+    - Use a router to establish connections between hosts in the network.
+    - I prefer using a router for network connectivity.
+    - I want to use a router.
+    - The network should be configured using a router for connectivity.
+    - I want to rely on a router for networking purposes.
+    - Router-based networking is my preference.
+- intent: use_switch_for_networking
+  examples: |
+    - The network should be configured using a switch for connectivity.
+    - Use a switch to establish connections between hosts in the network.
+    - I want to rely on a switch for networking purposes.
+    - I want to use a switch.
+    - The chosen device for networking will be a switch.
+    - Switch-based networking is my preference.
+    - I'd like to use a switch to connect hosts in the network.
+    - Switch connectivity is the approach I want to take.
+- intent: goodbye
+  examples: |
+    - good night
+    - bye
+    - good by
+    - goodbye
+    - see you later
+    - have a nice day
+    - cee you later
+    - cu
+- intent: ask_vlan_switch_scenario
+  examples: |
+    - I want to understand VLANs in a real-world context. Can you describe a use case?
+    - Please explain how VLANs are applied in a network environment.
+    - Could you give me an illustration of how VLANs are implemented in a network?
+    - I'd like to see a practical example of a network setup that employs VLANs.
+    - Show me an example on a scenario that uses a VLAN.
+    - I'm curious about VLAN usage. Could you walk me through a scenario that demonstrates it?
+    - Can you describe a scenario where VLANs are used to segment a network?
+    - Show me an example of a network setup with VLANs for better network organization.
+    - Could you provide an instance of a network configuration where VLANs play a role?
+- intent: switch_cisco_config_request
+  examples: |
+    - What's the switch setup for multiple users?
+    - I need switch command info for many users.
+    - Explain switch config for a bunch of users.
+    - What's the switch command for a large user group?
+    - Share switch settings for a variety of users.
+    - Tell me the switch command config for lots of users.
+    - Give me switch command details for many users.
+    - How do I set up switches for many users?
+    - I want to know the switch command configuration for many users.
+- intent: create_network_intent
+  examples: |
+    - Could you guide me through the steps of network creation?
+    - I'd like to deploy a virtual network that use one router, where should I start?
+    - Create a network for users with a router.
+    - How can I create a network in this simulation using only one router?
+    - I want to create a virtual network with a simple router.
+    - I want to use a router to connect to users.
+    - I'm looking to establish a virtual network environment with a router.
+    - Please assist me in creating a virtual network infrastructure using a router.
+    - I'm interested in creating a network for testing purposes.
+- intent: connect_two_computers_request
+  examples: |
+    - Could you assist in making a connection between two computers?
+    - Hey, help me link up two computers!
+    - I want to connect two hosts.
+    - Any chance you can link two hosts together for me?
+    - I'm looking to establish a connection between two hosts, can you guide me?
+    - I want to connect two computers in a network.
+    - I want to connect two computers.
+    - Simply make a connection between two computers.
+    - Make a connection between two computers
+- intent: connect_lan_request
+  examples: |
+    - Enable user access through a LAN network.
+    - Utilize a LAN network for user connectivity.
+    - Use a LAN network to connect users.
+    - Establish a connection between users and a LAN network.
+    - Set up user connectivity using a LAN network.
+    - Connect users through a LAN network.
+    - I aim to link users to a LAN network.
+    - Facilitate user connection via a LAN network.
+    - Establish user links through a LAN connection.
+    - Link users to the LAN for network access.
+- intent: mood_great
+  examples: |
+    - super stoked
+    - so perfect
+    - amazing
+    - wonderful
+    - I am going to save the world
+    - I am great
+    - extremely good
+    - feeling like a king
+    - so good
+    - I am feeling very good
+    - great
+- intent: mood_unhappy
+  examples: |
+    - I am disappointed
+    - I don't feel very well
+    - sad
+    - very sad
+    - so saad
+    - extremly sad
+    - my day was horrible
+    - I'm so sad
+    - super sad
+    - unhappy
+    - not good
+- intent: greet
+  examples: |
+    - hello friend
+    - greetings
+    - howdy
+    - hey folks
+    - hi friend
+    - hi everyone
+    - good day
+    - hi folks
+    - hey you
+    - hey team
+    - good to see you
+    - hey buddy
+- intent: ask_simple_network_scenario
+  examples: |
+    - Walk me through the steps of setting up a basic network scenario.
+    - Explain how to set up a virtual network with a single machine.
+    - Connect a machine to a virtual network
+    - Show me how to create a simple network environment.
+    - Illustrate the process of connecting a machine to a virtual network.
+    - How do I create a basic virtual network scenario?
+    - Please show me a practical example of network creation.
+    - I'm interested in a tutorial on creating a straightforward virtual network.
+    - Share an instance of a basic network setup.
+    - Provide me with an example of a simple network setup.
+    - I need an example of a simple network configuration.
+    - I'd like to see a sample scenario for connecting a machine to a virtual network.
+- intent: ask_basic_concepts
+  examples: |
+    - What is the purpose of a [router](network_device)?
+    - What's the function of a [router](network_device) in a network?
+    - Can you tell me about [MAC addresses](network_device)?
+    - What are [ports](network_device) used for in networking?
+    - Explain the role of a [router](network_device) in a network.
+    - How does [DNS](network_device) work in a network?
+    - Tell me about [switch](network_device) security.
+    - Can you provide information about [router](network_device)?
+    - What is a [router](network_device) used for in networking?
+    - Describe the role of a [router](network_device) devices in networks.
+    - What's the function of a [switch](network_device) in networking?
+    - Tell me about a [router](network_device)
+    - Explain the purpose of [gateway](network_device) devices.
