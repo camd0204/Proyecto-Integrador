@@ -16,7 +16,6 @@
     <!-- Virtual Machines -->
     <vm name="VM1">
         <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
-        <kernel>/path/to/kernel</kernel>
         <if id="1" net="Network1">
             <mac>fe:fd:00:00:00:01</mac>
             <ipv4>192.168.1.1/24</ipv4>
@@ -26,7 +25,6 @@
     <vm name="VM2">
         <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
         <mem>256M</mem>
-        <kernel>/path/to/kernel</kernel>
         <if id="1" net="Network1">
             <mac>fe:fd:00:00:00:02</mac>
             <ipv4>192.168.1.2/24</ipv4>

@@ -513,7 +513,6 @@ class ActionConnectComputerWithLan(Action):
             for i in range(1, num_vms + 1):
                 vm_elem = ET.SubElement(net_elem, "vm", attrib={"name": f"VM{i}"})
                 ET.SubElement(vm_elem, "filesystem", attrib={"type": "cow"}).text = "/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64"
-                ET.SubElement(vm_elem, "kernel").text = "/path/to/kernel"
                 if_elem = ET.SubElement(vm_elem, "if", attrib={"id": "1", "net": "Network1"})
                 ET.SubElement(if_elem, "mac").text = f"fe:fd:00:00:00:{i:02d}"
                 ET.SubElement(if_elem, "ipv4").text = f"192.168.1.{i}/24"

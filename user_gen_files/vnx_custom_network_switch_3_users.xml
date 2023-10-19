@@ -52,9 +52,9 @@
     <exec ostype="system" seq="on_boot" type="verbatim">sleep 10; 
             apt-get -y install openvswitch-switch;
             ovs-vsctl add-br switch;
-ovs-vsctl add-port switch eth1;
-ovs-vsctl add-port switch eth2;
-ovs-vsctl add-port switch eth3;
-ip addr add 1.1.1.7/24 dev switch</exec>
-  </vm>
+            ovs-vsctl add-port switch eth1;
+            ovs-vsctl add-port switch eth2;
+            ovs-vsctl add-port switch eth3;
+            ip addr add 1.1.1.7/24 dev switch</exec>
+      </vm>
 </vnx>

@@ -35,17 +35,17 @@ nlu:
 - intent: connect_two_computers_request
   examples: |
     - I want to connect two computers.
-    - I want to connect two users in a n etwork.
+    - I want to connect two users in a network.
     - Connect two hosts.
     - I want to connect two hosts.
     - Simply make a connection between two computers.
     - I want to connect two computers in a network.
     - Make a connection between two computers
-    -Hey, help me link up two computers!
-    -I need to connect two users in a network, can you assist?
-    -Any chance you can link two hosts together for me?
-    -I'm looking to establish a connection between two hosts, can you guide me?
-    -Could you assist in making a connection between two computers?
+    - Hey, help me link up two computers!
+    - I need to connect two users in a network, can you assist?
+    - Any chance you can link two hosts together for me?
+    - I'm looking to establish a connection between two hosts, can you guide me?
+    - Could you assist in making a connection between two computers?
   
 
 - intent: ask_simple_network_scenario
@@ -184,6 +184,12 @@ nlu:
     - I want to have [1](user_number) switch users
     - There will be [5](user_number) users at the given switch
     - [5](user_number) switch users
+    - Configure switch for [2](user_number) users
+    - Allocate [3](user_number) users to the switch
+    - Set up switch for [1](user_number) user
+    - Switch config for [5](user_number) users
+    - Assign [5](user_number) users to the switch
+    
 
 - intent: provide_users_to_cisco_switch
   examples: |
@@ -192,6 +198,12 @@ nlu:
     - There must be [1](user_number_cisco) switch users
     - The configuration must be done for [5](user_number_cisco) users.
     - [5](user_number_cisco) switch cisco users.
+    - Configure Cisco switch for [2](user_number_cisco) users
+    - Allocate [3](user_number_cisco) users to the Cisco switch
+    - Set up Cisco switch for [1](user_number_cisco) user
+    - Cisco switch config for [5](user_number_cisco) users
+    - Assign [5](user_number_cisco) users to the Cisco switch
+    
 
 - intent: create_network_intent
   examples: |
