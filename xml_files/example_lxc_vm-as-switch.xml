@@ -39,7 +39,6 @@ SPAIN
   
   <vm name="vm1" type="lxc" exec_mode="lxc-attach">
     <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc</filesystem>
-    <shareddir root="/shared">shared</shareddir>
     <if id="1" net="link1">
       <ipv4>1.1.1.1/24</ipv4>
     </if>
@@ -50,7 +49,6 @@ SPAIN
 
   <vm name="vm2" type="lxc" exec_mode="lxc-attach">
     <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc</filesystem>
-    <shareddir root="/shared">shared</shareddir>
     <if id="1" net="link2">
       <ipv4>1.1.1.2/24</ipv4>
     </if>
@@ -61,7 +59,6 @@ SPAIN
 
   <vm name="vm3" type="lxc" exec_mode="lxc-attach">
     <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc</filesystem>
-    <shareddir root="/shared">shared</shareddir>
     <if id="1" net="link3">
       <ipv4>1.1.1.3/24</ipv4>
     </if>
@@ -72,7 +69,6 @@ SPAIN
 
   <vm name="switch" type="lxc" exec_mode="lxc-attach">
     <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc</filesystem>
-    <shareddir root="/shared">shared</shareddir>
     <if id="1" net="link1"/>
     <if id="2" net="link2"/>
     <if id="3" net="link3"/>

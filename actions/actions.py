@@ -126,7 +126,6 @@ class ActionProvideSwitchConfigurationVNX(Action):
         for i in range(1, number + 1):
             vm_elem = ET.SubElement(root, "vm", attrib={"name": f"vm{i}", "type": "lxc", "exec_mode": "lxc-attach"})
             ET.SubElement(vm_elem, "filesystem", attrib={"type": "cow"}).text = "/usr/share/vnx/filesystems/rootfs_lxc"
-            ET.SubElement(vm_elem, "shareddir", root="/shared").text = "shared"
             if_elem_1 = ET.SubElement(vm_elem, "if", attrib={"id": "1", "net": f"link{i}"})
             ET.SubElement(if_elem_1, "ipv4").text = f"1.1.1.{i + 3}/24"
             if_elem_9 = ET.SubElement(vm_elem, "if", attrib={"id": "9", "net": "virbr0"})
@@ -134,7 +133,6 @@ class ActionProvideSwitchConfigurationVNX(Action):
          # Add switch element
         switch_elem = ET.SubElement(root, "vm", attrib={"name": "switch", "type": "lxc", "exec_mode": "lxc-attach"})
         ET.SubElement(switch_elem, "filesystem", attrib={"type": "cow"}).text = "/usr/share/vnx/filesystems/rootfs_lxc"
-        ET.SubElement(switch_elem, "shareddir", root="/shared").text = "shared"
         for i in range(1, number + 1):
             ET.SubElement(switch_elem, "if", attrib={"id": str(i), "net": f"link{i}"})
         if_elem_9_switch = ET.SubElement(switch_elem, "if", attrib={"id": "9", "net": "virbr0"})
@@ -497,31 +495,36 @@ class ActionConnectComputerWithLan(Action):
         with open("historic_scripts/history.txt", "a", encoding="utf-8") as txt_file:
             txt_file.write(file_path+"\n")
 
-    def generate_xml(self,num_vms,file_path):
-        root = ET.Element("vnx", attrib={"xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
-                                        "xsi:noNamespaceSchemaLocation": "/usr/share/xml/vnx/vnx-2.00.xsd"})
+    def generate_xml(self, num_vms, file_path):
+            root = ET.Element("vnx", attrib={"xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+                                            "xsi:noNamespaceSchemaLocation": "/usr/share/xml/vnx/vnx-2.00.xsd"})
 
-        global_elem = ET.SubElement(root, "global")
-        ET.SubElement(global_elem, "version").text = "2.0"
-        ET.SubElement(global_elem, "scenario_name").text = f"{num_vms}_pcs_lan_connection"
-        ET.SubElement(global_elem, "automac")
-        vm_mgmt = ET.SubElement(global_elem, "vm_mgmt", attrib={"type": "none"})
-        vm_defaults = ET.SubElement(global_elem, "vm_defaults")
-        console_0 = ET.SubElement(vm_defaults, "console", attrib={"display": "no", "id": "0"})
-        console_1 = ET.SubElement(vm_defaults, "console", attrib={"display": "yes", "id": "1"})
+            global_elem = ET.SubElement(root, "global")
+            ET.SubElement(global_elem, "version").text = "2.0"
+            ET.SubElement(global_elem, "scenario_name").text = f"{num_vms}_pcs_lan_connection"
+            ET.SubElement(global_elem, "automac")
+            vm_mgmt = ET.SubElement(global_elem, "vm_mgmt", attrib={"type": "none"})
+            vm_defaults = ET.SubElement(global_elem, "vm_defaults")
+            console_0 = ET.SubElement(vm_defaults, "console", attrib={"display": "no", "id": "0"})
+            console_1 = ET.SubElement(vm_defaults, "console", attrib={"display": "yes", "id": "1"})
 
-        net_elem = ET.SubElement(root, "net", attrib={"name": "Network1", "mode": "virtual_bridge", "type": "lan"})
+            net_elem = ET.SubElement(root, "net", attrib={"name": "Network1", "mode": "virtual_bridge", "type": "lan"})
 
-        for i in range(1, num_vms + 1):
-            vm_elem = ET.SubElement(net_elem, "vm", attrib={"name": f"VM{i}"})
-            ET.SubElement(vm_elem, "filesystem", attrib={"type": "cow"}).text = "/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64"
-            ET.SubElement(vm_elem, "kernel").text = "/path/to/kernel"
-            if_elem = ET.SubElement(vm_elem, "if", attrib={"id": "1", "net": "Network1"})
-            ET.SubElement(if_elem, "mac").text = f"fe:fd:00:00:00:{i:02d}"
-            ET.SubElement(if_elem, "ipv4").text = f"192.168.1.{i}/24"
+            for i in range(1, num_vms + 1):
+                vm_elem = ET.SubElement(net_elem, "vm", attrib={"name": f"VM{i}"})
+                ET.SubElement(vm_elem, "filesystem", attrib={"type": "cow"}).text = "/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64"
+                ET.SubElement(vm_elem, "kernel").text = "/path/to/kernel"
+                if_elem = ET.SubElement(vm_elem, "if", attrib={"id": "1", "net": "Network1"})
+                ET.SubElement(if_elem, "mac").text = f"fe:fd:00:00:00:{i:02d}"
+                ET.SubElement(if_elem, "ipv4").text = f"192.168.1.{i}/24"
 
-        tree = ET.ElementTree(root)
-        tree.write(file_path, encoding="UTF-8", xml_declaration=True)
+            tree = ET.ElementTree(root)
+
+            # Use minidom to prettify the XML
+            xmlstr = xml.dom.minidom.parseString(ET.tostring(root)).toprettyxml(indent="    ")
+
+            with open(file_path, "w", encoding="UTF-8") as f:
+                f.write(xmlstr)
         
         
 
