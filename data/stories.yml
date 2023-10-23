@@ -17,7 +17,7 @@ stories:
   - intent: connect_two_computers_request
   - action: connect_two_computers_action
 
-- story: path for one router connection
+- story: path for one router connection guided
   steps:
   - intent: ask_general_question
   - action: utter_devices_to_be_chosen
@@ -26,7 +26,7 @@ stories:
   - intent: provide_users_to_network
   - action: generate_simple_network
 
-- story: path for one switch connection
+- story: path for one switch connection guided
   steps:
   - intent: ask_general_question
   - action: utter_devices_to_be_chosen
