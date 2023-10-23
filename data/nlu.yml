@@ -129,8 +129,8 @@ nlu:
     - I want to have [1](user_number_for_router) user per router
     - There will be [5](user_number_for_router) users at the given royter.
     - [5](user_number_for_router) users using each router.
-    - [6](user_number_for_router) users for the router
-    - [5](user_number_for_router) 
+    - [6](user_number_for_router) users for the router. 
+    - Users per router: [8](user_number_for_router)
 
 - intent: ask_basic_concepts
   examples: |
@@ -189,6 +189,7 @@ nlu:
     - Set up switch for [1](user_number) user
     - Switch config for [5](user_number) users
     - Assign [5](user_number) users to the switch
+    - Switch users: [8](user_number)
     
 
 - intent: provide_users_to_cisco_switch
@@ -203,7 +204,7 @@ nlu:
     - Set up Cisco switch for [1](user_number_cisco) user
     - Cisco switch config for [5](user_number_cisco) users
     - Assign [5](user_number_cisco) users to the Cisco switch
-    
+    - Cisco switch users: [8](user_number_cisco)
 
 - intent: create_network_intent
   examples: |
@@ -244,6 +245,8 @@ nlu:
     - Router connectivity is the approach I want to take.
     - The network should be configured using a router for connectivity.
     - I want to use a router.
+    - A router.
+    - Router.
 
 - intent: use_switch_for_networking
   examples: |
@@ -257,6 +260,23 @@ nlu:
     - Switch connectivity is the approach I want to take.
     - The network should be configured using a switch for connectivity.
     - I want to use a switch.
+    - A switch.
+    - Switch.
+
+- intent: use_lan_for_networking
+  examples: |
+    - I prefer using a LAN for network connectivity.
+    - LAN-based networking is my preference.
+    - Use a LAN to establish connections between hosts in the network.
+    - I want to rely on a LAN for networking purposes.
+    - The chosen device for networking will be a LAN.
+    - LAN-based networking suits my requirements.
+    - I'd like to use a LAN to connect hosts in the network.
+    - LAN connectivity is the approach I want to take.
+    - The network should be configured using a LAN for connectivity.
+    - I want to use a LAN.
+    - A LAN.
+    - LAN.
 
 - intent: provide_users_to_network
   examples: |
@@ -267,6 +287,7 @@ nlu:
     - [4](user_number_n) users will be using the network for connectivity.
     - I'm planning to configure [6](user_number_n) users for the network.
     - Allocate [5](user_number_n) users to each network in the setup.
+    - Network users: [8](user_number_n).
 
   
 
@@ -379,3 +400,4 @@ nlu:
     - Allocate [5](lan_user) users to each LAN in the setup.
     - [5](lan_user) LAN users.
     - [5](lan_user) users for the LAN.
+    - LAN users: [8](lan_user).

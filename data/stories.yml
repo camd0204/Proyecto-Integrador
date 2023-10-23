@@ -26,6 +26,15 @@ stories:
   - intent: provide_users_to_network
   - action: generate_simple_network
 
+- story: path for lan connection guided
+  steps:
+  - intent: ask_general_question
+  - action: utter_devices_to_be_chosen
+  - intent: use_lan_for_networking
+  - action: utter_ask_for_user_lan
+  - intent: provide_lan_users
+  - action: provide_lan_config
+
 - story: path for one switch connection guided
   steps:
   - intent: ask_general_question

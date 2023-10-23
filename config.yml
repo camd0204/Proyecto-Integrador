@@ -18,19 +18,18 @@ pipeline:
 - name: RegexFeaturizer
 - name: LexicalSyntacticFeaturizer
 - name: CountVectorsFeaturizer
-- name: CountVectorsFeaturizer
   analyzer: char_wb
   min_ngram: 1
   max_ngram: 4
 - name: DIETClassifier
-  epochs: 1100
+  epochs: 1200
   constrain_similarities: true
   entity_recognition: true
-  drop_rate: 0.035
-  drop_rate_attention: 0.035
+  drop_rate: 0.045
+  drop_rate_attention: 0.045
 - name: EntitySynonymMapper
 - name: ResponseSelector
-  epochs: 600
+  epochs: 700
   constrain_similarities: true
 - name: FallbackClassifier
   threshold: 0.3

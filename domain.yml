@@ -31,6 +31,7 @@ intents:
   - upload_image
   - connect_lan_request
   - provide_lan_users
+  - use_lan_for_networking
 
 
 actions:
@@ -82,6 +83,7 @@ responses:
   utter_devices_to_be_chosen:
   - text: "Sure! Which device will be used to connect the users?"
   - text: "Let's start by telling me which device will be used to connect the users?"
+  - text: "Awesome! Which device will be used to connect the users? A router, a switch or a LAN?"
 
   utter_number_users_for_simple_router:
   - text: "How many users are going to be connected to the router?"
