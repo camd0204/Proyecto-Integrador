@@ -11,7 +11,7 @@
         </vm_defaults>
     </global>    
 
-    <net name="Network1" mode="virtual_bridge" type="lan">
+    <net name="Network1" mode="virtual_bridge" type="lan"/>
     </net>
 
         <!-- Virtual Machine 1 -->
