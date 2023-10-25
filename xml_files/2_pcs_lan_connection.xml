@@ -6,29 +6,29 @@
         <automac/>
         <vm_mgmt type="none"/>
         <vm_defaults>
-        <console display="no" id="0"/>
-        <console display="yes" id="1"/>
+            <console display="no" id="0"/>
+            <console display="yes" id="1"/>
         </vm_defaults>
     </global>    
 
-  <net name="Network1" mode="virtual_bridge" type="lan">
+    <net name="Network1" mode="virtual_bridge" type="lan">
 
-    <!-- Virtual Machines -->
-    <vm name="VM1">
-        <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
-        <if id="1" net="Network1">
-            <mac>fe:fd:00:00:00:01</mac>
-            <ipv4>192.168.1.1/24</ipv4>
-        </if>
-    </vm>
+        <!-- Virtual Machine 1 -->
+        <vm name="VM1">
+            <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
+            <if id="1" net="Network1">
+                <mac>fe:fd:00:00:00:01</mac>
+                <ipv4>192.168.1.1/24</ipv4>
+            </if>
+        </vm>
 
-    <vm name="VM2">
-        <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
-        <mem>256M</mem>
-        <if id="1" net="Network1">
-            <mac>fe:fd:00:00:00:02</mac>
-            <ipv4>192.168.1.2/24</ipv4>
-        </if>
-    </vm>
+        <!-- Virtual Machine 2 -->
+        <vm name="VM2">
+            <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
+            <mem>256M</mem>
+            <if id="1" net="Network1">
+                <mac>fe:fd:00:00:00:02</mac>
+                <ipv4>192.168.1.2/24</ipv4>
+            </if>
+        </vm>
 </vnx>
-

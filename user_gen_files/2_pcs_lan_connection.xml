@@ -1,16 +1,19 @@
-<?xml version="1.0" ?>
-<vnx xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="/usr/share/xml/vnx/vnx-2.00.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<vnx xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="/usr/share/xml/vnx/vnx-2.00.xsd"> 
     <global>
         <version>2.0</version>
-        <scenario_name>3_pcs_lan_connection</scenario_name>
+        <scenario_name>2_pcs_lan_connection</scenario_name>
         <automac/>
         <vm_mgmt type="none"/>
         <vm_defaults>
             <console display="no" id="0"/>
             <console display="yes" id="1"/>
         </vm_defaults>
-    </global>
-    <net mode="virtual_bridge" name="Network1" type="lan">
+    </global>    
+
+    <net name="Network1" mode="virtual_bridge" type="lan">
+
+        <!-- Virtual Machine 1 -->
         <vm name="VM1">
             <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
             <if id="1" net="Network1">
@@ -18,19 +21,14 @@
                 <ipv4>192.168.1.1/24</ipv4>
             </if>
         </vm>
+
+        <!-- Virtual Machine 2 -->
         <vm name="VM2">
             <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
+            <mem>256M</mem>
             <if id="1" net="Network1">
                 <mac>fe:fd:00:00:00:02</mac>
                 <ipv4>192.168.1.2/24</ipv4>
             </if>
         </vm>
-        <vm name="VM3">
-            <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
-            <if id="1" net="Network1">
-                <mac>fe:fd:00:00:00:03</mac>
-                <ipv4>192.168.1.3/24</ipv4>
-            </if>
-        </vm>
-    </net>
 </vnx>

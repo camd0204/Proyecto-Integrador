@@ -125,14 +125,14 @@ class ActionProvideSwitchConfigurationVNX(Action):
 
         for i in range(1, number + 1):
             vm_elem = ET.SubElement(root, "vm", attrib={"name": f"vm{i}", "type": "lxc", "exec_mode": "lxc-attach"})
-            ET.SubElement(vm_elem, "filesystem", attrib={"type": "cow"}).text = "/usr/share/vnx/filesystems/rootfs_lxc"
+            ET.SubElement(vm_elem, "filesystem", attrib={"type": "cow"}).text = "/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64"
             if_elem_1 = ET.SubElement(vm_elem, "if", attrib={"id": "1", "net": f"link{i}"})
             ET.SubElement(if_elem_1, "ipv4").text = f"1.1.1.{i + 3}/24"
             if_elem_9 = ET.SubElement(vm_elem, "if", attrib={"id": "9", "net": "virbr0"})
             ET.SubElement(if_elem_9, "ipv4").text = "dhcp"
          # Add switch element
         switch_elem = ET.SubElement(root, "vm", attrib={"name": "switch", "type": "lxc", "exec_mode": "lxc-attach"})
-        ET.SubElement(switch_elem, "filesystem", attrib={"type": "cow"}).text = "/usr/share/vnx/filesystems/rootfs_lxc"
+        ET.SubElement(switch_elem, "filesystem", attrib={"type": "cow"}).text = "/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64"
         for i in range(1, number + 1):
             ET.SubElement(switch_elem, "if", attrib={"id": str(i), "net": f"link{i}"})
         if_elem_9_switch = ET.SubElement(switch_elem, "if", attrib={"id": "9", "net": "virbr0"})
@@ -254,7 +254,7 @@ class ActionGenerateSimpleNetwork(Action):
                                      "xsi:noNamespaceSchemaLocation": "/usr/share/xml/vnx/vnx-2.00.xsd"})
         global_elem = ET.SubElement(root, "global")
         ET.SubElement(global_elem, "version").text = "2.0"
-        ET.SubElement(global_elem, "scenario_name").text = f"vmx_custom_network_router_router_{user_number}_users"
+        ET.SubElement(global_elem, "scenario_name").text = f"vnx_custom_network_router_{user_number}_users"
         ET.SubElement(global_elem, "automac")
         ET.SubElement(global_elem,"vm_mgmt",type="none")
         vm_defaults = ET.SubElement(global_elem, "vm_defaults")
@@ -277,20 +277,19 @@ class ActionGenerateSimpleNetwork(Action):
         #Create host elements
         for i in range(1, user_number):
           host_elem = ET.SubElement(root, "vm", name=f"h{i}", type="lxc")
-          ET.SubElement(host_elem, "filesystem", type="cow").text = "/usr/share/vnx/filesystems/rootfs_lxc"
+          ET.SubElement(host_elem, "filesystem", type="cow").text = "/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64"
           if_elem = ET.SubElement(host_elem, "if", id="1", net="Net0")
           ET.SubElement(if_elem, "ipv4").text = f"10.1.0.{i+1}/24"
           ET.SubElement(host_elem, "route", type="ipv4", gw="10.1.0.1").text = "default"
         #Create a final machine that will act as a server
         host_elem = ET.SubElement(root, "vm", name=f"h{user_number}", type="lxc")
-        ET.SubElement(host_elem, "filesystem", type="cow").text = "/usr/share/vnx/filesystems/rootfs_lxc"
+        ET.SubElement(host_elem, "filesystem", type="cow").text = "/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64"
         if_elem = ET.SubElement(host_elem, "if", id="1", net="Net0")
         ET.SubElement(if_elem, "ipv4").text = f"10.1.0.{user_number+1}/24"
         ET.SubElement(host_elem, "route", type="ipv4", gw="10.1.0.1").text = "default"
         # Add the additional XML elements
-        # Copy the files under conf/tutorial_ubuntu/h4 to vm /var/www directory
+        
         filetree_elem = ET.SubElement(host_elem, "filetree", seq="start-www", root="/var/www/")
-        filetree_elem.text = "conf/tutorial_ubuntu/h4"
 
         # Start/stop apache www server
         exec_start_www = ET.SubElement(host_elem, "exec", seq="start-www", type="verbatim", ostype="system")
@@ -305,7 +304,7 @@ class ActionGenerateSimpleNetwork(Action):
         
         #Create router elements
         router_elem = ET.SubElement(root, "vm", attrib={"name": "r1", "type": "lxc"})
-        ET.SubElement(router_elem, "filesystem", attrib={"type": "cow"}).text = "/usr/share/vnx/filesystems/rootfs_lxc"
+        ET.SubElement(router_elem, "filesystem", attrib={"type": "cow"}).text = "/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64"
 
         for i, net_name in enumerate(["Net0", "Net1"]):
             if_elem = ET.SubElement(router_elem, "if", attrib={"id": str(i + 1), "net": net_name})
@@ -391,18 +390,19 @@ class ActionRunVNXEnvironment(Action):
     def name(self) -> Text:
         return "run_script_path"
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-            self.start_vnx_pipeline()
+            self.run_vnx_script('user_gen_files/simple_lxc_ubuntu64.xml')
             dispatcher.utter_message(f"Script opened on vnx as: {self.check_last_line_historic} ")
             return []
     
     def start_vnx_pipeline(self):
         last_run=self.check_second_to_last_line_historic()
         to_be_run=self.check_last_line_historic()
-        if(last_run):
+        file_lines=self.check_amount_lines()
+        if(file_lines>=2):
             self.stop_vnx_script(last_run)
-            self.start_vnx_pipeline(to_be_run)
+            self.run_vnx_script(to_be_run)
         else:
-            self.start_vnx_pipeline(to_be_run)
+            self.run_vnx_script(to_be_run)
 
 
     def run_vnx_script(self,script_path):
@@ -450,6 +450,11 @@ class ActionRunVNXEnvironment(Action):
             lines = txt_file.readlines()
             last_line = lines[-2]
             return last_line
+        
+    def check_amount_lines(self):
+        with open("historic_scripts/history.txt", "r", encoding="utf-8") as txt_file:
+            lines = txt_file.readlines()
+            return len(lines)
         
 class ActionConnectTwoComputers(Action):
     def name(self) -> Text:

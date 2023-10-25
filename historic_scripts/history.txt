@@ -1,6 +1,8 @@
-user_gen_files/example_lxc_vm-as-switch.xml
-user_gen_files/custom_lan_3_users.xml
-user_gen_files/2_router_2_user.xml
-user_gen_files/6_router_2_user.xml
+user_gen_files/tutorial_lxc_ubuntu64.xml
 user_gen_files/3_router_3_user.xml
-user_gen_files/custom_lan_3_users.xml
+xml_files/2_pcs_lan_connection.xml
+user_gen_files/vnx_custom_network_router_3_users.xml
+user_gen_files/vnx_custom_network_switch.xml
+user_gen_files/simple_lxc_ubuntu64.xml
+user_gen_files/tutorial_lxc_ubuntu64.xml
+user_gen_files/simple_lxc_ubuntu64.xml
