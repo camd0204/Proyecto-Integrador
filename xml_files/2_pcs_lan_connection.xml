@@ -12,9 +12,10 @@
     </global>    
 
     <net name="Network1" mode="virtual_bridge" type="lan">
+    </net>
 
         <!-- Virtual Machine 1 -->
-        <vm name="VM1">
+        <vm name="VM1" type="lxc" arch="x86_64">
             <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
             <if id="1" net="Network1">
                 <mac>fe:fd:00:00:00:01</mac>
@@ -23,9 +24,8 @@
         </vm>
 
         <!-- Virtual Machine 2 -->
-        <vm name="VM2">
+        <vm name="VM2" type="lxc" arch="x86_64">
             <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
-            <mem>256M</mem>
             <if id="1" net="Network1">
                 <mac>fe:fd:00:00:00:02</mac>
                 <ipv4>192.168.1.2/24</ipv4>
