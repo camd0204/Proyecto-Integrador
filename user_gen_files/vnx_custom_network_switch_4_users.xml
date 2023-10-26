@@ -15,7 +15,7 @@
   <net mode="veth" name="link3" type="p2p"/>
   <net mode="veth" name="link4" type="p2p"/>
   <net managed="no" mode="virtual_bridge" name="virbr0"/>
-  <vm exec_mode="lxc-attach" name="vm1" type="lxc">
+  <vm exec_mode="lxc-attach" name="vm1" type="lxc" arch="x86_64">
     <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
     <if id="1" net="link1">
       <ipv4>1.1.1.4/24</ipv4>
@@ -24,7 +24,7 @@
       <ipv4>dhcp</ipv4>
     </if>
   </vm>
-  <vm exec_mode="lxc-attach" name="vm2" type="lxc">
+  <vm exec_mode="lxc-attach" name="vm2" type="lxc" arch="x86_64">
     <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
     <if id="1" net="link2">
       <ipv4>1.1.1.5/24</ipv4>
@@ -33,7 +33,7 @@
       <ipv4>dhcp</ipv4>
     </if>
   </vm>
-  <vm exec_mode="lxc-attach" name="vm3" type="lxc">
+  <vm exec_mode="lxc-attach" name="vm3" type="lxc" arch="x86_64">
     <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
     <if id="1" net="link3">
       <ipv4>1.1.1.6/24</ipv4>
@@ -42,7 +42,7 @@
       <ipv4>dhcp</ipv4>
     </if>
   </vm>
-  <vm exec_mode="lxc-attach" name="vm4" type="lxc">
+  <vm exec_mode="lxc-attach" name="vm4" type="lxc" arch="x86_64">
     <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
     <if id="1" net="link4">
       <ipv4>1.1.1.7/24</ipv4>
@@ -51,7 +51,7 @@
       <ipv4>dhcp</ipv4>
     </if>
   </vm>
-  <vm exec_mode="lxc-attach" name="switch" type="lxc">
+  <vm exec_mode="lxc-attach" name="switch" type="lxc" arch="x86_64">
     <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
     <if id="1" net="link1"/>
     <if id="2" net="link2"/>

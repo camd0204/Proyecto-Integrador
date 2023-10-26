@@ -19,21 +19,21 @@
   </global>
   <net mode="virtual_bridge" name="Net0"/>
   <net mode="virtual_bridge" name="Net1"/>
-  <vm name="h1" type="lxc">
+  <vm name="h1" type="lxc" arch="x86_64">
     <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
     <if id="1" net="Net0">
       <ipv4>10.1.0.2/24</ipv4>
     </if>
     <route gw="10.1.0.1" type="ipv4">default</route>
   </vm>
-  <vm name="h2" type="lxc">
+  <vm name="h2" type="lxc" arch="x86_64">
     <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
     <if id="1" net="Net0">
       <ipv4>10.1.0.3/24</ipv4>
     </if>
     <route gw="10.1.0.1" type="ipv4">default</route>
   </vm>
-  <vm name="h3" type="lxc">
+  <vm name="h3" type="lxc" arch="x86_64">
     <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
     <if id="1" net="Net0">
       <ipv4>10.1.0.4/24</ipv4>
@@ -44,7 +44,7 @@
     <exec ostype="system" seq="start-www" type="verbatim">service apache2 start</exec>
     <exec ostype="system" seq="stop-www" type="verbatim">service apache2 stop</exec>
   </vm>
-  <vm name="r1" type="lxc">
+  <vm name="r1" type="lxc" arch="x86_64">
     <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
     <if id="1" net="Net0">
       <ipv4>10.1.0.1/24</ipv4>
