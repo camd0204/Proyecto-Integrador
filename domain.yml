@@ -32,6 +32,8 @@ intents:
   - connect_lan_request
   - provide_lan_users
   - use_lan_for_networking
+  - show_scenario_status
+  - ask_network_diagram
 
 
 actions:
@@ -44,6 +46,8 @@ actions:
   - connect_two_computers_action
   - provide_lan_config
   - run_script_path
+  - provide_scenario_status
+  - provide_network_diagram
   
 
 entities:

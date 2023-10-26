@@ -248,6 +248,20 @@ nlu:
     - A router.
     - Router.
 
+- intent: show_scenario_status
+  examples: |
+    - What is the status of the scenario?
+    - How is the scenario going?
+    - Show me the status of the running scenario.
+    - Show me the status of the network.
+    - What is the status of the network?
+    - How is the network going?
+    - Can I see how the network is going.
+    - Can I see the status of the network?
+    - Can I see the status of the scenario?
+    - Show scenario status.
+    - Show running network status.
+
 - intent: use_switch_for_networking
   examples: |
     - I prefer using a switch for network connectivity.
@@ -364,6 +378,20 @@ nlu:
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
+    - what are you?
+    
+- intent: ask_network_diagram
+  examples: |
+    - Can you show me a network diagram?
+    - Show me a network diagram.
+    - I want to see a network diagram.
+    - Show a diagram of the current network.
+    - Show me the network diagram.
+    - Display a network diagram.
+    - Show a network map.
+    - Do a network graphic.
+    - Show me a network graphic.
+    - Create a network map.
 
 - intent: upload_image
   examples: |

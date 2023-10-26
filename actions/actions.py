@@ -530,8 +530,62 @@ class ActionConnectComputerWithLan(Action):
             with open(file_path, "w", encoding="UTF-8") as f:
                 f.write(xmlstr)
         
-        
+class ActionShowScenarioStatus(Action):
+    def name(self) -> Text:
+        return "provide_scenario_status"
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+            result=self.show_status()
+            dispatcher.utter_message(f"Status of the scenario: {result[0]}. Possible errors: {result[1]}. Return code: {result[2]}")
+            
+            return []
+    def show_status(self):
+        try:
+            last_line=self.last_run_script()
+            command = ['sudo', 'vnx', '-f', last_line, '--show-status']
+            # Run the Perl script
+            process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            # Capture the standard output and standard error
+            stdout, stderr = process.communicate()
+            # Check the return code
+            return_code = process.returncode
+            # Return the standard output, standard error, and return code
+            return stdout, stderr, return_code
+        except Exception as e:
+            # Handle any exceptions that may occur
+            return None, str(e), 1
+    def last_run_script(self):
+        with open("historic_scripts/history.txt", "r", encoding="utf-8") as txt_file:
+            lines = txt_file.readlines()
+            last_line = lines[-1]
+            return last_line
 
+class ActionShowNetworkDiagram(Action):
+    def name(self) -> Text:
+        return "provide_network_diagram"
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+            result=self.show_network_diagram()
+            dispatcher.utter_message(f"Network diagram: {result[0]}. Return code: {result[1]}")
+            return []
+    def show_network_diagram(self):
+        try:
+            last_line=self.last_run_script()
+            command = ['sudo', 'vnx', '-f', last_line, '--show-map']
+            # Run the Perl script
+            process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            # Capture the standard output and standard error
+            stdout, stderr = process.communicate()
+            # Check the return code
+            return_code = process.returncode
+            # Return the standard output, standard error, and return code
+            return stdout, return_code
+        except Exception as e:
+            # Handle any exceptions that may occur
+            return None, str(e), 1
+    def last_run_script(self):
+        with open("historic_scripts/history.txt", "r", encoding="utf-8") as txt_file:
+            lines = txt_file.readlines()
+            last_line = lines[-1]
+            return last_line
 
 
 

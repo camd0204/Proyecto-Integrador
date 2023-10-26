@@ -7,6 +7,16 @@ stories:
   - intent: ask_basic_concepts
   - action: provide_concept_info
 
+- story: ask networking scenario status
+  steps:
+  - intent: show_scenario_status
+  - action: provide_scenario_status
+
+- story: show scenario diagram
+  steps: 
+  - intent: ask_network_diagram
+  - action: provide_network_diagram
+
 - story: upload image for intent recognition
   steps:
   - intent: upload_image
