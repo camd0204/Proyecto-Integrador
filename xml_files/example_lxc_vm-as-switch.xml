@@ -37,7 +37,7 @@ SPAIN
   <net name="link3" mode="veth" type="p2p" />
   <net name="virbr0" mode="virtual_bridge" managed="no"/>
   
-  <vm name="vm1" type="lxc" exec_mode="lxc-attach">
+  <vm name="vm1" type="lxc" exec_mode="lxc-attach" arch="x86_64">
     <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
     <if id="1" net="link1">
       <ipv4>1.1.1.1/24</ipv4>
@@ -47,7 +47,7 @@ SPAIN
     </if>
   </vm>
 
-  <vm name="vm2" type="lxc" exec_mode="lxc-attach">
+  <vm name="vm2" type="lxc" exec_mode="lxc-attach" arch="x86_64">
     <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
     <if id="1" net="link2">
       <ipv4>1.1.1.2/24</ipv4>
@@ -57,7 +57,7 @@ SPAIN
     </if>
   </vm>
 
-  <vm name="vm3" type="lxc" exec_mode="lxc-attach">
+  <vm name="vm3" type="lxc" exec_mode="lxc-attach" arch="x86_64">
     <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
     <if id="1" net="link3">
       <ipv4>1.1.1.3/24</ipv4>
@@ -67,7 +67,7 @@ SPAIN
     </if>
   </vm>
 
-  <vm name="switch" type="lxc" exec_mode="lxc-attach">
+  <vm name="switch" type="lxc" exec_mode="lxc-attach" arch="x86_64">
     <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
     <if id="1" net="link1"/>
     <if id="2" net="link2"/>

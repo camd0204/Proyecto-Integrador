@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<vnx xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="/usr/share/xml/vnx/vnx-2.00.xsd"> 
+<?xml version="1.0" ?>
+<vnx xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="/usr/share/xml/vnx/vnx-2.00.xsd">
     <global>
         <version>2.0</version>
         <scenario_name>2_pcs_lan_connection</scenario_name>
@@ -12,7 +12,6 @@
     </global>    
 
     <net name="Network1" mode="virtual_bridge" type="lan"/>
-    </net>
 
         <!-- Virtual Machine 1 -->
         <vm name="VM1" type="lxc" arch="x86_64">
