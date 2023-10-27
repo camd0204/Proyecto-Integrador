@@ -390,7 +390,7 @@ class ActionRunVNXEnvironment(Action):
     def name(self) -> Text:
         return "run_script_path"
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-            self.run_vnx_script('user_gen_files/tutorial_lxc_ubuntu64.xml')
+            self.start_vnx_pipeline()
             dispatcher.utter_message(f"Script opened on vnx as: {self.check_last_line_historic} ")
             return []
     
@@ -586,6 +586,28 @@ class ActionShowNetworkDiagram(Action):
             lines = txt_file.readlines()
             last_line = lines[-1]
             return last_line
+        
+class ActionStopAll(Action):
+    def name(self) -> Text:
+        return "stop_all_scenarios"
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+            result=self.stop_all()
+            dispatcher.utter_message(f"Stop all: {result[0]}. Return code: {result[1]}")
+            return []
+    def stop_all(self):
+        try:
+            command = ['sudo', 'vnx','--clean-hosts']
+            # Run the Perl script
+            process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            # Capture the standard output and standard error
+            stdout, stderr = process.communicate()
+            # Check the return code
+            return_code = process.returncode
+            # Return the standard output, standard error, and return code
+            return stdout, return_code
+        except Exception as e:
+            # Handle any exceptions that may occur
+            return None, str(e), 1
 
 
 

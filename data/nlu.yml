@@ -19,6 +19,18 @@ nlu:
     - good to see you
     - hi folks
 
+- intent: stop_all_request
+  examples: |
+    - I want to stop all the running scenarios.
+    - I want to stop all the running networks.
+    - Stop all the running scenarios.
+    - Stop all the running networks.
+    - Stop all.
+    - Stop all the running simulations.
+    - Stop all the running network simulations.
+    - Stop all the running network scenarios.
+    - Stop running all things.
+
 - intent: ask_functionality
   examples: |
     - What capabilities does this bot have?

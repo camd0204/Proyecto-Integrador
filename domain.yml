@@ -34,6 +34,7 @@ intents:
   - use_lan_for_networking
   - show_scenario_status
   - ask_network_diagram
+  - stop_all_request
 
 
 actions:
@@ -48,7 +49,7 @@ actions:
   - run_script_path
   - provide_scenario_status
   - provide_network_diagram
-  
+  - stop_all_scenarios
 
 entities:
   - network_device

@@ -7,6 +7,11 @@ stories:
   - intent: ask_basic_concepts
   - action: provide_concept_info
 
+- story: stop all running scenarios
+  steps:
+  - intent: stop_all_request
+  - action: stop_all_scenarios
+
 - story: ask networking scenario status
   steps:
   - intent: show_scenario_status
