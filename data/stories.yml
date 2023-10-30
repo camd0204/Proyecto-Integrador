@@ -31,6 +31,7 @@ stories:
   steps: 
   - intent: connect_two_computers_request
   - action: connect_two_computers_action
+  - action: run_script_path
 
 - story: path for one router connection guided
   steps:
@@ -40,6 +41,7 @@ stories:
   - action: utter_number_users_for_simple_router
   - intent: provide_users_to_network
   - action: generate_simple_network
+  - action: run_script_path
 
 - story: path for lan connection guided
   steps:
@@ -49,6 +51,7 @@ stories:
   - action: utter_ask_for_user_lan
   - intent: provide_lan_users
   - action: provide_lan_config
+  - action: run_script_path
 
 - story: path for one switch connection guided
   steps:
@@ -58,6 +61,7 @@ stories:
   - action: utter_number_users_for_simple_switch
   - intent: provide_users_to_switch
   - action: provide_switch_config
+  - action: run_script_path
 
 - story: create a lan connection
   steps:
@@ -65,6 +69,7 @@ stories:
   - action: utter_ask_for_user_lan
   - intent: provide_lan_users
   - action: provide_lan_config
+  - action: run_script_path
 
 - story: ask about bot functionality
   steps:
@@ -81,6 +86,7 @@ stories:
   - action: utter_ask_for_users_per_router
   - intent: provide_users_per_router
   - action: generate_complex_network
+  - action: run_script_path
 
 - story: create a network with one switch
   steps:
@@ -88,7 +94,7 @@ stories:
   - action: utter_ask_for_user
   - intent: provide_users_to_switch
   - action: provide_switch_config
-
+  - action: run_script_path
 - story: generate cisco config example for switch
   steps:
   - intent: switch_cisco_config_request
@@ -127,6 +133,7 @@ stories:
   - action: utter_users_for_network
   - intent: provide_users_to_network
   - action: generate_simple_network
+  - action: run_script_path
 
 
 

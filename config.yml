@@ -25,8 +25,8 @@ pipeline:
   epochs: 1200
   constrain_similarities: true
   entity_recognition: true
-  drop_rate: 0.045
-  drop_rate_attention: 0.045
+  drop_rate: 0.048
+  drop_rate_attention: 0.048
 - name: EntitySynonymMapper
 - name: ResponseSelector
   epochs: 700
