@@ -378,9 +378,10 @@ class ActionGenerateComplexNetwork(Action):
         pretty_xml = dom.toprettyxml(indent="  ")
 
         # Write the prettified XML to a file
-        with open(f"user_gen_files/{router_number}router_{user_per_rout}_user.xml", "w", encoding="utf-8") as xml_file:
+        mult=int(router_number)*int(user_per_rout)
+        with open(f"user_gen_files/{router_number}router_{mult}_user.xml", "w", encoding="utf-8") as xml_file:
             xml_file.write(pretty_xml)
-        self.write_file_path_to_historic(f"user_gen_files/{router_number}_router_{user_per_rout}_user.xml")
+        self.write_file_path_to_historic(f"user_gen_files/{router_number}_router_{mult}_user.xml")
 
     def write_file_path_to_historic(self,file_path):
         with open("historic_scripts/history.txt", "a", encoding="utf-8") as txt_file:
