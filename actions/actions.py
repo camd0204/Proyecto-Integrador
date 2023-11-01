@@ -391,8 +391,11 @@ class ActionRunVNXEnvironment(Action):
     def name(self) -> Text:
         return "run_script_path"
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-            self.start_vnx_pipeline()
-            dispatcher.utter_message(f"Script opened on vnx as: {self.check_last_line_historic} ")
+            stdout,stderr,return_code=self.run_vnx_script('user_gen_files/2_pcs_lan_connection.xml')
+            print(stdout)
+            print(stderr)
+            print(return_code)
+            dispatcher.utter_message(f"Script opened on vnx as: {self.check_last_line_historic()} ")
             return []
     
     def start_vnx_pipeline(self):

@@ -7,3 +7,14 @@ user_gen_files/simple_lxc_ubuntu64.xml
 user_gen_files/tutorial_lxc_ubuntu64.xml
 user_gen_files/simple_lxc_ubuntu64.xml
 user_gen_files/tutorial_lxc_ubuntu64.xml
+user_gen_files/tutorial_lxc_ubuntu64.xml
+user_gen_files/simple_lxc_ubuntu64.xml
+user_gen_files/simple_lxc_ubuntu64.xml
+user_gen_files/tutorial_lxc_ubuntu64.xml
+user_gen_files/tutorial_lxc_ubuntu64.xml
+user_gen_files/simple_lxc_ubuntu64.xml
+user_gen_files/tutorial_lxc_ubuntu64.xml
+user_gen_files/tutorial_lxc_ubuntu64.xml
+user_gen_files/tutorial_lxc_ubuntu64.xml
+user_gen_files/tutorial_lxc_ubuntu64.xml
+user_gen_files/tutorial_lxc_ubuntu64.xml
