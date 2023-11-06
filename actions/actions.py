@@ -55,7 +55,7 @@ class ActionProvideSwitchConfiguration(Action):
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         # Get the detected networking concept entity
-        user_number_switch = next(tracker.get_latest_entity_values("user_number"), None)
+        user_number_switch = next(tracker.get_latest_entity_values("user_number_cisco"), None)
         if user_number_switch:
             user_count=int(user_number_switch)
             if user_count >= 0:
@@ -391,7 +391,7 @@ class ActionRunVNXEnvironment(Action):
     def name(self) -> Text:
         return "run_script_path"
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-            stdout,stderr,return_code=self.run_vnx_script('user_gen_files/2_pcs_lan_connection.xml')
+            stdout,stderr,return_code=self.start_vnx_pipeline()
             print(stdout)
             print(stderr)
             print(return_code)
@@ -402,11 +402,13 @@ class ActionRunVNXEnvironment(Action):
         last_run=self.check_second_to_last_line_historic()
         to_be_run=self.check_last_line_historic()
         file_lines=self.check_amount_lines()
+        stdout,stderr,return_code='','',''
         if(file_lines>=2):
             self.stop_vnx_script(last_run)
-            self.run_vnx_script(to_be_run)
+            stdout,stderr,return_code=self.run_vnx_script(to_be_run)
         else:
-            self.run_vnx_script(to_be_run)
+            stdout,stderr,return_code=self.run_vnx_script(to_be_run)
+        return stdout,stderr,return_code
 
 
     def run_vnx_script(self,script_path):

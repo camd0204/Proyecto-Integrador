@@ -35,6 +35,7 @@ intents:
   - show_scenario_status
   - ask_network_diagram
   - stop_all_request
+  
 
 
 actions:
@@ -58,6 +59,7 @@ entities:
   - user_number_for_router
   - router_number
   - lan_user
+  - user_number_cisco
 
 slots:
   user_number_for_router:

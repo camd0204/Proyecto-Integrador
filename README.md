@@ -48,4 +48,8 @@ rasa init
 Este comando guiará a el usuario través de la creación de un nuevo directorio de proyecto Rasa con los archivos y carpetas necesarios para comenzar a construir chatbots.
 
 
+## Segundo avance
+
+
+
 

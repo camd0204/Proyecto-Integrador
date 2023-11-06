@@ -153,7 +153,7 @@ nlu:
     - Describe the role of a [router](network_device) devices in networks.
     - What's the function of a [router](network_device) in a network?
     - What is the purpose of a [router](network_device)?
-    - Tell me about [switch](network_device) security.
+    - Tell me about [switch](network_device).
     - Explain [switch](network_device) devices.
     - What's the function of a [switch](network_device) in networking?
     - Describe [subnetting](network_device) in networking.
@@ -177,17 +177,17 @@ nlu:
 
 - intent: switch_cisco_config_request
   examples: |
-    - I want to know the switch command configuration for many users.
-    - How do I set up switches for many users?
-    - Tell me the switch command config for lots of users.
-    - What's the switch setup for multiple users?
-    - Give me switch command details for many users.
-    - Explain switch config for a bunch of users.
-    - How to configure switches for numerous users?
-    - I need switch command info for many users.
-    - Share switch settings for a variety of users.
-    - What's the switch command for a large user group?
-    - Help me with switch config for many users.
+    - I want to know the switch command configuration for a cisco switch.
+    - How do I set up cisco  switches for many users?
+    - Tell me the cisco switch command config for lots of users.
+    - What's the switch configuration setup for multiple users?
+    - Give me cisco switch command details for many users.
+    - Explain cisco switch config for a bunch of users.
+    - How to configure cisco switches for numerous users?
+    - I need cisco switch command info for many users.
+    - Share cisco switch settings for a variety of users.
+    - What's the cisco switch command for a large user group?
+    - Help me with cisco switch config for many users.
 
 - intent: provide_users_to_switch
   examples: |
