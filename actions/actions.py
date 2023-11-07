@@ -6,6 +6,7 @@
 
 
 from typing import Any, Text, Dict, List
+from lxml import etree
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 import xml.etree.ElementTree as ET
@@ -614,6 +615,27 @@ class ActionStopAll(Action):
         except Exception as e:
             # Handle any exceptions that may occur
             return None, str(e), 1
+        
+class ActionValidateXML(Action):
+    def name(self) -> Text:
+        return "validate_xml"
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+            result=self.validate_xml()
+            dispatcher.utter_message(f"Validation: {result[0]}. Return code: {result[1]}")
+            return []
+    def validate_xml(self,xml_path):
+        try:
+            xsd_file_path="xsd_files/vnx-2.00.xsd"
+            xml_tree=etree.parse(xml_path)
+            # Load XSD file
+            xsd_schema = etree.XMLSchema(etree.parse(xsd_file_path))
+            xsd_schema.assertValid(xml_tree)
+            print("XML is valid according to the XSD.")
+        except etree.DocumentInvalid as e:
+            print("XML is invalid according to the XSD.")
+            for error in e.error_log:
+                print(f"Type: {error.type}, Domain: {error.domain}, Line: {error.line}, Message: {error.message}")
+        
 
 
 

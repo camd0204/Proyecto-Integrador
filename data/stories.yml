@@ -7,6 +7,12 @@ stories:
   - intent: ask_basic_concepts
   - action: provide_concept_info
 
+- story: validate xml config file
+  steps:
+  - intent: ask_xml_validation
+  - actions: utter_ask_for_xml_path
+  - intent: provide_xml_path
+  - action: validate_xml
 - story: stop all running scenarios
   steps:
   - intent: stop_all_request

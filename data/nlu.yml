@@ -44,6 +44,37 @@ nlu:
     - What tasks can I perform with this bot?
     - How does this chatbot operate?
 
+- intent: ask_xml_validation
+  examples: |
+    - Can you please validate a XML configuration file?
+    - I want to validate a XML configuration file.
+    - Validate a XML configuration file.
+    - Validate a XML file.
+    - Validate a XML config file.
+    - If I give you a XML file can you check its syntax?
+    - I want to check the syntax of a XML file.
+    - Check the syntax of a XML file.
+    - Check the syntax of a XML config file.
+    - Validate a XML file for me.
+    - Validate a VNX config file.
+    - Validate a VNX XML file.
+    - Validate a VNX configuration file.
+    - Validate a VNX config file.
+
+- intent: provide_xml_path
+  examples: |
+  - The path is [C:\Users\user\Desktop\test.xml](xml_path)
+  - Path: [C:\Users\user\Desktop\test.xml](xml_path)
+  - [C:\Users\user\Desktop\test.xml](xml_path)
+  - [C:\Users\user\Desktop/camd/amigo.xml](xml_path)
+  - [C:\Users\user\Desktop\test.xml](xml_path) is the path
+  - [C:\Users\user\Desktop\test.xml](xml_path) is the path of the file
+  - [/home/usr/Desktop/test.xml](xml_path)
+  - [/home/usr/Desktop/test.xml](xml_path) is the path
+  - [/home/usr/Desktop/test.xml](xml_path) is the path of the file
+  - [/example/path/to/file.xml](xml_path)
+
+
 - intent: connect_two_computers_request
   examples: |
     - I want to connect two computers.
