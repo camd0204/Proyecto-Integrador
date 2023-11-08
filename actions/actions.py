@@ -625,23 +625,24 @@ class ActionValidateXML(Action):
             xml_path='validation_files/'+xml_path+'.xml'
             if(self.validate_path(xml_path)):
                 result=self.validate_xml(xml_path)
-                dispatcher.utter_message(f"Validation: {result[0]}. Return code: {result[1]}")
+                dispatcher.utter_message(result)
             else:
                 dispatcher.utter_message(f"The file does not exist or does not have the valid extension.")
             return []
     def validate_xml(self,xml_path):
+        message_to_return=""
         try:
             xsd_file_path="xsd_files/vnx-2.00.xsd"
             xml_tree=etree.parse(xml_path)
             # Load XSD file
             xsd_schema = etree.XMLSchema(etree.parse(xsd_file_path))
             xsd_schema.assertValid(xml_tree)
-            print("XML is valid according to the XSD.")
-        except etree.DocumentInvalid as e:
-            print("XML is invalid according to the XSD.")
+            message_to_return+="XML is valid according to the XSD."
+        except Exception as e:
+            message_to_return+="XML is invalid according to the XSD."
             for error in e.error_log:
-                print(f"Type: {error.type}, Domain: {error.domain}, Line: {error.line}, Message: {error.message}")
-        
+                message_to_return+=f"Type: {error.type}, Domain: {error.domain}, Line: {error.line}, Message: {error.message}"
+        return message_to_return
 
     def validate_path(self,path):
         return os.path.exists(path)
