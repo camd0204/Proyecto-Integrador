@@ -3,6 +3,7 @@
 #
 # See this guide on how to implement these action:
 # https://rasa.com/docs/rasa/custom-actions
+import os
 
 
 from typing import Any, Text, Dict, List
@@ -621,8 +622,12 @@ class ActionValidateXML(Action):
         return "validate_xml"
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
             xml_path=next(tracker.get_latest_entity_values("xml_path"), None)
-            result=self.validate_xml(xml_path)
-            dispatcher.utter_message(f"Validation: {result[0]}. Return code: {result[1]}")
+            xml_path='validation_files/'+xml_path+'.xml'
+            if(self.validate_path(xml_path)):
+                result=self.validate_xml(xml_path)
+                dispatcher.utter_message(f"Validation: {result[0]}. Return code: {result[1]}")
+            else:
+                dispatcher.utter_message(f"The file does not exist or does not have the valid extension.")
             return []
     def validate_xml(self,xml_path):
         try:
@@ -638,7 +643,8 @@ class ActionValidateXML(Action):
                 print(f"Type: {error.type}, Domain: {error.domain}, Line: {error.line}, Message: {error.message}")
         
 
-
+    def validate_path(self,path):
+        return os.path.exists(path)
 
 
         

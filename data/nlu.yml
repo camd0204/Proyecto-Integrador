@@ -63,16 +63,19 @@ nlu:
 
 - intent: provide_xml_path
   examples: |
-  - The path is [C:\Users\user\Desktop\test.xml](xml_path)
-  - Path: [C:\Users\user\Desktop\test.xml](xml_path)
-  - [C:\Users\user\Desktop\test.xml](xml_path)
-  - [C:\Users\user\Desktop/camd/amigo.xml](xml_path)
-  - [C:\Users\user\Desktop\test.xml](xml_path) is the path
-  - [C:\Users\user\Desktop\test.xml](xml_path) is the path of the file
-  - [/home/usr/Desktop/test.xml](xml_path)
-  - [/home/usr/Desktop/test.xml](xml_path) is the path
-  - [/home/usr/Desktop/test.xml](xml_path) is the path of the file
-  - [/example/path/to/file.xml](xml_path)
+    - The name of the file is [validationfile](xml_path).
+    - File name: [validationconfig](xml_path).
+    - The file is called [validatefile](xml_path).
+    - The file is named [tobevalidated](xml_path).
+    - [validationfile](xml_path).
+    - [validationconfig](xml_path).
+    - [validatefile](xml_path).
+    - [tobevalidated](xml_path).
+    - [validationfile](xml_path) is the file name.
+    - [validationconfig](xml_path) is the file name.
+    - [validatefile](xml_path) is the file name.
+    - [filevalidation](xml_path) is the file name.
+
 
 
 - intent: connect_two_computers_request

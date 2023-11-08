@@ -88,9 +88,8 @@ responses:
   - text: "Hey"
 
   utter_ask_for_xml_path:
-  - text: "Sure! Please provide the XML file path so I can validate it."
-  - text: "Of course, please provide the XML file path so I can validate it."
-
+  - text: "Sure! Please provide the XML file name so I can validate it. The file must be located on the validation_files folder. Just give me the file name not a extension. The file must contain the word validation."
+  - text: "Of course! Please provide the XML file name so I can validate it. The file must be located on the validation_files folder. Just give me the file name not a extension.The file must contain the word validation."
   utter_ask_for_user_lan:
   - text: "Sure, how many users are going to be using the LAN?"
   - text: "How many PCS are going to be using the LAN?"
