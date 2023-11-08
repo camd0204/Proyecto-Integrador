@@ -63,6 +63,7 @@ entities:
   - router_number
   - lan_user
   - user_number_cisco
+  - xml_path
 
 slots:
   user_number_for_router:

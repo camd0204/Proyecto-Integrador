@@ -620,7 +620,8 @@ class ActionValidateXML(Action):
     def name(self) -> Text:
         return "validate_xml"
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-            result=self.validate_xml()
+            xml_path=next(tracker.get_latest_entity_values("xml_path"), None)
+            result=self.validate_xml(xml_path)
             dispatcher.utter_message(f"Validation: {result[0]}. Return code: {result[1]}")
             return []
     def validate_xml(self,xml_path):
