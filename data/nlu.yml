@@ -30,6 +30,8 @@ nlu:
     - Stop all the running network simulations.
     - Stop all the running network scenarios.
     - Stop running all things.
+    - stop it.
+    - stop all.
 
 - intent: ask_functionality
   examples: |
@@ -43,6 +45,8 @@ nlu:
     - Describe the functionality of this tool.
     - What tasks can I perform with this bot?
     - How does this chatbot operate?
+    - what can you do?
+    - who are you?
 
 - intent: ask_xml_validation
   examples: |
@@ -60,6 +64,8 @@ nlu:
     - Validate a VNX XML file.
     - Validate a VNX configuration file.
     - Validate a VNX config file.
+    - validate vnx configuration file.
+    - validate xml vnx config file please.
 
 - intent: provide_xml_path
   examples: |
@@ -92,6 +98,8 @@ nlu:
     - Any chance you can link two hosts together for me?
     - I'm looking to establish a connection between two hosts, can you guide me?
     - Could you assist in making a connection between two computers?
+    - connect two computers.
+    - connect two computers through a lan network.
   
 
 - intent: ask_simple_network_scenario
@@ -111,6 +119,8 @@ nlu:
     - Share an instance of a basic network setup.
     - Illustrate the process of connecting a machine to a virtual network.
     - I need an example of a simple network configuration.
+    - show example of a simple network scenario.
+    - show a simple network scenario as an example.
 
 - intent: ask_complex_network_scenario
   examples: |
@@ -122,6 +132,9 @@ nlu:
     - Create a network configuration example with more hosts.
     - Create a network example with hosts, routers and virtual bridges.
     - I want to create a complex network scenario.
+    - show me example of a complex network.
+    - shoe a complex network scenario.
+
 - intent: ask_switch_network_scenario
   examples: |
     - Can you show me an example on a simple network scenario with a switch?
@@ -131,6 +144,11 @@ nlu:
     - Can you show me an example where a switch is used to connect hosts.
     - Create a network configuration example with more hosts and a switch.
     - Create a network example with hosts and switches.
+    - create a network scenario using switches, show me an example.
+    - use a switch to create a network scenario example.
+    - show me how a switch device works as an example in a network
+    - create a example of topology with a switch.
+    - do an example with a switch for a network.
 
 - intent: ask_vlan_switch_scenario
   examples: |
@@ -143,8 +161,11 @@ nlu:
     - Show me an example of a network setup with VLANs for better network organization.
     - I want to understand VLANs in a real-world context. Can you describe a use case?
     - Could you give me an illustration of how VLANs are implemented in a network?
-    - Explain a VLAN-based network scenario.
+    - Explain a VLAN-based network scenario through an example.
     - Tell me about a network setup using VLANs.
+    - set up an example of a network using vlan segmentation.
+    - create an example with a VLAN.
+    - do a example through a VLAN.
 
 - intent: create_custom_network_intent
   examples: |
@@ -157,6 +178,10 @@ nlu:
     - What do I need to do to have a network with lots of users and routers?
     - I'm interested in a network with many users and routers.
     - Need advice on making a network with many users and routers.
+    - i want to create a network that connects many users and routers.
+    - do a network that connects many users and routers.
+    - connect many users and routers in a network.
+    - create a network with many users and routers.
 
 - intent: router_number_for_custom_network
   examples: |
@@ -166,6 +191,8 @@ nlu:
     - There will be [5](router_number) routers at the given network.
     - [5](router_number) router points.
     - [10](router_number)
+    - [4](router_number) routers in the network.
+    - routers for the network: [8](router_number)
 
 - intent: provide_users_per_router
   examples: |
@@ -177,6 +204,8 @@ nlu:
     - [5](user_number_for_router) users using each router.
     - [6](user_number_for_router) users for the router. 
     - Users per router: [8](user_number_for_router)
+    - users x router: [3](user_number_for_router)
+    - will use [2](user_number_for_router) users per router.
 
 - intent: ask_basic_concepts
   examples: |
@@ -196,6 +225,9 @@ nlu:
     - What are [ports](network_device) used for in networking?
     - Can you tell me about [MAC addresses](network_device)?
     - What is the significance of [TCP/IP](network_device) in networking?
+    - what is a [router](network_device)?
+    - in networks, explain what is a [router](network_device).
+
 
 - intent: switch_connection_request
   examples: |
@@ -208,6 +240,9 @@ nlu:
     - I'm interested in connecting users through a switch.
     - Help me understand how to configure a switch for user connections.
     - I want to establish a network using a switch.
+    - connect users to a switch.
+    - do a network with a switch.
+    - use a single switch to connect users.
 
 - intent: switch_cisco_config_request
   examples: |
@@ -222,6 +257,8 @@ nlu:
     - Share cisco switch settings for a variety of users.
     - What's the cisco switch command for a large user group?
     - Help me with cisco switch config for many users.
+    - provide config for a cisco switch.
+    - give me the config for a cisco switch please.
 
 - intent: provide_users_to_switch
   examples: |
@@ -236,6 +273,10 @@ nlu:
     - Switch config for [5](user_number) users
     - Assign [5](user_number) users to the switch
     - Switch users: [8](user_number)
+    - users at the switch: [3](user_number)
+    - do a switch with [2](user_number) users.
+    - use [3](user_number) users in a switch.
+    - switch users: [5](user_number).
     
 
 - intent: provide_users_to_cisco_switch
@@ -250,7 +291,10 @@ nlu:
     - Set up Cisco switch for [1](user_number_cisco) user
     - Cisco switch config for [5](user_number_cisco) users
     - Assign [5](user_number_cisco) users to the Cisco switch
-    - Cisco switch users: [8](user_number_cisco)
+    - Cisco switch users: [8](user_number_cisco).
+    - the cisco switch shall use [2](user_number_cisco) users.
+    - cisco switch users: [3](user_number_cisco).
+    - the cisco switch will have [5](user_number_cisco) users.
 
 - intent: create_network_intent
   examples: |
@@ -265,7 +309,11 @@ nlu:
     - Could you guide me through the steps of network creation?
     - I'd like to deploy a virtual network that use one router, where should I start?
     - Please assist me in creating a virtual network infrastructure using a router.
-
+    - do a network with a single router.
+    - connect users through one router.
+    - create a network with a router.
+    - use a router to connect users.
+    - just create a network with a router.
 - intent: ask_general_question
   examples: |
     - I want to connect a large number of users in a network—how do I proceed?
@@ -278,6 +326,10 @@ nlu:
     - Share insights on creating a network with a significant number of users.
     - I'm looking to connect many users in a network—what steps should I follow?
     - Provide advice on creating a network with a large number of users.
+    - show me the steps on how to create a network with many users.
+    - how do i create a network with many users?
+    - guide me through network connection with many users.
+    - steps for network connection with many users.
 
 - intent: use_router_for_networking
   examples: |
@@ -293,6 +345,9 @@ nlu:
     - I want to use a router.
     - A router.
     - Router.
+    - do a router.
+    - router, please.
+    - use the router.
 
 - intent: show_scenario_status
   examples: |
@@ -307,6 +362,8 @@ nlu:
     - Can I see the status of the scenario?
     - Show scenario status.
     - Show running network status.
+    - how is the scenario going?
+    - please, scenario status.
 
 - intent: use_switch_for_networking
   examples: |
@@ -322,6 +379,10 @@ nlu:
     - I want to use a switch.
     - A switch.
     - Switch.
+    - do it with a switch.
+    - lets use a switch.
+    - a switch.
+    - switch
 
 - intent: use_lan_for_networking
   examples: |
@@ -337,17 +398,24 @@ nlu:
     - I want to use a LAN.
     - A LAN.
     - LAN.
+    - do it through a LAN.
+    - a lan will be fine.
+    - lan.
+    - a lan.
 
 - intent: provide_users_to_network
   examples: |
-    - There are [4](user_number_n) users connected to the network.
-    - Assign [3](user_number_n) users to the network.
-    - I want to connect [5](user_number_n) users using the network.
-    - Each network will have [6](user_number_n) users connected.
-    - [4](user_number_n) users will be using the network for connectivity.
-    - I'm planning to configure [6](user_number_n) users for the network.
+    - There are [4](user_number_n) users connected to the router
+    - Assign [3](user_number_n) users to the router
+    - I want to connect [5](user_number_n) users using the router
+    - Each router will have [6](user_number_n) users connected.
+    - [4](user_number_n) users will be using the router for connectivity
+    - I'm planning to configure [6](user_number_n) users for the router
     - Allocate [5](user_number_n) users to each network in the setup.
-    - Network users: [8](user_number_n).
+    - router users: [8](user_number_n).
+    - users for the router: [3](user_number_n).
+    - [5](user_number_n) users for the router.
+    - router connections: [5](user_number_n).
 
   
 
@@ -438,6 +506,9 @@ nlu:
     - Do a network graphic.
     - Show me a network graphic.
     - Create a network map.
+    - show a diagram of the scenario.
+    - show a network diagram.
+    - draw a network diagram.
 
 - intent: upload_image
   examples: |
@@ -462,6 +533,8 @@ nlu:
     - Enable user access through a LAN network.
     - Set up user connectivity using a LAN network.
     - Establish user links through a LAN connection.
+    - connect users through a lan.
+    - help me connecting users through a lan.
 
 - intent: provide_lan_users
   examples: |
@@ -475,3 +548,7 @@ nlu:
     - [5](lan_user) LAN users.
     - [5](lan_user) users for the LAN.
     - LAN users: [8](lan_user).
+    - for the lan i will use [3](lan_user) users.
+    - users at the lan: [5](lan_user).
+    - connection lan users: [5](lan_user).
+    

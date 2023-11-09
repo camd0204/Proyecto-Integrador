@@ -1,4 +1,67 @@
 {
+  "router_number_for_custom_network": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 2,
+    "confused_with": {}
+  },
+  "provide_users_per_router": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 2,
+    "confused_with": {}
+  },
+  "connect_two_computers_request": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 2,
+    "confused_with": {}
+  },
+  "ask_xml_validation": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 2,
+    "confused_with": {}
+  },
+  "ask_network_diagram": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 2,
+    "confused_with": {}
+  },
+  "use_switch_for_networking": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 3,
+    "confused_with": {}
+  },
+  "show_scenario_status": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 2,
+    "confused_with": {}
+  },
+  "provide_users_to_network": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 2,
+    "confused_with": {}
+  },
+  "bot_challenge": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1,
+    "confused_with": {}
+  },
   "provide_xml_path": {
     "precision": 1.0,
     "recall": 1.0,
@@ -6,49 +69,14 @@
     "support": 3,
     "confused_with": {}
   },
-  "create_custom_network_intent": {
+  "create_network_intent": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
     "support": 2,
     "confused_with": {}
   },
-  "connect_lan_request": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 3,
-    "confused_with": {}
-  },
-  "use_lan_for_networking": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 2,
-    "confused_with": {}
-  },
-  "mood_great": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 3,
-    "confused_with": {}
-  },
-  "switch_connection_request": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 2,
-    "confused_with": {}
-  },
-  "ask_general_question": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 2,
-    "confused_with": {}
-  },
-  "show_scenario_status": {
+  "ask_functionality": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
@@ -60,6 +88,34 @@
     "recall": 1.0,
     "f1-score": 1.0,
     "support": 2,
+    "confused_with": {}
+  },
+  "ask_complex_network_scenario": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1,
+    "confused_with": {}
+  },
+  "switch_cisco_config_request": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 2,
+    "confused_with": {}
+  },
+  "use_router_for_networking": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 2,
+    "confused_with": {}
+  },
+  "ask_simple_network_scenario": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 3,
     "confused_with": {}
   },
   "affirm": {
@@ -76,35 +132,14 @@
     "support": 3,
     "confused_with": {}
   },
-  "use_switch_for_networking": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 3,
-    "confused_with": {}
-  },
-  "router_number_for_custom_network": {
+  "ask_general_question": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
     "support": 2,
     "confused_with": {}
   },
-  "provide_users_to_network": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 2,
-    "confused_with": {}
-  },
-  "ask_vlan_switch_scenario": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 2,
-    "confused_with": {}
-  },
-  "ask_xml_validation": {
+  "deny": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
@@ -118,25 +153,18 @@
     "support": 1,
     "confused_with": {}
   },
-  "provide_users_to_cisco_switch": {
+  "use_lan_for_networking": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
     "support": 2,
     "confused_with": {}
   },
-  "mood_unhappy": {
+  "connect_lan_request": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
     "support": 3,
-    "confused_with": {}
-  },
-  "provide_users_per_router": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 2,
     "confused_with": {}
   },
   "provide_users_to_switch": {
@@ -146,21 +174,28 @@
     "support": 3,
     "confused_with": {}
   },
-  "stop_all_request": {
+  "mood_unhappy": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 1,
+    "support": 3,
     "confused_with": {}
   },
-  "create_network_intent": {
+  "mood_great": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 3,
+    "confused_with": {}
+  },
+  "create_custom_network_intent": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
     "support": 2,
     "confused_with": {}
   },
-  "switch_cisco_config_request": {
+  "provide_lan_users": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
@@ -174,49 +209,14 @@
     "support": 1,
     "confused_with": {}
   },
-  "deny": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 2,
-    "confused_with": {}
-  },
-  "connect_two_computers_request": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 2,
-    "confused_with": {}
-  },
-  "use_router_for_networking": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 2,
-    "confused_with": {}
-  },
-  "bot_challenge": {
+  "stop_all_request": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
     "support": 1,
     "confused_with": {}
   },
-  "provide_lan_users": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 2,
-    "confused_with": {}
-  },
-  "ask_complex_network_scenario": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 1,
-    "confused_with": {}
-  },
-  "ask_network_diagram": {
+  "provide_users_to_cisco_switch": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
@@ -230,14 +230,14 @@
     "support": 3,
     "confused_with": {}
   },
-  "ask_simple_network_scenario": {
+  "switch_connection_request": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 3,
+    "support": 2,
     "confused_with": {}
   },
-  "ask_functionality": {
+  "ask_vlan_switch_scenario": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,

@@ -1,23 +1,16 @@
 {
-  "user_number": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 3,
-    "confused_with": {}
-  },
-  "router_number": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 2,
-    "confused_with": {}
-  },
   "xml_path": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
     "support": 3,
+    "confused_with": {}
+  },
+  "user_number_for_router": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 2,
     "confused_with": {}
   },
   "user_number_cisco": {
@@ -27,13 +20,6 @@
     "support": 2,
     "confused_with": {}
   },
-  "network_device": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 4,
-    "confused_with": {}
-  },
   "user_number_n": {
     "precision": 1.0,
     "recall": 1.0,
@@ -41,7 +27,21 @@
     "support": 2,
     "confused_with": {}
   },
-  "user_number_for_router": {
+  "user_number": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 3,
+    "confused_with": {}
+  },
+  "network_device": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 4,
+    "confused_with": {}
+  },
+  "router_number": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
