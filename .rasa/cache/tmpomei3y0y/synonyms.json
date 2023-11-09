@@ -1,0 +1,22 @@
+{
+  "validationfile": "validationfile",
+  "validationconfig": "validationconfig",
+  "validatefile": "validatefile",
+  "tobevalidated": "tobevalidated",
+  "filevalidation": "filevalidation",
+  "3": "3",
+  "5": "5",
+  "10": "10",
+  "2": "2",
+  "1": "1",
+  "6": "6",
+  "8": "8",
+  "router": "router",
+  "switch": "switch",
+  "subnetting": "subnetting",
+  "dns": "DNS",
+  "gateway": "gateway",
+  "ports": "ports",
+  "mac addresses": "MAC addresses",
+  "4": "4"
+}

@@ -2,115 +2,144 @@ version: "3.1"
 nlu:
 - intent: bot_challenge
   examples: |
-    - am I talking to a bot?
-- intent: provide_users_to_switch
-  examples: |
-    - [5](user_number) switch users
-- intent: provide_users_to_cisco_switch
-  examples: |
-    - The configuration must be done for [5](user_number_cisco) users.
+    - am I talking to a human?
 - intent: router_number_for_custom_network
   examples: |
     - I want to have [1](router_number) router.
+    - [3](router_number) routers will be used by the network.
 - intent: affirm
   examples: |
-    - of course
-    - yes
+    - correct
 - intent: upload_image
   examples: |
     - I want to upload an image.
 - intent: ask_switch_network_scenario
   examples: |
-    - Create a network example with hosts and switches.
-- intent: provide_users_to_network
-  examples: |
-    - Allocate [5](user_number_n) users to each network in the setup.
-    - I'm planning to configure [6](user_number_n) users for the network.
+    - Can you show me an example on a simple network scenario with a switch?
 - intent: deny
   examples: |
-    - n
+    - not really
+    - don't like that
 - intent: ask_complex_network_scenario
   examples: |
-    - Show me an example with more hosts and more virtual networks.
-    - Connect a few machines to a virtual network, make it complex.
+    - Create a network configuration example with more hosts.
 - intent: provide_users_per_router
   examples: |
-    - I want to have [1](user_number_for_router) user per router
+    - [3](user_number_for_router) users by router will be used
+    - [6](user_number_for_router) users for the router.
+- intent: provide_users_to_network
+  examples: |
+    - Each network will have [6](user_number_n) users connected.
+    - I want to connect [5](user_number_n) users using the network.
+- intent: stop_all_request
+  examples: |
+    - Stop all the running networks.
 - intent: create_custom_network_intent
   examples: |
-    - I'd like to build a network with many users and routers.
-    - I want to make a big network with lots of users and routers.
+    - I'm interested in a network with many users and routers.
+    - Can you help me create a network with many users and routers?
 - intent: switch_connection_request
   examples: |
+    - I want to establish a network using a switch.
     - I want to create a network with a switch.
-    - I'm interested in connecting users through a switch.
-- intent: provide_lan_users
-  examples: |
-    - Allocate [5](lan_user) users to each LAN in the setup.
-    - [5](lan_user) LAN users.
 - intent: ask_functionality
   examples: |
     - How can this chatbot assist me?
-    - In what ways can I use this chatbot?
+    - What capabilities does this bot have?
 - intent: ask_general_question
   examples: |
-    - How can I deploy a network with many users for testing purposes?
-    - I'm interested in deploying a network with many users—any recommendations?
-- intent: use_router_for_networking
-  examples: |
-    - I'd like to use a router to connect hosts in the network.
-    - Router connectivity is the approach I want to take.
-- intent: use_switch_for_networking
-  examples: |
-    - I prefer using a switch for network connectivity.
-    - Switch-based networking suits my requirements.
+    - I want to connect a large number of users in a network—how do I proceed?
+    - I'm looking to connect many users in a network—what steps should I follow?
 - intent: goodbye
   examples: |
-    - bye bye
-    - see you around
+    - see you later
+    - good by
+- intent: ask_network_diagram
+  examples: |
+    - I want to see a network diagram.
+    - Can you show me a network diagram?
+- intent: provide_lan_users
+  examples: |
+    - LAN users: [8](lan_user).
+    - [4](lan_user) users will be using the LAN for connectivity.
 - intent: ask_vlan_switch_scenario
   examples: |
-    - Tell me about a network setup using VLANs.
     - Explain a VLAN-based network scenario.
+    - Show me an example of a network setup with VLANs for better network organization.
 - intent: switch_cisco_config_request
   examples: |
-    - How to configure switches for numerous users?
-    - Help me with switch config for many users.
+    - How to configure cisco switches for numerous users?
+    - Share cisco switch settings for a variety of users.
+- intent: provide_users_to_switch
+  examples: |
+    - There will be [5](user_number) users at the given switch
+    - There are [2](user_number) users for the switch
+    - Switch users: [8](user_number)
+- intent: provide_users_to_cisco_switch
+  examples: |
+    - [5](user_number_cisco) switch cisco users.
+    - [3](user_number_cisco) will be using it
 - intent: create_network_intent
   examples: |
-    - What's the process for setting up a virtual network?
-    - I want to create and deploy a simple network .
+    - Create a network for users with a router.
+    - I'm interested in creating a network for testing purposes.
+- intent: show_scenario_status
+  examples: |
+    - Can I see the status of the network?
+    - What is the status of the network?
+- intent: provide_xml_path
+  examples: |
+    - [validationfile](xml_path) is the file name.
+    - [validationconfig](xml_path) is the file name.
+    - [validationconfig](xml_path).
 - intent: connect_two_computers_request
   examples: |
-    - Connect two hosts.
-    - I need to connect two users in a network, can you assist?
-    - I want to connect two users in a n etwork.
+    - I'm looking to establish a connection between two hosts, can you guide me?
+    - I want to connect two computers.
+- intent: use_router_for_networking
+  examples: |
+    - Router.
+    - I want to use a router.
+- intent: use_switch_for_networking
+  examples: |
+    - Switch-based networking is my preference.
+    - I want to use a switch.
+    - I want to rely on a switch for networking purposes.
+- intent: use_lan_for_networking
+  examples: |
+    - Use a LAN to establish connections between hosts in the network.
+    - LAN connectivity is the approach I want to take.
 - intent: connect_lan_request
   examples: |
-    - Employ a LAN network to connect users.
+    - I aim to link users to a LAN network.
+    - Enable user access through a LAN network.
     - I want to connect users to a LAN network.
+- intent: ask_xml_validation
+  examples: |
+    - Validate a VNX configuration file.
+    - Validate a VNX config file.
 - intent: mood_great
   examples: |
-    - perfect
-    - so so perfect
-    - I am amazing
+    - extremely good
+    - so perfect
+    - I am feeling very good
 - intent: mood_unhappy
   examples: |
+    - sad
     - not very good
     - I am sad
-    - so sad
 - intent: greet
   examples: |
-    - hey friend
-    - morning
-    - hi there
+    - hey folks
+    - greetings
+    - hello friend
 - intent: ask_simple_network_scenario
   examples: |
-    - Show me an example of how the network creation works?
     - Can you show me an example on a simple network scenario?
-    - Can you demonstrate a basic network configuration scenario?
+    - Connect a machine to a virtual network
+    - I need an example of a simple network configuration.
 - intent: ask_basic_concepts
   examples: |
-    - Explain [switch](network_device) devices.
-    - What is the significance of [TCP/IP](network_device) in networking?
-    - Describe [subnetting](network_device) in networking.
+    - Can you tell me about [MAC addresses](network_device)?
+    - What are [ports](network_device) used for in networking?
+    - Tell me about [switch](network_device).

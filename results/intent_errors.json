@@ -1,10 +1,514 @@
 [
   {
-    "text": "10",
+    "text": "hi there",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.3360772430896759
+    }
+  },
+  {
+    "text": "I'd like to see a practical example of a network setup that employs VLANs.",
+    "intent": "ask_vlan_switch_scenario",
+    "intent_prediction": {
+      "name": "ask_simple_network_scenario",
+      "confidence": 0.9999791383743286
+    }
+  },
+  {
+    "text": "Can you provide information about router?",
+    "intent": "ask_basic_concepts",
+    "intent_prediction": {
+      "name": "use_router_for_networking",
+      "confidence": 0.7983258366584778
+    }
+  },
+  {
+    "text": "What's the function of a switch in networking?",
+    "intent": "ask_basic_concepts",
+    "intent_prediction": {
+      "name": "use_switch_for_networking",
+      "confidence": 0.5376666188240051
+    }
+  },
+  {
+    "text": "I want to create a network with a switch.",
+    "intent": "switch_connection_request",
+    "intent_prediction": {
+      "name": "use_switch_for_networking",
+      "confidence": 0.3946094214916229
+    }
+  },
+  {
+    "text": "What's the switch configuration setup for multiple users?",
+    "intent": "switch_cisco_config_request",
+    "intent_prediction": {
+      "name": "switch_connection_request",
+      "confidence": 0.7868200540542603
+    }
+  },
+  {
+    "text": "I want to create and deploy a simple network .",
+    "intent": "create_network_intent",
+    "intent_prediction": {
+      "name": "ask_simple_network_scenario",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "I'd like to deploy a virtual network that use one router, where should I start?",
+    "intent": "create_network_intent",
+    "intent_prediction": {
+      "name": "ask_general_question",
+      "confidence": 0.3768855929374695
+    }
+  },
+  {
+    "text": "have a nice day",
+    "intent": "goodbye",
+    "intent_prediction": {
+      "name": "greet",
+      "confidence": 0.7479770183563232
+    }
+  },
+  {
+    "text": "of course",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "ask_simple_network_scenario",
+      "confidence": 0.9674853682518005
+    }
+  },
+  {
+    "text": "don't like that",
+    "intent": "deny",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.3916386663913727
+    }
+  },
+  {
+    "text": "I am going to save the world",
+    "intent": "mood_great",
+    "intent_prediction": {
+      "name": "show_scenario_status",
+      "confidence": 0.9992992877960205
+    }
+  },
+  {
+    "text": "greetings",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "mood_great",
+      "confidence": 0.9999995231628418
+    }
+  },
+  {
+    "text": "Can you show me an example on a simple network scenario?",
+    "intent": "ask_simple_network_scenario",
+    "intent_prediction": {
+      "name": "ask_complex_network_scenario",
+      "confidence": 0.39885857701301575
+    }
+  },
+  {
+    "text": "Show me how to create a simple network environment.",
+    "intent": "ask_simple_network_scenario",
+    "intent_prediction": {
+      "name": "create_network_intent",
+      "confidence": 0.7711594104766846
+    }
+  },
+  {
+    "text": "Create a network configuration example with more hosts.",
+    "intent": "ask_complex_network_scenario",
+    "intent_prediction": {
+      "name": "ask_switch_network_scenario",
+      "confidence": 0.5879516005516052
+    }
+  },
+  {
+    "text": "I want to have 1 router.",
     "intent": "router_number_for_custom_network",
     "intent_prediction": {
       "name": "provide_users_per_router",
-      "confidence": 0.6061235070228577
+      "confidence": 0.8125806450843811
+    }
+  },
+  {
+    "text": "Could you guide me through the steps of network creation?",
+    "intent": "create_network_intent",
+    "intent_prediction": {
+      "name": "switch_connection_request",
+      "confidence": 0.07907432317733765
+    }
+  },
+  {
+    "text": "cee you later",
+    "intent": "goodbye",
+    "intent_prediction": {
+      "name": "greet",
+      "confidence": 0.7656329274177551
+    }
+  },
+  {
+    "text": "see you later",
+    "intent": "goodbye",
+    "intent_prediction": {
+      "name": "greet",
+      "confidence": 0.9953109622001648
+    }
+  },
+  {
+    "text": "y",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.8411235213279724
+    }
+  },
+  {
+    "text": "so good",
+    "intent": "mood_great",
+    "intent_prediction": {
+      "name": "greet",
+      "confidence": 0.9866722822189331
+    }
+  },
+  {
+    "text": "not good",
+    "intent": "mood_unhappy",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.8603878021240234
+    }
+  },
+  {
+    "text": "good day",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "goodbye",
+      "confidence": 0.96964430809021
+    }
+  },
+  {
+    "text": "Show me an example on how the network creation works?",
+    "intent": "ask_complex_network_scenario",
+    "intent_prediction": {
+      "name": "ask_simple_network_scenario",
+      "confidence": 0.9999998807907104
+    }
+  },
+  {
+    "text": "What is the purpose of a router?",
+    "intent": "ask_basic_concepts",
+    "intent_prediction": {
+      "name": "use_router_for_networking",
+      "confidence": 0.9877716302871704
+    }
+  },
+  {
+    "text": "How does DNS work in a network?",
+    "intent": "ask_basic_concepts",
+    "intent_prediction": {
+      "name": "ask_simple_network_scenario",
+      "confidence": 0.86044842004776
+    }
+  },
+  {
+    "text": "There must be 1 switch users",
+    "intent": "provide_users_to_cisco_switch",
+    "intent_prediction": {
+      "name": "provide_users_to_switch",
+      "confidence": 0.5785723924636841
+    }
+  },
+  {
+    "text": "I want to use a router to connect to users.",
+    "intent": "create_network_intent",
+    "intent_prediction": {
+      "name": "use_router_for_networking",
+      "confidence": 0.3041491210460663
+    }
+  },
+  {
+    "text": "How can I create a network in this simulation using only one router?",
+    "intent": "create_network_intent",
+    "intent_prediction": {
+      "name": "ask_simple_network_scenario",
+      "confidence": 0.9095044732093811
+    }
+  },
+  {
+    "text": "I'm interested in deploying a network with many users—any recommendations?",
+    "intent": "ask_general_question",
+    "intent_prediction": {
+      "name": "create_custom_network_intent",
+      "confidence": 0.3136969208717346
+    }
+  },
+  {
+    "text": "Guide me through the process of creating a network with numerous users.",
+    "intent": "ask_general_question",
+    "intent_prediction": {
+      "name": "create_network_intent",
+      "confidence": 0.592527449131012
+    }
+  },
+  {
+    "text": "good night",
+    "intent": "goodbye",
+    "intent_prediction": {
+      "name": "mood_unhappy",
+      "confidence": 0.8078513741493225
+    }
+  },
+  {
+    "text": "see you around",
+    "intent": "goodbye",
+    "intent_prediction": {
+      "name": "greet",
+      "confidence": 0.9999885559082031
+    }
+  },
+  {
+    "text": "never",
+    "intent": "deny",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.2977878153324127
+    }
+  },
+  {
+    "text": "wonderful",
+    "intent": "mood_great",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.7373833656311035
+    }
+  },
+  {
+    "text": "morning",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "mood_great",
+      "confidence": 0.9098228216171265
+    }
+  },
+  {
+    "text": "Create a network example with hosts, routers and virtual bridges.",
+    "intent": "ask_complex_network_scenario",
+    "intent_prediction": {
+      "name": "ask_switch_network_scenario",
+      "confidence": 0.3124697208404541
+    }
+  },
+  {
+    "text": "Connect a machine to a virtual network, use a switch please.",
+    "intent": "ask_switch_network_scenario",
+    "intent_prediction": {
+      "name": "switch_connection_request",
+      "confidence": 0.6662115454673767
+    }
+  },
+  {
+    "text": "Explain switch devices.",
+    "intent": "ask_basic_concepts",
+    "intent_prediction": {
+      "name": "use_switch_for_networking",
+      "confidence": 0.7004149556159973
+    }
+  },
+  {
+    "text": "There will be 5 users at the given switch",
+    "intent": "provide_users_to_switch",
+    "intent_prediction": {
+      "name": "provide_users_to_cisco_switch",
+      "confidence": 0.9581025242805481
+    }
+  },
+  {
+    "text": "What's the process for setting up a virtual network?",
+    "intent": "create_network_intent",
+    "intent_prediction": {
+      "name": "ask_simple_network_scenario",
+      "confidence": 0.5918405055999756
+    }
+  },
+  {
+    "text": "I'm interested in creating a network for testing purposes.",
+    "intent": "create_network_intent",
+    "intent_prediction": {
+      "name": "ask_general_question",
+      "confidence": 0.9592880010604858
+    }
+  },
+  {
+    "text": "I'm looking to connect many users in a network—what steps should I follow?",
+    "intent": "ask_general_question",
+    "intent_prediction": {
+      "name": "create_network_intent",
+      "confidence": 0.34308600425720215
+    }
+  },
+  {
+    "text": "cu",
+    "intent": "goodbye",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.30869731307029724
+    }
+  },
+  {
+    "text": "that sounds good",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "goodbye",
+      "confidence": 0.3356451690196991
+    }
+  },
+  {
+    "text": "not really",
+    "intent": "deny",
+    "intent_prediction": {
+      "name": "mood_unhappy",
+      "confidence": 0.9991119503974915
+    }
+  },
+  {
+    "text": "I am disappointed",
+    "intent": "mood_unhappy",
+    "intent_prediction": {
+      "name": "ask_network_diagram",
+      "confidence": 0.2177494764328003
+    }
+  },
+  {
+    "text": "I want to show you the drawing of a network.",
+    "intent": "upload_image",
+    "intent_prediction": {
+      "name": "switch_connection_request",
+      "confidence": 0.1339612901210785
+    }
+  },
+  {
+    "text": "good to see you",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "ask_simple_network_scenario",
+      "confidence": 0.9834400415420532
+    }
+  },
+  {
+    "text": "Show me an example of how the network creation works?",
+    "intent": "ask_simple_network_scenario",
+    "intent_prediction": {
+      "name": "ask_complex_network_scenario",
+      "confidence": 0.9598303437232971
+    }
+  },
+  {
+    "text": "I'm interested in a tutorial on creating a straightforward virtual network.",
+    "intent": "ask_simple_network_scenario",
+    "intent_prediction": {
+      "name": "create_network_intent",
+      "confidence": 0.9643530249595642
+    }
+  },
+  {
+    "text": "Can you show me an example on a simple network scenario with a switch?",
+    "intent": "ask_switch_network_scenario",
+    "intent_prediction": {
+      "name": "ask_simple_network_scenario",
+      "confidence": 0.9998672008514404
+    }
+  },
+  {
+    "text": "Describe subnetting in networking.",
+    "intent": "ask_basic_concepts",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.08730342984199524
+    }
+  },
+  {
+    "text": "There will be 2 users for the switch",
+    "intent": "provide_users_to_cisco_switch",
+    "intent_prediction": {
+      "name": "provide_users_to_switch",
+      "confidence": 0.9954732060432434
+    }
+  },
+  {
+    "text": "How can I deploy a network with many users for testing purposes?",
+    "intent": "ask_general_question",
+    "intent_prediction": {
+      "name": "create_network_intent",
+      "confidence": 0.4792822003364563
+    }
+  },
+  {
+    "text": "good by",
+    "intent": "goodbye",
+    "intent_prediction": {
+      "name": "mood_great",
+      "confidence": 0.8189947605133057
+    }
+  },
+  {
+    "text": "indeed",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "goodbye",
+      "confidence": 0.47970715165138245
+    }
+  },
+  {
+    "text": "correct",
+    "intent": "affirm",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.3285966217517853
+    }
+  },
+  {
+    "text": "super stoked",
+    "intent": "mood_great",
+    "intent_prediction": {
+      "name": "mood_unhappy",
+      "confidence": 0.8180700540542603
+    }
+  },
+  {
+    "text": "extremely good",
+    "intent": "mood_great",
+    "intent_prediction": {
+      "name": "mood_unhappy",
+      "confidence": 0.9749768376350403
+    }
+  },
+  {
+    "text": "my day was horrible",
+    "intent": "mood_unhappy",
+    "intent_prediction": {
+      "name": "greet",
+      "confidence": 0.9999972581863403
+    }
+  },
+  {
+    "text": "I don't feel very well",
+    "intent": "mood_unhappy",
+    "intent_prediction": {
+      "name": "deny",
+      "confidence": 0.8974676728248596
+    }
+  },
+  {
+    "text": "unhappy",
+    "intent": "mood_unhappy",
+    "intent_prediction": {
+      "name": "affirm",
+      "confidence": 0.47925981879234314
     }
   }
 ]

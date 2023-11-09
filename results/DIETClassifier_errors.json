@@ -1,22 +1,229 @@
 [
   {
-    "text": "5",
+    "text": "Can you provide information about router?",
+    "entities": [
+      {
+        "start": 34,
+        "end": 40,
+        "value": "router",
+        "entity": "network_device"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "What's the function of a switch in networking?",
+    "entities": [
+      {
+        "start": 25,
+        "end": 31,
+        "value": "switch",
+        "entity": "network_device"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "What are ports used for in networking?",
+    "entities": [
+      {
+        "start": 9,
+        "end": 14,
+        "value": "ports",
+        "entity": "network_device"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "I want to have 1 router.",
+    "entities": [
+      {
+        "start": 15,
+        "end": 16,
+        "value": "1",
+        "entity": "router_number"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "user_number_for_router",
+        "start": 15,
+        "end": 16,
+        "confidence_entity": 0.9957369565963745,
+        "value": "1",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "What is the purpose of a router?",
+    "entities": [
+      {
+        "start": 25,
+        "end": 31,
+        "value": "router",
+        "entity": "network_device"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "How does DNS work in a network?",
+    "entities": [
+      {
+        "start": 9,
+        "end": 12,
+        "value": "DNS",
+        "entity": "network_device"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "3 will be using it",
     "entities": [
       {
         "start": 0,
         "end": 1,
+        "value": "3",
+        "entity": "user_number_cisco"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "lan_user",
+        "start": 0,
+        "end": 1,
+        "confidence_entity": 0.37707895040512085,
+        "value": "3",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "There will be 5 users at the given royter.",
+    "entities": [
+      {
+        "start": 14,
+        "end": 15,
         "value": "5",
         "entity": "user_number_for_router"
       }
     ],
     "predicted_entities": [
       {
-        "entity": "router_number",
-        "start": 0,
-        "end": 1,
-        "confidence_entity": 0.617820680141449,
+        "entity": "user_number_cisco",
+        "start": 14,
+        "end": 15,
+        "confidence_entity": 0.9411765933036804,
         "value": "5",
-        "extractor": "DIETClassifier"
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Explain switch devices.",
+    "entities": [
+      {
+        "start": 8,
+        "end": 14,
+        "value": "switch",
+        "entity": "network_device"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Explain the purpose of gateway devices.",
+    "entities": [
+      {
+        "start": 23,
+        "end": 30,
+        "value": "gateway",
+        "entity": "network_device"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "There will be 5 users at the given switch",
+    "entities": [
+      {
+        "start": 14,
+        "end": 15,
+        "value": "5",
+        "entity": "user_number"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "user_number_cisco",
+        "start": 14,
+        "end": 15,
+        "confidence_entity": 0.9992769360542297,
+        "value": "5",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "Describe subnetting in networking.",
+    "entities": [
+      {
+        "start": 9,
+        "end": 19,
+        "value": "subnetting",
+        "entity": "network_device"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Can you tell me about MAC addresses?",
+    "entities": [
+      {
+        "start": 22,
+        "end": 35,
+        "value": "MAC addresses",
+        "entity": "network_device"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "There will be 2 users for the switch",
+    "entities": [
+      {
+        "start": 14,
+        "end": 15,
+        "value": "2",
+        "entity": "user_number_cisco"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "user_number",
+        "start": 14,
+        "end": 15,
+        "confidence_entity": 0.9993273019790649,
+        "value": "2",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
       }
     ]
   }
