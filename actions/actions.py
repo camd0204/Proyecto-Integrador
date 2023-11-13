@@ -451,13 +451,13 @@ class ActionRunVNXEnvironment(Action):
         with open("historic_scripts/history.txt", "r", encoding="utf-8") as txt_file:
             lines = txt_file.readlines()
             last_line = lines[-1]
-            return last_line
+            return last_line.strip()
         
     def check_second_to_last_line_historic(self):
         with open("historic_scripts/history.txt", "r", encoding="utf-8") as txt_file:
             lines = txt_file.readlines()
             last_line = lines[-2]
-            return last_line
+            return last_line.strip()
         
     def check_amount_lines(self):
         with open("historic_scripts/history.txt", "r", encoding="utf-8") as txt_file:
