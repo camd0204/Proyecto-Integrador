@@ -56,6 +56,8 @@ Este archivo YAML define los datos de entrenamiento para un modelo de comprensi�
 
 ### Categorías de Intents
 
+(Los ejemplos estan entrenados en ingles)
+
 #### 1. Saludos
 - **Intención:** greet
   - **Ejemplos:**
@@ -83,8 +85,8 @@ Este archivo YAML define los datos de entrenamiento para un modelo de comprensi�
 #### 5. Proporcionar Ruta XML
 - **Intención:** provide_xml_path
   - **Ejemplos:**
-    - El nombre del archivo es [validationfile](xml_path).
-    - [validationconfig](xml_path) es el nombre del archivo.
+    - El nombre del archivo es validationfile.
+    - validationconfig es el nombre del archivo.
 
 #### 6. Solicitar Conexión de Dos Computadoras
 - **Intención:** connect_two_computers_request
@@ -125,20 +127,20 @@ Este archivo YAML define los datos de entrenamiento para un modelo de comprensi�
 #### 12. Número de Router para Red Personalizada
 - **Intención:** router_number_for_custom_network
   - **Ejemplos:**
-    - [2](router_number) routers.
-    - routers para la red: [8](router_number).
+    - 2 routers.
+    - routers para la red: 8.
 
 #### 13. Proporcionar Usuarios por Router
 - **Intención:** provide_users_per_router
   - **Ejemplos:**
-    - [2](user_number_for_router) usuarios por router.
-    - usuarios por router: [8](user_number_for_router).
+    - 2 usuarios por router.
+    - usuarios por router: 8.
 
 #### 14. Consultar Conceptos Básicos
 - **Intención:** ask_basic_concepts
   - **Ejemplos:**
-    - Cuéntame sobre un [router](network_device).
-    - Explica el papel de un [switch](network_device).
+    - Cuéntame sobre un router
+    - Explica el papel de un switch
 
 #### 15. Solicitar Conexión de Switch
 - **Intención:** switch_connection_request
@@ -155,14 +157,14 @@ Este archivo YAML define los datos de entrenamiento para un modelo de comprensi�
 #### 17. Proporcionar Usuarios para Switch
 - **Intención:** provide_users_to_switch
   - **Ejemplos:**
-    - Hay [2](user_number) usuarios para el switch.
-    - Usuarios de switch: [8](user_number).
+    - Hay 2 usuarios para el switch.
+    - Usuarios de switch: 8.
 
 #### 18. Proporcionar Usuarios para Switch Cisco
 - **Intención:** provide_users_to_cisco_switch
   - **Ejemplos:**
-    - Habrá [2](user_number_cisco) usuarios para el switch.
-    - Usuarios de switch Cisco: [8](user_number_cisco).
+    - Habrá 2 usuarios para el switch.
+    - Usuarios de switch Cisco: 8.
 
 #### 19. Crear Intención de Red
 - **Intención:** create_network_intent
@@ -203,8 +205,8 @@ Este archivo YAML define los datos de entrenamiento para un modelo de comprensi�
 #### 25. Proporcionar Usuarios para la Red
 - **Intención:** provide_users_to_network
   - **Ejemplos:**
-    - Hay [4](user_number_n) usuarios conectados al router.
-    - Conectar [5](user_number_n) usuarios usando el router.
+    - Hay 4 usuarios conectados al router.
+    - Conectar 5 usuarios usando el router.
 
 #### 26. Despedida
 - **Intención:** goodbye
