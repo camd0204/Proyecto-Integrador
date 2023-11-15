@@ -577,7 +577,7 @@ class ActionShowNetworkDiagram(Action):
     def show_network_diagram(self):
         try:
             last_line=self.last_run_script()
-            command = ['sudo', 'vnx', '-f', last_line, '--show-map']
+            command = ['sudo', 'vnx', '-f', last_line, '-v --show-map']
             # Run the Perl script
             process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
             # Capture the standard output and standard error
