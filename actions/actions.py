@@ -100,7 +100,7 @@ class ActionProvideSwitchConfigurationVNX(Action):
                 self.generate_switch_config(user_count)
                 description=f"Simple scenario made of one VM acting as a switch and {user_count} VMs connected to it. Shows the use of 'veth' based direct connections among LXC VMs."
                 dispatcher.utter_message(f"Scenario created as XML file generated and saved as vnx_custom_network_switch_{user_count}_users.xml. Description: {description}")
-                self.write_file_path_to_historic("user_gen_files/vnx_custom_network_switch.xml")
+                self.write_file_path_to_historic(f"user_gen_files/vnx_custom_network_switch_{user_count}_users.xml")
             else:
                 dispatcher.utter_message("Non valid value! The scenario couldnt be created!")
         else:
@@ -374,7 +374,7 @@ class ActionGenerateComplexNetwork(Action):
 
         # Write the prettified XML to a file
         mult=int(router_number)*int(user_per_rout)
-        with open(f"user_gen_files/{router_number}router_{mult}_user.xml", "w", encoding="utf-8") as xml_file:
+        with open(f"user_gen_files/{router_number}_router_{mult}_user.xml", "w", encoding="utf-8") as xml_file:
             xml_file.write(pretty_xml)
         self.write_file_path_to_historic(f"user_gen_files/{router_number}_router_{mult}_user.xml")
 
@@ -481,7 +481,7 @@ class ActionConnectTwoComputers(Action):
 
     def write_file_path_to_historic(self):
         with open("historic_scripts/history.txt", "a") as txt_file:
-            txt_file.write("xml_files/2_pcs_lan_connection.xml"+"\n")
+            txt_file.write("user_gen_files/2_pcs_lan_connection.xml"+"\n")
 
 class ActionConnectComputerWithLan(Action):
     def name(self) -> Text:
@@ -565,7 +565,7 @@ class ActionShowScenarioStatus(Action):
         with open("historic_scripts/history.txt", "r", encoding="utf-8") as txt_file:
             lines = txt_file.readlines()
             last_line = lines[-1]
-            return last_line
+            return last_line.strip()
 
 class ActionShowNetworkDiagram(Action):
     def name(self) -> Text:
@@ -593,7 +593,7 @@ class ActionShowNetworkDiagram(Action):
         with open("historic_scripts/history.txt", "r", encoding="utf-8") as txt_file:
             lines = txt_file.readlines()
             last_line = lines[-1]
-            return last_line
+            return last_line.strip()
         
 class ActionStopAll(Action):
     def name(self) -> Text:
