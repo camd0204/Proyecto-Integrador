@@ -386,11 +386,17 @@ class ActionRunVNXEnvironment(Action):
     def name(self) -> Text:
         return "run_script_path"
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-            stdout,stderr,return_code=self.start_vnx_pipeline()
-            print(stdout)
-            print(stderr)
-            print(return_code)
-            dispatcher.utter_message(f"Script opened on vnx as: {self.check_last_line_historic()} ")
+            result=self.start_vnx_pipeline()
+            if isinstance (result,tuple):
+                num_returns=len(result)
+                if num_returns==3:
+                    dispatcher.utter_message(f"Script opened on vnx as: {self.check_last_line_historic()} Results and details can be seen on the server. ")
+                    print(result[0],result[1],result[2])
+                else:
+                    dispatcher.utter_message(f"Script opened on vnx as: {self.check_last_line_historic()} Results and details can be seen on the server. ")
+                    dispatcher.utter_message(f"Script closed on vnx as: {self.check_second_to_last_line_historic()} Results and details can be seen on the server.")
+                    print(result[0],result[1],result[2],result[3],result[4],result[5])
+
             return []
     
     def start_vnx_pipeline(self):
