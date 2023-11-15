@@ -48,8 +48,6 @@ class ActionProvideNetworkingConceptInfo(Action):
 
         return []
     
-
-
 class ActionProvideSwitchConfiguration(Action):
     counter=1
     def name(self) -> Text:
@@ -166,11 +164,6 @@ class ActionProvideSwitchConfigurationVNX(Action):
     def write_file_path_to_historic(self,file_path):
         with open("historic_scripts/history.txt", "a") as txt_file:
             txt_file.write(file_path+"\n")
-
-
-
-
-
 
 class ActionGenerateSimpleScenario(Action):
     def name(self) -> Text:
@@ -404,13 +397,14 @@ class ActionRunVNXEnvironment(Action):
         last_run=self.check_second_to_last_line_historic()
         to_be_run=self.check_last_line_historic()
         file_lines=self.check_amount_lines()
-        stdout,stderr,return_code='','',''
+        stdout,stderr,return_code,stop_stdout,stop_stderr,stop_returncode='','','','','',''
         if(file_lines>=2):
-            self.stop_vnx_script(last_run)
+            stop_stdout,stop_stderr,stop_returncode=self.stop_vnx_script(last_run)
             stdout,stderr,return_code=self.run_vnx_script(to_be_run)
+            return stdout,stderr,return_code,stop_stdout,stop_stderr,stop_returncode
         else:
             stdout,stderr,return_code=self.run_vnx_script(to_be_run)
-        return stdout,stderr,return_code
+            return stdout,stderr,return_code
 
 
     def run_vnx_script(self,script_path):
