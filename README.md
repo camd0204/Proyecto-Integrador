@@ -61,218 +61,217 @@ Este archivo YAML define los datos de entrenamiento para un modelo de comprensi�
 #### 1. Saludos
 - **Intención:** greet
   - **Ejemplos:**
-    - hola
-    - ¡buen día!
+    - hello
+    - good day!
 
 #### 2. Solicitar Detener Todo
 - **Intención:** stop_all_request
   - **Ejemplos:**
-    - Quiero detener todos los escenarios en ejecución.
-    - Detener todas las simulaciones en ejecución.
+    - I want to stop all running scenarios.
+    - Stop all ongoing simulations.
 
 #### 3. Consultar Funcionalidades
 - **Intención:** ask_functionality
   - **Ejemplos:**
-    - ¿Qué capacidades tiene este bot?
-    - ¿Cómo puede ayudarme este chatbot?
+    - What capabilities does this bot have?
+    - How can this chatbot assist me?
 
 #### 4. Consultar Validación XML
 - **Intención:** ask_xml_validation
   - **Ejemplos:**
-    - ¿Puede validar un archivo de configuración XML?
-    - Validar un archivo XML de VNX.
+    - Can it validate an XML configuration file?
+    - Validate a VNX XML file.
 
 #### 5. Proporcionar Ruta XML
 - **Intención:** provide_xml_path
   - **Ejemplos:**
-    - El nombre del archivo es validationfile.
-    - validationconfig es el nombre del archivo.
+    - The file name is validationfile.
+    - validationconfig is the file name.
 
 #### 6. Solicitar Conexión de Dos Computadoras
 - **Intención:** connect_two_computers_request
   - **Ejemplos:**
-    - Quiero conectar dos computadoras.
-    - Conectar dos computadoras a través de una red LAN.
+    - I want to connect two computers.
+    - Connect two computers through a LAN.
 
 #### 7. Consultar Escenario de Red Simple
 - **Intención:** ask_simple_network_scenario
   - **Ejemplos:**
-    - ¿Puede mostrarme un ejemplo de un escenario de red simple?
-    - muestra un ejemplo de un escenario de red simple.
+    - Can you show me an example of a simple network scenario?
+    - Show an example of a simple network scenario.
 
 #### 8. Consultar Escenario de Red Complejo
 - **Intención:** ask_complex_network_scenario
   - **Ejemplos:**
-    - ¿Puede mostrarme un ejemplo de un escenario de red complejo?
-    - muéstrame un ejemplo de una red compleja.
+    - Can you show me an example of a complex network scenario?
+    - Show me an example of a complex network.
 
 #### 9. Consultar Escenario de Red con Switch
 - **Intención:** ask_switch_network_scenario
   - **Ejemplos:**
-    - ¿Puede mostrarme un ejemplo de un escenario de red con un switch?
-    - crea un ejemplo con un switch para una red.
+    - Can you show me an example of a network scenario with a switch?
+    - Create an example with a switch for a network.
 
 #### 10. Consultar Escenario de Switch VLAN
 - **Intención:** ask_vlan_switch_scenario
   - **Ejemplos:**
-    - Muéstrame un ejemplo de un escenario que utiliza una VLAN.
-    - configura un ejemplo con una VLAN.
+    - Show me an example of a scenario that uses a VLAN.
+    - Set up an example with a VLAN.
 
 #### 11. Crear Intención de Red Personalizada
 - **Intención:** create_custom_network_intent
   - **Ejemplos:**
-    - Quiero crear una red con muchos usuarios y muchos routers.
-    - crea una red con muchos usuarios y routers.
+    - I want to create a network with many users and many routers.
+    - Create a network with many users and routers.
 
 #### 12. Número de Router para Red Personalizada
 - **Intención:** router_number_for_custom_network
   - **Ejemplos:**
     - 2 routers.
-    - routers para la red: 8.
+    - Routers for the network: 8.
 
 #### 13. Proporcionar Usuarios por Router
 - **Intención:** provide_users_per_router
   - **Ejemplos:**
-    - 2 usuarios por router.
-    - usuarios por router: 8.
+    - 2 users per router.
+    - Users per router: 8.
 
 #### 14. Consultar Conceptos Básicos
 - **Intención:** ask_basic_concepts
   - **Ejemplos:**
-    - Cuéntame sobre un router
-    - Explica el papel de un switch
+    - Tell me about a router.
+    - Explain the role of a switch.
 
 #### 15. Solicitar Conexión de Switch
 - **Intención:** switch_connection_request
   - **Ejemplos:**
-    - Quiero conectar usuarios a un switch.
-    - haz una red con un switch.
+    - I want to connect users to a switch.
+    - Create a network with a switch.
 
 #### 16. Solicitar Configuración de Switch Cisco
 - **Intención:** switch_cisco_config_request
   - **Ejemplos:**
-    - Quiero conocer la configuración de comandos del switch Cisco.
-    - proporciona la configuración para un switch Cisco.
+    - I want to know the command configuration for the Cisco switch.
+    - Provide the configuration for a Cisco switch.
 
 #### 17. Proporcionar Usuarios para Switch
 - **Intención:** provide_users_to_switch
   - **Ejemplos:**
-    - Hay 2 usuarios para el switch.
-    - Usuarios de switch: 8.
+    - There are 2 users for the switch.
+    - Switch users: 8.
 
 #### 18. Proporcionar Usuarios para Switch Cisco
 - **Intención:** provide_users_to_cisco_switch
   - **Ejemplos:**
-    - Habrá 2 usuarios para el switch.
-    - Usuarios de switch Cisco: 8.
+    - There will be 2 users for the switch.
+    - Cisco switch users: 8.
 
 #### 19. Crear Intención de Red
 - **Intención:** create_network_intent
   - **Ejemplos:**
-    - Quiero crear una red virtual con un router simple.
-    - crea una red con un router.
+    - I want to create a virtual network with a simple router.
+    - Create a network with a router.
 
 #### 20. Preguntar Pregunta General
 - **Intención:** ask_general_question
   - **Ejemplos:**
-    - Quiero conectar a un gran número de usuarios en una red, ¿cómo procedo?
-    - muéstrame los pasos sobre cómo crear una red con muchos usuarios.
+    - I want to connect a large number of users in a network, how do I proceed?
+    - Show me the steps on how to create a network with many users.
 
 #### 21. Usar Router para Conectar
 - **Intención:** use_router_for_network
     - **Ejemplos:**
-      - Prefiero usar un router para la conectividad de red.
-      - El enfoque de conectividad elegido es mediante un router.
+      - I prefer to use a router for network connectivity.
+      - The chosen connectivity approach is through a router.
 
 #### 22. Mostrar Estado del Escenario
 - **Intención:** show_scenario_status
   - **Ejemplos:**
-    - ¿Cuál es el estado del escenario?
-    - Muéstrame el estado del escenario en ejecución.
+    - What is the status of the scenario?
+    - Show me the status of the running scenario.
 
 #### 23. Usar Switch para Conectar
 - **Intención:** use_switch_for_networking
   - **Ejemplos:**
-    - Prefiero usar un switch para la conectividad de red.
-    - El enfoque de conectividad elegido es mediante un switch.
+    - I prefer to use a switch for network connectivity.
+    - The chosen connectivity approach is through a switch.
 
 #### 24. Usar LAN para Conectar
 - **Intención:** use_lan_for_networking
   - **Ejemplos:**
-    - Prefiero usar una LAN para la conectividad de red.
-    - El enfoque de conectividad elegido es mediante una LAN.
+    - I prefer to use a LAN for network connectivity.
+    - The chosen connectivity approach is through a LAN.
 
 #### 25. Proporcionar Usuarios para la Red
 - **Intención:** provide_users_to_network
   - **Ejemplos:**
-    - Hay 4 usuarios conectados al router.
-    - Conectar 5 usuarios usando el router.
+    - There are 4 users connected to the router.
+    - Connect 5 users using the router.
 
 #### 26. Despedida
 - **Intención:** goodbye
   - **Ejemplos:**
-    - Adiós
-    - Hasta luego
-    - Nos vemos
+    - Goodbye
+    - See you later
+    - Until next time
 
 #### 27. Afirmar
 - **Intención:** affirm
   - **Ejemplos:**
-    - Sí
-    - Por supuesto
-    - Correcto
+    - Yes
+    - Of course
+    - Correct
 
 #### 28. Negar
 - **Intención:** deny
   - **Ejemplos:**
     - No
-    - Nunca
-    - No creo que sí
+    - Never
+    - I don't think so
 
 #### 29. Buen Humor
 - **Intención:** mood_great
   - **Ejemplos:**
-    - Perfecto
-    - Maravilloso
-    - Estoy genial
+    - Perfect
+    - Wonderful
+    - I'm great
 
 #### 30. Mal Humor
 - **Intención:** mood_unhappy
   - **Ejemplos:**
-    - Mi día fue horrible
-    - Estoy triste
-    - No me siento bien
+    - My day was horrible
+    - I'm sad
+    - I don't feel well
 
 #### 31. Desafío del Bot
 - **Intención:** bot_challenge
   - **Ejemplos:**
-    - ¿Eres un bot?
-    - ¿Estoy hablando con un humano?
+    - Are you a bot?
+    - Am I talking to a human?
 
 #### 32. Preguntar Diagrama de Red
 - **Intención:** ask_network_diagram
   - **Ejemplos:**
-    - ¿Puedes mostrarme un diagrama de red?
-    - Muéstrame un ejemplo de un diagrama de red.
+    - Can you show me a network diagram?
+    - Show me an example of a network diagram.
 
 #### 33. Subir Imagen
 - **Intención:** upload_image
   - **Ejemplos:**
-    - Quiero subir una imagen de una red.
+    - I want to upload an image of a network.
 
 #### 34. Solicitar Conexión de LAN
 - **Intención:** connect_lan_request
   - **Ejemplos:**
-    - Quiero conectar usuarios a una red LAN.
-    - Utilizar una red LAN para conectar usuarios.
-    - Conectar usuarios mediante una red LAN.
+    - I want to connect users to a LAN.
+    - Use a LAN to connect users.
+    - Connect users through a LAN.
 
 #### 35. Proporcionar Usuarios para LAN
 - **Intención:** provide_lan_users
   - **Ejemplos:**
-    - Hay [4](lan_user) usuarios conectados a la LAN.
-    - Asignar [3](lan_user) usuarios a la LAN.
-
+    - There are [4](lan_user) users connected to the LAN.
+    - Assign [3](lan_user)
 
 ### Resúmenes de Historias de Conversación
 
