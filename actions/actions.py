@@ -600,11 +600,12 @@ class ActionStopAll(Action):
         return "stop_all_scenarios"
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
             result=self.stop_all()
-            dispatcher.utter_message(f"Stop all: {result[0]}. Return code: {result[1]}")
+            dispatcher.utter_message(f"Stop all: {result[0]}. Return code: {result[1]}. Possible errors: {result[2]}  ")
             return []
     def stop_all(self):
         try:
-            command = ['sudo', 'vnx','--clean-hosts']
+            last_line=self.last_run_script()
+            command = ['sudo', 'vnx','-f',last_line,'--destroy']
             # Run the Perl script
             process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
             # Capture the standard output and standard error
@@ -612,10 +613,15 @@ class ActionStopAll(Action):
             # Check the return code
             return_code = process.returncode
             # Return the standard output, standard error, and return code
-            return stdout, return_code
+            return stdout, return_code, stderr
         except Exception as e:
             # Handle any exceptions that may occur
             return None, str(e), 1
+    def get_last_run_script(self):
+        with open("historic_scripts/history.txt", "r", encoding="utf-8") as txt_file:
+            lines = txt_file.readlines()
+            last_line = lines[-1]
+            return last_line.strip()
         
 class ActionValidateXML(Action):
     def name(self) -> Text:
