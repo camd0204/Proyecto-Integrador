@@ -88,6 +88,7 @@ class ActionProvideSwitchConfiguration(Action):
     
 class ActionProvideSwitchConfigurationVNX(Action):
     counter=1
+    ip_address_dict = {}
     def name(self) -> Text:
         return "provide_switch_config"
 
@@ -99,7 +100,7 @@ class ActionProvideSwitchConfigurationVNX(Action):
             if user_count >= 0:
                 self.generate_switch_config(user_count)
                 description=f"Simple scenario made of one VM acting as a switch and {user_count} VMs connected to it. Shows the use of 'veth' based direct connections among LXC VMs."
-                dispatcher.utter_message(f"Scenario created as XML file generated and saved as vnx_custom_network_switch_{user_count}_users.xml. Description: {description}")
+                dispatcher.utter_message(f"Scenario created as XML file generated and saved as vnx_custom_network_switch_{user_count}_users.xml. Description: {description}. Machine IPS info: {self.ip_address_dict}")
                 self.write_file_path_to_historic(f"user_gen_files/vnx_custom_network_switch_{user_count}_users.xml")
             else:
                 dispatcher.utter_message("Non valid value! The scenario couldnt be created!")
@@ -108,6 +109,7 @@ class ActionProvideSwitchConfigurationVNX(Action):
 
         return []
     def generate_switch_config(self,number):
+        self.ip_address_dict.clear()
         root = ET.Element("vnx", attrib={"xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
                                      "xsi:noNamespaceSchemaLocation": "/usr/share/xml/vnx/vnx-2.00.xsd"})
         global_elem = ET.SubElement(root, "global")
@@ -130,6 +132,7 @@ class ActionProvideSwitchConfigurationVNX(Action):
             ET.SubElement(if_elem_1, "ipv4").text = f"1.1.1.{i + 3}/24"
             if_elem_9 = ET.SubElement(vm_elem, "if", attrib={"id": "9", "net": "virbr0"})
             ET.SubElement(if_elem_9, "ipv4").text = "dhcp"
+            self.ip_address_dict[f"vm{i}"] = f"1.1.1.{i + 3}"
          # Add switch element
         switch_elem = ET.SubElement(root, "vm", attrib={"name": "switch", "type": "lxc", "exec_mode": "lxc-attach","arch":"x86_64"})
         ET.SubElement(switch_elem, "filesystem", attrib={"type": "cow"}).text = "/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64"
@@ -223,6 +226,7 @@ class ActionGenerateSimpleScenario(Action):
     
 #Class to generate a simple network scenario 
 class ActionGenerateSimpleNetwork(Action):
+    ip_address_dict = {}
     filecounter=1
     def name(self) -> Text:
         return "generate_simple_network"
@@ -235,7 +239,7 @@ class ActionGenerateSimpleNetwork(Action):
                 description=f"""The scenario consists of a variable number of {user_network_count} LXC-based virtual machines connected to two network bridges, 
         "Net0" and "Net1." Each virtual machine has specific configurations, including filesystem settings, IP addresses, and routes. 
         Additionally, the XML file includes commands to start and stop an Apache web server and defines a router element"""
-                dispatcher.utter_message(f"Scenario created as XML file generated and saved as vnx_custom_network_router_{user_network_count}_users.xml. Description: {description}")
+                dispatcher.utter_message(f"Scenario created as XML file generated and saved as vnx_custom_network_router_{user_network_count}_users.xml. Description: {description}. Machine IPS info: {self.ip_address_dict}")
             else:
                 dispatcher.utter_message("User number not valid, file could not be created.")
         else:
@@ -245,6 +249,7 @@ class ActionGenerateSimpleNetwork(Action):
 
     def createXMLFile(self,user_number):
         # Names, defaults,etc
+        self.ip_address_dict.clear()
         root = ET.Element("vnx", attrib={"xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
                                      "xsi:noNamespaceSchemaLocation": "/usr/share/xml/vnx/vnx-2.00.xsd"})
         global_elem = ET.SubElement(root, "global")
@@ -276,6 +281,7 @@ class ActionGenerateSimpleNetwork(Action):
           if_elem = ET.SubElement(host_elem, "if", id="1", net="Net0")
           ET.SubElement(if_elem, "ipv4").text = f"10.1.0.{i+1}/24"
           ET.SubElement(host_elem, "route", type="ipv4", gw="10.1.0.1").text = "default"
+          self.ip_address_dict[f"h{i}"] = f"10.1.0.{i+1}"
         #Create a final machine that will act as a server
         host_elem = ET.SubElement(root, "vm", name=f"h{user_number}", type="lxc",arch="x86_64")
         ET.SubElement(host_elem, "filesystem", type="cow").text = "/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64"
@@ -484,6 +490,7 @@ class ActionConnectTwoComputers(Action):
             txt_file.write("user_gen_files/2_pcs_lan_connection.xml"+"\n")
 
 class ActionConnectComputerWithLan(Action):
+    ip_address_dict = {}
     def name(self) -> Text:
         return "provide_lan_config"
 
@@ -494,7 +501,7 @@ class ActionConnectComputerWithLan(Action):
             if(user_number_lan_count>0):
                 file_path=f"user_gen_files/custom_lan_{user_number_lan_count}_users.xml"
                 description=f"""The scenario consists of a variable number of {user_number_lan_count} LXC-based virtual machines connected to a network bridge, making it seem as a LAN network """
-                dispatcher.utter_message(f"Scenario created as XML file generated and saved as custom_lan_{user_number_lan_count}_users.xml. Description: {description}")
+                dispatcher.utter_message(f"Scenario created as XML file generated and saved as custom_lan_{user_number_lan_count}_users.xml. Description: {description}. IPS: {self.ip_address_dict}")
                 self.generate_xml(user_number_lan_count,file_path)
                 self.write_file_path_to_historic(file_path)
             else:
@@ -529,6 +536,7 @@ class ActionConnectComputerWithLan(Action):
                 if_elem = ET.SubElement(vm_elem, "if", attrib={"id": "1", "net": "Network1"})
                 ET.SubElement(if_elem, "mac").text = f"fe:fd:00:00:00:{i:02d}"
                 ET.SubElement(if_elem, "ipv4").text = f"192.168.1.{i}/24"
+                self.ip_address_dict[f"VM{i}"] = f"192.168.1.{i}"
 
             tree = ET.ElementTree(root)
 
