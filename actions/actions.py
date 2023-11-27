@@ -471,12 +471,13 @@ class ActionRunVNXEnvironment(Action):
             return len(lines)
         
 class ActionConnectTwoComputers(Action):
+    ip_address_dict = {}
     def name(self) -> Text:
         return "connect_two_computers_action"
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
             self.connect_computers()
             self.write_file_path_to_historic()
-            dispatcher.utter_message(f"Script written to: user_gen_files/2_pcs_lan_connection.xml. Description: A simple LAN connection using a virtual bridge between two PCS. MAC addresses and IP address are generated automatically ;)")
+            dispatcher.utter_message(f"Script written to: user_gen_files/2_pcs_lan_connection.xml. Description: A simple LAN connection using a virtual bridge between two PCS. MAC addresses and IP address are generated automatically. Machine IPS info : {self.ip_address_dict})")
             return []
     def connect_computers(self):
         xml_content=''
@@ -516,6 +517,7 @@ class ActionConnectComputerWithLan(Action):
             txt_file.write(file_path+"\n")
 
     def generate_xml(self, num_vms, file_path):
+            self.ip_address_dict.clear()
             root = ET.Element("vnx", attrib={"xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
                                             "xsi:noNamespaceSchemaLocation": "/usr/share/xml/vnx/vnx-2.00.xsd"})
 
@@ -531,7 +533,7 @@ class ActionConnectComputerWithLan(Action):
             net_elem = ET.SubElement(root, "net", attrib={"name": "Network1", "mode": "virtual_bridge", "type": "lan"})
 
             for i in range(1, num_vms + 1):
-                vm_elem = ET.SubElement(net_elem, "vm", attrib={"name": f"VM{i}"})
+                vm_elem = ET.SubElement(root, "vm", attrib={"name": f"VM{i}", "type":"lxc","arch":"x86_64"})
                 ET.SubElement(vm_elem, "filesystem", attrib={"type": "cow"}).text = "/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64"
                 if_elem = ET.SubElement(vm_elem, "if", attrib={"id": "1", "net": "Network1"})
                 ET.SubElement(if_elem, "mac").text = f"fe:fd:00:00:00:{i:02d}"
@@ -612,7 +614,7 @@ class ActionStopAll(Action):
             return []
     def stop_all(self):
         try:
-            last_line=self.last_run_script()
+            last_line=self.get_last_run_script()
             command = ['sudo', 'vnx','-f',last_line,'--destroy']
             # Run the Perl script
             process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)

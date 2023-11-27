@@ -84,8 +84,8 @@ slots:
 
 responses:
   utter_greet:
-  - text: "Hey! How are you?"
-  - text: "Hey"
+  - text: "Hey! I am a prototype for a network assistant. I can help you with some basic network concepts and configurations. You can also ask me to create and deploy network intents. How can I help you?"
+  - text: "Well, hello! I am a prototype for a network assistant. I can help you with some basic network concepts and configurations. You can also ask me to create and deploy network intents. How can I help you?"
 
   utter_ask_for_xml_path:
   - text: "Sure! Please provide the XML file name so I can validate it. The file must be located on the validation_files folder. Just give me the file name not a extension. The file must contain the word validation."

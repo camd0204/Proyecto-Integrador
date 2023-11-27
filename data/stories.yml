@@ -95,6 +95,7 @@ stories:
   - action: generate_complex_network
   - action: run_script_path
 
+
 - story: create a network with one switch
   steps:
   - intent: switch_connection_request
