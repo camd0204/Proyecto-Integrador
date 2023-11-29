@@ -129,11 +129,11 @@ my $router1 = <<EOF;
 <vm name="r__NUM__" type="lxc" arch="x86_64">
     <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
     <!--mem>128M</mem-->
-    <if id="1" net="Net0">
-      <ipv4>10.0.0.__NUM__/24</ipv4>
+    <if id="1" net="__NET__">
+      <ipv4>10.0.__NUM__.1/24</ipv4>
     </if>
-    <if id="2" net="Net__PREVNUM__">
-        <ipv4>10.0.__NUM__.1/24</ipv4>
+    <if id="2" net="Net__NUM__">
+        <ipv4>10.0.__NUM__.2/24</ipv4>
     </if>
 EOF
 
@@ -142,23 +142,24 @@ my $router2 = <<EOF;
 </vm>
 EOF
 
-my $prev_num = 0;
+my $prev_net = "Net0";
 
 for (my $i = 1; $i <= $num_routers; $i++) {
     my $new_router = $router1;
     $new_router =~ s/__NUM__/${i}/g;
-    $new_router =~ s/__PREVNUM__/${prev_num}/g;
+    $new_router =~ s/__NET__/${prev_net}/g;
     print "  $new_router";
 
     # Routes to other networks
     for (my $j = 1; $j <= $num_routers; $j++) {
         if ($j == $i) { next }    # No route to our network
-        print "    <route type=\"ipv4\" gw=\"10.0.0.$j\">10.0.$j.0/24</route>\n";
+        print "    <route type=\"ipv4\" gw=\"10.0.$j.2\">10.0.$j.0/24</route>\n";
     }
 
     print "  $router2\n";
-    $prev_num = $i;
+    $prev_net = "Net${i}";
 }
+
 
 #
 # Hosts
@@ -166,9 +167,10 @@ for (my $i = 1; $i <= $num_routers; $i++) {
 
 my $host1 = <<EOF;
 <vm name="h__HOSTNUM__" type="lxc" arch="x86_64">
-    <!-- ... (unchanged) -->
-    <if id="1" net="Net__NETNUM__">
-        <ipv4>10.0.__NETNUM__.__IPADDR__/24</ipv4>
+<filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
+    <!--mem>512M</mem!-->
+    <if id="1" net="__NETNUM__">
+      <ipv4>10.0.__NETNUM__.2__IPADDR__/24</ipv4>
     </if>
     <route type="ipv4" gw="10.0.__NETNUM__.1">default</route>
 EOF
