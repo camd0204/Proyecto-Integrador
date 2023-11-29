@@ -340,7 +340,7 @@ class ActionGenerateSimpleNetwork(Action):
 
 class ActionGenerateComplexNetwork(Action):
     perl_script_path = "scripts/create-tutorial_lxc_ubuntu-big"
-    redundancy_script_path = "scripts/create_tutorial_lxc_ubuntu_big_redundancy"
+    redundancy_script_path = "scripts/create-tutorial_lxc_ubuntu-big"
     def name(self) -> Text:
         return "generate_complex_network"
         
@@ -348,11 +348,12 @@ class ActionGenerateComplexNetwork(Action):
         user_number_for_router = tracker.get_slot("user_number_for_router")
         router_number = tracker.get_slot("router_number")
         redundancy= tracker.latest_message['intent'].get('name')
-        if redundancy=='affirmative_redundancy':
-            stdout, stderr, return_code = self.run_perl_script(self.redundancy_script_path, router_number, user_number_for_router)
-        else:
-            stdout, stderr, return_code = self.run_perl_script(self.perl_script_path, router_number, user_number_for_router)
         if user_number_for_router and router_number:
+            router_number_int=int(router_number)
+            if(redundancy=='affirmative_redundancy') and router_number_int>2:
+                stdout, stderr, return_code = self.run_perl_script(self.redundancy_script_path, user_number_for_router, router_number)
+            else:
+                stdout, stderr, return_code = self.run_perl_script(self.perl_script_path, user_number_for_router, router_number)
             self.write_script_to_XML(stdout,router_number,user_number_for_router)
             suma=int(user_number_for_router)*int(router_number)
             dispatcher.utter_message(f"Script written to: user_gen_files/{router_number}router_{suma}_user.xml. Description:A big tutorial scenario made of {suma} LXC virtual machines ({router_number} routers and {user_number_for_router} hosts).")
