@@ -37,6 +37,8 @@ intents:
   - stop_all_request
   - ask_xml_validation
   - provide_xml_path
+  - affirmative_redundancy
+  - negative_redundancy
   
 
 
@@ -171,7 +173,9 @@ responses:
   utter_tcp_ip:
     - text: "TCP/IP (Transmission Control Protocol/Internet Protocol) is a suite of protocols that form the foundation of the internet and most computer networks. It provides reliable, end-to-end communication by breaking data into packets and ensuring their proper delivery."
 
-
+  utter_ask_for_redundancy:
+    - text: "Would you like to have redundancy on your network?"
+    - text: "Would you like to have redundancy on your network? This means that if one device fails, the other one will take over."
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true

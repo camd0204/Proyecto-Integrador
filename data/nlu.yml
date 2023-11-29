@@ -417,7 +417,33 @@ nlu:
     - [5](user_number_n) users for the router.
     - router connections: [5](user_number_n).
 
-  
+- intent: affirmative_redundancy
+  examples: |
+    - Yes, I want to have redundancy.
+    - yeah, use redundancy.
+    - Yes, I want to have a redundant network.
+    - use redundancy.
+    - do it with redundancy.
+    - use redundancy please.
+    - the topology should be safe and redundant.
+    - redundancy, yeah.
+    - redundancy.
+    - yes, redundancy.
+- intent: negative_redundancy
+  examples: |
+    - No, I don't want to have redundancy.
+    - do not use redundancy.
+    - no i dont want to have a redundant network.
+    - NO REDUNDANCY.
+    - the topology should not be redundant.
+    - the network should not be redundant.
+    - nope, no redundancy.
+    - try not to use redundancy.
+    - no redundancy.
+    - no, redundancy.
+    - nope no no redundancy.
+
+
 
 - intent: goodbye
   examples: |

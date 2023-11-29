@@ -340,13 +340,18 @@ class ActionGenerateSimpleNetwork(Action):
 
 class ActionGenerateComplexNetwork(Action):
     perl_script_path = "scripts/create-tutorial_lxc_ubuntu-big"
+    redundancy_script_path = "scripts/create_tutorial_lxc_ubuntu_big_redundancy"
     def name(self) -> Text:
         return "generate_complex_network"
         
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         user_number_for_router = tracker.get_slot("user_number_for_router")
         router_number = tracker.get_slot("router_number")
-        stdout, stderr, return_code = self.run_perl_script(self.perl_script_path, router_number, user_number_for_router)
+        redundancy= tracker.latest_message['intent'].get('name')
+        if redundancy=='affirmative_redundancy':
+            stdout, stderr, return_code = self.run_perl_script(self.redundancy_script_path, router_number, user_number_for_router)
+        else:
+            stdout, stderr, return_code = self.run_perl_script(self.perl_script_path, router_number, user_number_for_router)
         if user_number_for_router and router_number:
             self.write_script_to_XML(stdout,router_number,user_number_for_router)
             suma=int(user_number_for_router)*int(router_number)

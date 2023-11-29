@@ -85,13 +85,27 @@ stories:
   - intent: ask_functionality
   - action: utter_my_functionality
 
-- story: create a custom network using routers and users
+- story: create a custom network using routers and users, redundancy
   steps:
   - intent: create_custom_network_intent
   - action: utter_ask_for_number_routers
   - intent: router_number_for_custom_network
   - action: utter_ask_for_users_per_router
   - intent: provide_users_per_router
+  - action: utter_ask_for_redundancy
+  - intent: affirmative_redundancy
+  - action: generate_complex_network
+  - action: run_script_path
+
+- story: create a custom network using routers and users, no redundancy
+  steps:
+  - intent: create_custom_network_intent
+  - action: utter_ask_for_number_routers
+  - intent: router_number_for_custom_network
+  - action: utter_ask_for_users_per_router
+  - intent: provide_users_per_router
+  - action: utter_ask_for_redundancy
+  - intent: negative_redundancy
   - action: generate_complex_network
   - action: run_script_path
 
