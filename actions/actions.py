@@ -123,24 +123,18 @@ class ActionProvideSwitchConfigurationVNX(Action):
 
         for i in range(1, number + 1):
             net_elem = ET.SubElement(root, "net", attrib={"name": f"link{i}", "mode": "veth", "type": "p2p"})
-        ET.SubElement(root, "net", attrib={"name": "virbr0", "mode": "virtual_bridge", "managed": "no"})
 
         for i in range(1, number + 1):
             vm_elem = ET.SubElement(root, "vm", attrib={"name": f"vm{i}", "type": "lxc", "exec_mode": "lxc-attach","arch":"x86_64"})
             ET.SubElement(vm_elem, "filesystem", attrib={"type": "cow"}).text = "/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64"
             if_elem_1 = ET.SubElement(vm_elem, "if", attrib={"id": "1", "net": f"link{i}"})
             ET.SubElement(if_elem_1, "ipv4").text = f"1.1.1.{i + 3}/24"
-            if_elem_9 = ET.SubElement(vm_elem, "if", attrib={"id": "9", "net": "virbr0"})
-            ET.SubElement(if_elem_9, "ipv4").text = "dhcp"
             self.ip_address_dict[f"vm{i}"] = f"1.1.1.{i + 3}"
          # Add switch element
         switch_elem = ET.SubElement(root, "vm", attrib={"name": "switch", "type": "lxc", "exec_mode": "lxc-attach","arch":"x86_64"})
         ET.SubElement(switch_elem, "filesystem", attrib={"type": "cow"}).text = "/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64"
         for i in range(1, number + 1):
             ET.SubElement(switch_elem, "if", attrib={"id": str(i), "net": f"link{i}"})
-        if_elem_9_switch = ET.SubElement(switch_elem, "if", attrib={"id": "9", "net": "virbr0"})
-        ipv4_elem_9_switch = ET.SubElement(if_elem_9_switch, "ipv4")
-        ipv4_elem_9_switch.text = "dhcp"
         exec_elem = ET.SubElement(switch_elem, "exec", attrib={"seq": "on_boot", "type": "verbatim", "ostype": "system"})
         exec_elem.text = '''sleep 10; 
             apt-get -y install openvswitch-switch;
