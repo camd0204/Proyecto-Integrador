@@ -160,7 +160,7 @@ for (my $j=1; $j <= $num_routers; $j++) {
 }
 for (my $j=1; $j <= $num_connections; $j++) {
     if ($j == 1 ) { next } # No route to our network 
-    print "    <route type=\"ipv4\" gw=\"20.0.0.$j\">20.0.$j.0/24</route>\n"
+    print "    <route type=\"ipv4\" gw=\"20.0.$j.0\">20.0.$j.0/24</route>\n"
 }
 print "  $og_router2\n\n";
 my $router1 = <<EOF;
@@ -221,10 +221,12 @@ my $final_router= <<EOF;
       <ipv4>10.0.__NUME__.1/24</ipv4>
     </if>
     <if id="3" net="Link__PREV__">
-      <ipv4>20.0.__NUME__.0/24</ipv4>
+      <ipv4>20.0.__FINAL__.0/24</ipv4>
     </if>
 EOF
 my $final_connections=($num_routers)-1;
+my $last_iterator=$num_routers+1;
+$final_router =~ s/__FINAL__/${last_iterator}/g;
 $final_router =~ s/__NUME__/${num_routers}/g;
 $final_router =~ s/__PREV__/${final_connections}/g;
 $num_connections=($num_routers*2)-2;

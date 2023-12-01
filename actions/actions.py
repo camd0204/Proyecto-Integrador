@@ -339,7 +339,8 @@ class ActionGenerateSimpleNetwork(Action):
 
 class ActionGenerateComplexNetwork(Action):
     perl_script_path = "scripts/create-tutorial_lxc_ubuntu-big"
-    redundancy_script_path = "scripts/create-tutorial_lxc_ubuntu-big"
+    sequential_script_path = "scripts/create-tutorial_lxc_ubuntu-big-sequential"
+    redundancy_script_path = "scripts/create-tutorial_lxc_ubuntu-big-redundancy"
     def name(self) -> Text:
         return "generate_complex_network"
         
