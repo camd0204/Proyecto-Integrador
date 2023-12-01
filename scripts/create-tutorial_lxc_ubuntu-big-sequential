@@ -277,13 +277,6 @@ for (my $net_num=1; $net_num <= $num_routers; $net_num++) {
 }
 
 my $host = <<EOF;
-  <host>
-    <hostif net="Net0">
-       <ipv4>10.0.0.252/24</ipv4>
-    </hostif>
-    <route type="ipv4" gw="10.0.0.1">10.0.0.0/16</route>
-  </host>
-
 </vnx>
 EOF
 
