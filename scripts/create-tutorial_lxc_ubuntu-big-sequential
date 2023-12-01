@@ -148,7 +148,11 @@ my $og_router= <<EOF;
       <ipv4>20.0.1.0/24</ipv4>
     </if>
 EOF
-$num_connections=($num_routers*2)-2;
+my $og_router2 = <<EOF;
+  <forwarding type="ip" />
+  </vm>
+EOF
+my $num_connections=($num_routers*2)-2;
 print "  $og_router";
 for (my $j=1; $j <= $num_routers; $j++) {
     if ($j == 1 ) { next } # No route to our network 
@@ -158,6 +162,7 @@ for (my $j=1; $j <= $num_connections; $j++) {
     if ($j == 1 ) { next } # No route to our network 
     print "    <route type=\"ipv4\" gw=\"20.0.0.$j\">20.0.$j.0/24</route>\n"
 }
+print "  $og_router2\n\n";
 my $router1 = <<EOF;
 <vm name="r__NUM__" type="lxc" arch="x86_64">
     <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
@@ -187,6 +192,7 @@ for (my $i=2; $i < $num_routers; $i++) {
     my $nextito=$i+1;
     my $nextip=$counter+1;
     my $num_connections=$num_routers*2;
+    $new_router =~ s/__NUM__/${i}/g;
     $new_router =~ s/__PREV__/${var}/g;
     $new_router =~ s/__NEXT__/${i}/g;
     $new_router =~ s/__PREVIP__/${counter}/g;
@@ -229,6 +235,11 @@ for (my $j=1; $j <= $num_connections; $j++) {
     if ($j == $num_connections ) { next } # No route to our network 
     print "    <route type=\"ipv4\" gw=\"20.0.0.$j\">20.0.$j.0/24</route>\n"
 }
+my $final_router2 = <<EOF;
+  <forwarding type="ip" />
+  </vm>
+EOF
+print "  $final_router2\n\n";
 #
 # Hosts
 #
