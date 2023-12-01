@@ -221,7 +221,7 @@ my $final_router= <<EOF;
       <ipv4>10.0.__NUME__.1/24</ipv4>
     </if>
     <if id="3" net="Link1">
-      <ipv4>20.0.__NUME.0/24</ipv4>
+      <ipv4>20.0.__NUME__.0/24</ipv4>
     </if>
 EOF
 $final_router =~ s/__NUME__/${num_routers}/g;
