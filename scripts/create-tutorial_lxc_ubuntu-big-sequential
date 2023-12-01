@@ -217,14 +217,16 @@ my $final_router= <<EOF;
 <vm name="r__NUME__" type="lxc" arch="x86_64">
     <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
     <!--mem>128M</mem-->
-    <if id="2" net="Net1">
+    <if id="2" net="Net__NUME__">
       <ipv4>10.0.__NUME__.1/24</ipv4>
     </if>
-    <if id="3" net="Link1">
+    <if id="3" net="Link__PREV__">
       <ipv4>20.0.__NUME__.0/24</ipv4>
     </if>
 EOF
+my $final_connections=($num_routers)-1;
 $final_router =~ s/__NUME__/${num_routers}/g;
+$final_router =~ s/__PREV__/${final_connections}/g;
 $num_connections=($num_routers*2)-2;
 print "  $final_router";
 for (my $j=1; $j <= $num_routers; $j++) {
