@@ -107,59 +107,105 @@ my $net = <<EOF;
 <net name="__NET__" mode="virtual_bridge" />
 EOF
 
+my$net2 = <<EOF;
+<net name="Link__NUM__" mode="virtual_bridge" />
+EOF
+
+
 print $header;
 
 
 #
 # Nets
 #
-for (my $i = 0; $i <= $num_routers; $i++) {
+for (my $i=1; $i <= $num_routers; $i++) {
+
     my $new_net = $net;
     $new_net =~ s/__NET__/Net${i}/;
     print "  $new_net";
+
 }
+for (my $i=1; $i < $num_routers; $i++) {
 
+    my $new_net = $net2;
+    $new_net =~ s/__NUM__/${i}/g;
+    print "  $new_net";
+
+}
 print "\n\n";
-
 
 #
 # Routers
 #
+my $og_router= <<EOF;
+<vm name="r1" type="lxc" arch="x86_64">
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
+    <!--mem>128M</mem-->
+    <if id="2" net="Net1">
+      <ipv4>10.0.1.1/24</ipv4>
+    </if>
+    <if id="3" net="Link1">
+      <ipv4>20.0.1.0/24</ipv4>
+    </if>
+EOF
+$num_connections=($num_routers*2)-2;
+print "  $og_router";
+for (my $j=1; $j <= $num_routers; $j++) {
+    if ($j == 1 ) { next } # No route to our network 
+    print "    <route type=\"ipv4\" gw=\"10.0.0.$j\">10.0.$j.0/24</route>\n"
+}
+for (my $j=1; $j <= $num_connections; $j++) {
+    if ($j == 1 ) { next } # No route to our network 
+    print "    <route type=\"ipv4\" gw=\"20.0.0.$j\">20.0.$j.0/24</route>\n"
+}
 my $router1 = <<EOF;
 <vm name="r__NUM__" type="lxc" arch="x86_64">
     <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
     <!--mem>128M</mem-->
-    <if id="1" net="__NET__">
+    <if id="2" net="Net__NUM__">
       <ipv4>10.0.__NUM__.1/24</ipv4>
     </if>
-    <if id="2" net="Net__NUM__">
-        <ipv4>10.0.__NUM__.2/24</ipv4>
+    <if id="3" net="Link__PREV__">
+      <ipv4>20.0.__PREVIP__.0/24</ipv4>
     </if>
+    <if id="4" net="Link__NEXT__">
+      <ipv4>20.0.__NEXTIP__.0/24</ipv4>
+    </if>
+
 EOF
 
 my $router2 = <<EOF;
   <forwarding type="ip" />
-</vm>
+  </vm>
 EOF
+my $counter=2;
+for (my $i=2; $i < $num_routers; $i++) {
 
-my $prev_net = "Net0";
-
-for (my $i = 1; $i <= $num_routers; $i++) {
     my $new_router = $router1;
-    $new_router =~ s/__NUM__/${i}/g;
-    $new_router =~ s/__NET__/${prev_net}/g;
+    my $var=$i-1;
+    my $first=1;
+    my $nextito=$i+1;
+    my $nextip=$counter+1;
+    my $num_connections=$num_routers*2;
+    $new_router =~ s/__PREV__/${var}/g;
+    $new_router =~ s/__NEXT__/${i}/g;
+    $new_router =~ s/__PREVIP__/${counter}/g;
+    $new_router =~ s/__NEXTIP__/${nextip}/g;
+    $counter=$nextip+1;
     print "  $new_router";
-
     # Routes to other networks
-    for (my $j = 1; $j <= $num_routers; $j++) {
-        if ($j == $i) { next }    # No route to our network
-        print "    <route type=\"ipv4\" gw=\"10.0.$j.2\">10.0.$j.0/24</route>\n";
+    for (my $j=1; $j <= $num_routers; $j++) {
+        if ($j == $i ) { next } # No route to our network 
+        print "    <route type=\"ipv4\" gw=\"10.0.0.$j\">10.0.$j.0/24</route>\n"
     }
-
+    # Routes to other routers
+    for (my $j=1; $j <= $num_connections; $j++) {
+        if ($j == $i ) { next } # No route to our network 
+        print "    <route type=\"ipv4\" gw=\"20.0.$j.0\">20.0.$j.0/24</route>\n"
+    }
     print "  $router2\n";
-    $prev_net = "Net${i}";
-}
 
+}
 
 #
 # Hosts
@@ -167,10 +213,10 @@ for (my $i = 1; $i <= $num_routers; $i++) {
 
 my $host1 = <<EOF;
 <vm name="h__HOSTNUM__" type="lxc" arch="x86_64">
-<filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
     <!--mem>512M</mem!-->
-    <if id="1" net="__NETNUM__">
-      <ipv4>10.0.__NETNUM__.2__IPADDR__/24</ipv4>
+    <if id="1" net="Net__NETNUM__">
+      <ipv4>10.0.__NETNUM__.__IPADDR__/24</ipv4>
     </if>
     <route type="ipv4" gw="10.0.__NETNUM__.1">default</route>
 EOF
@@ -179,17 +225,22 @@ my $host2 = "</vm>";
 
 my $host_num = 1;
 
-for (my $net_num = 1; $net_num <= $num_routers; $net_num++) {
-    for (my $i = 1; $i <= $num_hosts_per_net; $i++) {
-        my $new_host = $host1;
-        my $ipaddr = $i + 1;
-        $new_host =~ s/__HOSTNUM__/${host_num}/g;
-        $new_host =~ s/__NETNUM__/${net_num}/g;
-        $new_host =~ s/__IPADDR__/${ipaddr}/g;
-        print "  $new_host";
-        print "  $host2\n\n";
-        $host_num++;
-    }
+for (my $net_num=1; $net_num <= $num_routers; $net_num++) {
+
+  for (my $i=1; $i <= $num_hosts_per_net; $i++) {
+ 
+    #print "Creating host $host_num in network $net_num\n";
+    my $new_host = $host1;
+    my $ipaddr = $i + 1;
+    $new_host =~ s/__HOSTNUM__/${host_num}/g;
+    $new_host =~ s/__NETNUM__/${net_num}/g;
+    $new_host =~ s/__IPADDR__/${ipaddr}/g;
+    print "  $new_host";
+    print "  $host2\n\n";
+
+    $host_num++;
+
+  }
 }
 
 my $host = <<EOF;
@@ -203,4 +254,4 @@ my $host = <<EOF;
 </vnx>
 EOF
 
-print $host;
+print $host

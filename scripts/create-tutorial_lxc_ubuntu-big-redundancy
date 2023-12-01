@@ -192,8 +192,7 @@ for (my $i=1; $i <= $num_routers; $i++) {
         print "    <route type=\"ipv4\" gw=\"10.0.0.$j\">10.0.$j.0/24</route>\n"
     }
     # Routes to other routers
-    for (my $j=1; $j <= $num_routers; $j++) {
-        if ($j == $i ) { next } # No route to our network 
+    for (my $j=1; $j <= $num_connections; $j++) { 
         print "    <route type=\"ipv4\" gw=\"20.0.$j.0\">20.0.$j.0/24</route>\n"
     }
     print "  $router2\n";

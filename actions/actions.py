@@ -351,11 +351,13 @@ class ActionGenerateComplexNetwork(Action):
             router_number_int=int(router_number)
             if(redundancy=='affirmative_redundancy') and router_number_int>2:
                 stdout, stderr, return_code = self.run_perl_script(self.redundancy_script_path,router_number,user_number_for_router)
+                dispatcher.utter_message(f"Writting script with redundancy")
             else:
                 stdout, stderr, return_code = self.run_perl_script(self.perl_script_path,router_number,user_number_for_router)
+                dispatcher.utter_message(f"Writting script without redundancy. You need more than two routers to do this.")
             self.write_script_to_XML(stdout,router_number,user_number_for_router)
             suma=int(user_number_for_router)*int(router_number)
-            dispatcher.utter_message(f"Script written to: user_gen_files/{router_number}router_{suma}_user.xml. Description:A big tutorial scenario made of {suma} LXC virtual machines ({router_number} routers and {user_number_for_router} hosts).")
+            dispatcher.utter_message(f"Script written to: user_gen_files/{router_number}_router_{suma}_user.xml. Description:A big tutorial scenario made of {suma} LXC virtual machines ({router_number} routers and {user_number_for_router} hosts).")
         else:
             dispatcher.utter_message("Network creation unable to be achieved.")
         return []
