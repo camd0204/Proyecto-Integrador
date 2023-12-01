@@ -1,0 +1,69 @@
+<?xml version="1.0" ?>
+<vnx xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="/usr/share/xml/vnx/vnx-2.00.xsd">
+  <global>
+    <version>2.0</version>
+    <scenario_name>vnx_custom_network_router_4_users</scenario_name>
+    <automac/>
+    <vm_mgmt type="none"/>
+    <vm_defaults>
+      <console display="no" id="0"/>
+      <console display="yes" id="1"/>
+    </vm_defaults>
+    <cmd-seq seq="ls12">ls1,ls2</cmd-seq>
+    <cmd-seq seq="ls123">ls12,ls3</cmd-seq>
+    <cmd-seq seq="ls1234">ls123,ls4</cmd-seq>
+    <help>
+      <seq_help seq="start-www">Start apache2 web server</seq_help>
+      <seq_help seq="stop-www">Stop apache2 web server</seq_help>
+    </help>
+  </global>
+  <net mode="virtual_bridge" name="Net0"/>
+  <net mode="virtual_bridge" name="Net1"/>
+  <vm arch="x86_64" name="h1" type="lxc">
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
+    <if id="1" net="Net0">
+      <ipv4>10.1.0.2/24</ipv4>
+    </if>
+    <route gw="10.1.0.1" type="ipv4">default</route>
+  </vm>
+  <vm arch="x86_64" name="h2" type="lxc">
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
+    <if id="1" net="Net0">
+      <ipv4>10.1.0.3/24</ipv4>
+    </if>
+    <route gw="10.1.0.1" type="ipv4">default</route>
+  </vm>
+  <vm arch="x86_64" name="h3" type="lxc">
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
+    <if id="1" net="Net0">
+      <ipv4>10.1.0.4/24</ipv4>
+    </if>
+    <route gw="10.1.0.1" type="ipv4">default</route>
+  </vm>
+  <vm arch="x86_64" name="h4" type="lxc">
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
+    <if id="1" net="Net0">
+      <ipv4>10.1.0.5/24</ipv4>
+    </if>
+    <route gw="10.1.0.1" type="ipv4">default</route>
+    <filetree root="/var/www/" seq="start-www"/>
+    <exec ostype="system" seq="start-www" type="verbatim">chmod 644 /var/www/*</exec>
+    <exec ostype="system" seq="start-www" type="verbatim">service apache2 start</exec>
+    <exec ostype="system" seq="stop-www" type="verbatim">service apache2 stop</exec>
+  </vm>
+  <vm arch="x86_64" name="r1" type="lxc">
+    <filesystem type="cow">/usr/share/vnx/filesystems/rootfs_lxc_ubuntu64</filesystem>
+    <if id="1" net="Net0">
+      <ipv4>10.1.0.1/24</ipv4>
+    </if>
+    <if id="2" net="Net1">
+      <ipv4>10.1.3.1/24</ipv4>
+    </if>
+  </vm>
+  <host>
+    <hostif net="Net1">
+      <ipv4>10.1.3.2/24</ipv4>
+    </hostif>
+    <route gw="10.1.3.1" type="ipv4">10.1.0.0/16</route>
+  </host>
+</vnx>

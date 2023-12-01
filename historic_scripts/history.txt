@@ -18,3 +18,8 @@ user_gen_files/tutorial_lxc_ubuntu64.xml
 user_gen_files/tutorial_lxc_ubuntu64.xml
 user_gen_files/tutorial_lxc_ubuntu64.xml
 user_gen_files/tutorial_lxc_ubuntu64.xml
+user_gen_files/3_router_6_user.xml
+user_gen_files/simple_lxc_ubuntu64.xml
+user_gen_files/vnx_custom_network_router_4_users.xml
+user_gen_files/3_router_6_user.xml
+user_gen_files/3_router_6_user.xml
