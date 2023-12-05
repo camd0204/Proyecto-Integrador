@@ -1,6 +1,5 @@
 # Proyecto Integrador
-## Primer avance
-Avance consiste en instalacion de RASA y entrenamiento de el modelo para conceptos basicos de red
+Instalacion de RASA y codigo listo para experimentos.
 
 ### Requisitos previos
 
@@ -12,7 +11,7 @@ Antes de comenzar, asegurarse de tener los siguientes requisitos previos:
 
 ### Paso 1: Crear un entorno Python 3.7
 
-Si no se esta utilizando un gestor de entornos virtuales, se puede crear el entorno `rasaENV` con Python 3.7 utilizando el siguiente comando:
+Si no se esta utilizando un gestor de entornos virtuales, se puede crear el entorno `rasaENV` con Python 3.7 utilizando el siguiente comando, se debe crear el entorno :
 
 ```bash
 python3.7 -m venv rasaENV
@@ -37,15 +36,41 @@ rasa --version
 ```
 .
 
-### Paso 4: Crear un proyecto Rasa (Opcional)
 
-Se creo el proyecto deseadi  ejecutando el siguiente comando:
+### Paso 5: Ubicarse dentro de directorio y ejecutar servidor de acciones
+
+Se ubica dentro de la carpeta del proyecto
 
 ```bash
-rasa init
+cd Proyecto-Integrador
 ```
 
-Este comando guiará a el usuario través de la creación de un nuevo directorio de proyecto Rasa con los archivos y carpetas necesarios para comenzar a construir chatbots.
+y posteriormente se ejecuta el comando rasa run actions, para levantar el servidor de acciones y obtener procesamiento:
+
+```bash
+rasa run actions
+```
+Se deja a esta ventana abierta y se puede saltar al paso 7 en una nueva ventana dentro del mismo directorio.
+
+### Paso 6: Entrenar modelo
+
+En caso de agregar nuevos intents se procede a usar comando train y test al modificar el nlu.yml:
+
+```bash
+rasa train
+```
+
+```bash
+rasa test
+```
+
+### Paso 7: Uso del chatbot
+
+Interaccion con el chatbot en una nueva pestana:
+
+```bash
+rasa shell
+```
 
 
 ## Componentes de rasa
